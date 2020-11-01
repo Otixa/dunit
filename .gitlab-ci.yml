@@ -1,0 +1,24 @@
+#test:
+#  stage: build
+#  image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
+#  variables:
+#   GIT_SUBMODULE_STRATEGY: recursive
+#  script:
+#   - dotnet restore "$CI_PROJECT_DIRDUnit/DUnit.csproj"
+#   - dotnet build "$CI_PROJECT_DIRDUnit/DUnit.csproj" -c Release -o $CI_PROJECT_DIR/app/build
+#   - dotnet publish "$CI_PROJECT_DIRDUnit/DUnit.csproj" -c Release -o $CI_PROJECT_DIR/app/publish
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/app/publish/*
+
+test:
+  stage: test
+  image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
+  variables:
+   GIT_SUBMODULE_STRATEGY: recursive
+  script:
+   - dotnet restore "$CI_PROJECT_DIR/DUnit.Tests/DUnit.Tests.csproj"
+   - dotnet test "$CI_PROJECT_DIR/DUnit.Tests/DUnit.Tests.csproj" --logger "junit;LogFilePath=$CI_PROJECT_DIR/app/results.xml"
+  artifacts:
+    reports:
+      junit: $CI_PROJECT_DIR/app/results.xml
