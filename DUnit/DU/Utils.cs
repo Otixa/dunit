@@ -31,5 +31,13 @@ namespace DUnit.DU
                 a.Z > b.Z ? a.Z : b.Z
                 );
         }
+        public static Vector3 Min(this Vector3 a, Vector3 b)
+        {
+            return new Vector3(
+                a.X < b.X ? a.X : b.X,
+                a.Y < b.Y ? a.Y : b.Y,
+                a.Z < b.Z ? a.Z : b.Z
+                );
+        }
     }
 }

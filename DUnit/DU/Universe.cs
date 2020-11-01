@@ -8,8 +8,6 @@ namespace DUnit.DU
 {
     public class Universe
     { 
-
-        public static Universe Singleton { get; private set; }
         public static double G => 6.67 * Math.Pow(10, -11);
         public static double C => 8333;
 
@@ -17,7 +15,6 @@ namespace DUnit.DU
 
         public Universe()
         {
-            Singleton = this;
             this.planets = new List<Planet>();
         }
         public Universe(IEnumerable<Planet> planets)

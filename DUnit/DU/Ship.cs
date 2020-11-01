@@ -9,6 +9,8 @@ namespace DUnit.DU
 {
     public class Ship : Elements.Element
     {
+        public Universe Universe { get; private set; }
+
         public Vector3 Position { get; private set; }
         public Vector3 Velocity { get; private set; }
         public Vector3 Acceleration { get; private set; }
@@ -30,9 +32,10 @@ namespace DUnit.DU
 
         public List<Elements.Element> Elements { get; private set; }
 
-        public Ship(Vector3 position, Vector3 rotation)
+        public Ship(Universe Universe, Vector3 position, Vector3 rotation)
             :base(1, "DynamicCoreUnit")
         {
+            this.Universe = Universe;
             this.Position = position;
             this.Rotation = rotation;
             this.Velocity = new Vector3(0, 0, 0);
@@ -43,22 +46,30 @@ namespace DUnit.DU
             this.MaxKinematicsAtmoNeg = new Vector3(100000, 100000, 100000);
             this.MaxKinematicsSpaceNeg = new Vector3(100000, 100000, 100000);
 
+            this.CrossSectionalArea = 10;
+
             this.Elements = new List<Elements.Element>();
         }
 
         public void Tick(float seconds)
         {
-            var provisionalPosition = Position + (Velocity * seconds);
+            
 
             //Calculate air resistance
-            var airDensity = Universe.Singleton.GetAirDensityAtPosition(Position);
+            var airDensity = Universe.GetAirDensityAtPosition(Position);
             var airResistance = ((airDensity * CrossSectionalArea) / 2) * Velocity.LengthSquared();
             AirResistance = Vector3.Normalize(Velocity) * (float)airResistance;
+            if (float.IsNaN(AirResistance.X)) AirResistance = Vector3.Zero;
 
-            var actualAcceleration = GetMaxActualAcceleration(Acceleration).Max(Acceleration);
-            var appliedAcceleration = (actualAcceleration + Universe.Singleton.CalculateGravityAtPosition(Position) - AirResistance) * seconds;
+            var actualAcceleration = GetMaxPossibleAcceleration(Acceleration).Min(Acceleration);
+            var appliedAcceleration = actualAcceleration;
+            appliedAcceleration -= Universe.CalculateGravityAtPosition(Position);
+            appliedAcceleration -= AirResistance;
 
-            if (Universe.Singleton.IsCollidingWithObject(provisionalPosition))
+            Velocity += (appliedAcceleration * seconds);
+            var provisionalPosition = Position + (Velocity * seconds);
+
+            if (Universe.IsCollidingWithObject(provisionalPosition))
             {
                 //Tonk
                 //We dont bounce `round `ere
@@ -68,7 +79,6 @@ namespace DUnit.DU
             else
             {
                 Position = provisionalPosition;
-                Velocity += (appliedAcceleration * seconds);
                 IsColliding = false;
             }
 
@@ -105,12 +115,12 @@ namespace DUnit.DU
             return new Vector4(atmoPos, atmoNeg, spacePos, spaceNeg);
         }
 
-        public Vector3 GetMaxActualAcceleration(Vector3 direction)
+        public Vector3 GetMaxPossibleAcceleration(Vector3 direction)
         {
             Vector3 currentPos = Vector3.Zero;
             Vector3 currentNeg = Vector3.Zero;
 
-            if (Universe.Singleton.GetAirDensityAtPosition(Position) > 0)
+            if (Universe.GetAirDensityAtPosition(Position) > 0)
             {
                 currentNeg = MaxKinematicsAtmoNeg;
                 currentPos = MaxKinematicsAtmoPos;
@@ -143,16 +153,16 @@ namespace DUnit.DU
             core.getConstructWorldOrientationRight = new Func<float[]>(() => (Rotation * Vector3.UnitX).ToLua());
             core.getConstructWorldOrientationForward = new Func<float[]>(() => (Rotation * Vector3.UnitZ).ToLua());
 
-            core.getWorldGravity = new Func<float[]>(() => Universe.Singleton.CalculateGravityAtPosition(Position).ToLua());
-            core.g = new Func<float[]>(() => Universe.Singleton.CalculateGravityAtPosition(Position).ToLua());
-            core.getWorldVertical = new Func<float[]>(() => Universe.Singleton.CalculateGravityAtPosition(Position).ToLua());
+            core.getWorldGravity = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
+            core.g = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
+            core.getWorldVertical = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
             core.getWorldAirFrictionAcceleration = new Func<float[]>(() => AirResistance.ToLua());
 
             core.getWorldAngularVelocity = new Func<float[]>(() => AngularVelocity.ToLua());
             core.getWorldAngularAcceleration = new Func<float[]>(() => AngularAcceleration.ToLua());
             core.getWorldAirFrictionAngularAcceleration = new Func<float[]>(() => Vector3.Zero.ToLua()); //No idea how to simulate this
 
-            core.getAltitude = new Func<float>(() => (float)Universe.Singleton.GetAltitude(Position));
+            core.getAltitude = new Func<float>(() => (float)Universe.GetAltitude(Position));
             core.getConstructId = new Func<int>(() => 1);
             core.getConstructMass = new Func<float>(() => Mass);
             core.getConstructCrossSection = new Func<float>(() => CrossSectionalArea);

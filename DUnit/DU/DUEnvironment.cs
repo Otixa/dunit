@@ -37,7 +37,7 @@ namespace DUnit.DU
                 }
             );
 
-            Ship = new Ship(Vector3.Zero, Vector3.Zero);
+            Ship = new Ship(Universe, Vector3.Zero, Vector3.Zero);
             Unit = new Elements.Unit(Ship, 2, "HoverchairController");
 
             Environment.Core = Ship.GetTable();

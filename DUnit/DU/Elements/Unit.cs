@@ -21,7 +21,7 @@ namespace DUnit.DU.Elements
         public override dynamic GetTable()
         {
             dynamic unit = base.GetTable();
-            unit.getAtmosphereDensity = new Func<float>(() => (float)Universe.Singleton.GetAirDensityAtPosition(ship.Position));
+            unit.getAtmosphereDensity = new Func<float>(() => (float)ship.Universe.GetAirDensityAtPosition(ship.Position));
 
             unit.setEngineCommand = new Func<string, float[], float[], bool, bool, string, string, string, bool>(
                 (Tags, Thrust, Rotation, b1, b2, P1Tags, P2Tags, P3Tags) =>
