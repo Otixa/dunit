@@ -22,8 +22,6 @@ namespace DUnit.DU
 
         public DUEnvironment()
         {
-            
-
             Engine = new Lua();
             
             Environment = Engine.CreateEnvironment();
@@ -35,7 +33,7 @@ namespace DUnit.DU
             Reset();
         }
         public DUEnvironment(OutputModule module)
-            :base()
+            :this()
         {
             this.OutputModule = module;
         }
