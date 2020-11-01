@@ -2,9 +2,10 @@
 DUnit is a unit testing tool for LUA scripts, specifically those packaged into DU format by DUBuild
 
 # Available Functions
+The following functions are available inside the lua environment
 - testframework.reset - Resets the universe to default values :
-	Ship, Positioned at {0,0,0}, Rotation {0,0,0}, Mass 100T, 100000N of thrust in all axis, unlimited angular accel
-	Madis positioned at {-34464, 17465536, 22665536}, 44300 radius, 7000m thick atmosphere at 0.8 density
+	- Ship, Positioned at {0,0,0}, Rotation {0,0,0}, Mass 100T, 100000N of thrust in all axis, unlimited angular accel
+	- Madis positioned at {-34464, 17465536, 22665536}, 44300 radius, 7000m thick atmosphere at 0.8 density
 
 - testframework.tickphysics - Triggers calculation of all physics related things; such as gravity, thrust, position translation, rotation
 
