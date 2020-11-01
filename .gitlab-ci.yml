@@ -1,6 +1,6 @@
 stages:
   - test
-#  - build
+  - build
 
 test:
   stage: test
@@ -14,12 +14,12 @@ test:
     reports:
       junit: $CI_PROJECT_DIR/app/results.xml
 
-#build:
-#  image: docker:latest
-#  stage: build
-#  variables:
-#    GIT_SUBMODULE_STRATEGY: recursive
-#  script:
-#    - echo "$CI_COMMIT_SHA" > DUBuild/versionhash
-#    - docker build --pull -t "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
-#    - docker push "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+build:
+  image: docker:latest
+  stage: build
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  script:
+    - echo "$CI_COMMIT_SHA" > DUnit/versionhash
+    - docker build --pull -t "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
+    - docker push "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"

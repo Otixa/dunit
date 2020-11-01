@@ -43,6 +43,7 @@ namespace DUnit.DU
             ExecuteLua($"testframework.doupdate = function() for k,v in pairs(testframework.update) do v() end end");
             ExecuteLua($"testframework.doflush = function() for k,v in pairs(testframework.flush) do v() end end");
 
+
             //Do start shit
             foreach (var startModule in module.Handlers.Where(x => x.Filter.Signature.StartsWith("start")))
             {
@@ -63,6 +64,7 @@ namespace DUnit.DU
                 ExecuteLua($"testframework.flush.slot{slotID} = function() {startModule.Code} end");
                 slotID++;
             }
+           
 
             return true;
         }
