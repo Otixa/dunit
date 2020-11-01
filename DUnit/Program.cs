@@ -46,13 +46,14 @@ namespace DUnit
 
                     var scriptPathInfo = new System.IO.FileInfo(scriptPath.Value());
                     var testsPathInfo = new System.IO.DirectoryInfo(testsPath.Value());
-                    System.IO.FileInfo logPathInfo = logPath.HasValue() ? new System.IO.FileInfo(logPath.Value()) : null;
+                    System.IO.DirectoryInfo logPathInfo = logPath.HasValue() ? new System.IO.DirectoryInfo(logPath.Value()) : null;
 
                     foreach(var scriptFilePath in scriptPathInfo.Directory.EnumerateFiles(scriptPathInfo.Name, System.IO.SearchOption.TopDirectoryOnly))
                     {
+                        if (scriptFilePath.Name.Contains(".min.")) return;
                         var logFileName = $"{scriptFilePath.Name}.xml";
-                        var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.Directory.FullName, logFileName));
-                        var testEngine = new TestEngine(scriptPathInfo, testsPathInfo, logFile);
+                        var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.FullName, logFileName));
+                        var testEngine = new TestEngine(scriptFilePath, testsPathInfo, logFile);
                     }
 
                     return 0;

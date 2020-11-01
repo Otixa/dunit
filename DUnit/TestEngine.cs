@@ -15,12 +15,13 @@ namespace DUnit
             logger.Info("Script Path : {0}", scriptPath.FullName);
             logger.Info("Test Directory : {0}", testDirectory.FullName);
 
-            logger.Info("Initializing Universe");
-            var environment = new DU.DUEnvironment();
+            
 
             logger.Info("Loading compiled script");
             var scriptModule = Newtonsoft.Json.JsonConvert.DeserializeObject<DU.OutputModule>(System.IO.File.ReadAllText(scriptPath.FullName));
-            environment.LoadScript(scriptModule);
+
+            logger.Info("Initializing Universe");
+            var environment = new DU.DUEnvironment(scriptModule);
 
             var results = new Dictionary<string, bool>();
             var junitLogger = new JUnitLog();
@@ -29,7 +30,7 @@ namespace DUnit
             {
                 logger.Debug("Resetting universe");
                 logger.Info("Running tests in {0}", test.FullName);
-                environment.Scaffold();
+                environment.Reset();
                 var start = DateTime.UtcNow;
                 using (var sr = new System.IO.StreamReader(test.OpenRead()))
                 {

@@ -33,7 +33,7 @@ namespace DUnit.DU
         public List<Elements.Element> Elements { get; private set; }
 
         public Ship(Universe Universe, Vector3 position, Vector3 rotation)
-            :base(1, "DynamicCoreUnit")
+            :base(1, "CoreUnitDynamic")
         {
             this.Universe = Universe;
             this.Position = position;
@@ -49,6 +49,7 @@ namespace DUnit.DU
             this.CrossSectionalArea = 10;
 
             this.Elements = new List<Elements.Element>();
+            this.Elements.Add(this);
         }
 
         public void Tick(float seconds)

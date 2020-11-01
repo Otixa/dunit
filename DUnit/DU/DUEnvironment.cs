@@ -10,7 +10,6 @@ namespace DUnit.DU
     public class DUEnvironment
     {
         private readonly Lua Engine;
-        private bool Scaffolded;
         public dynamic Environment { get; private set; }
 
         private List<string> UpdateSlots;
@@ -19,15 +18,21 @@ namespace DUnit.DU
         private Universe Universe;
         private Ship Ship;
         private Elements.Unit Unit;
+        private OutputModule OutputModule;
 
-        public DUEnvironment()
+        public DUEnvironment(OutputModule module)
         {
+            this.OutputModule = module;
+
             Engine = new Lua();
+            
             Environment = Engine.CreateEnvironment();
-            Scaffolded = false;
+            Environment._G = Environment;
 
             UpdateSlots = new List<string>();
             FlushSlots = new List<string>();
+
+            Reset();
         }
 
         public bool LoadScript(OutputModule module)
@@ -35,7 +40,7 @@ namespace DUnit.DU
             dynamic testframework = new LuaTable();
             Environment.testframework = testframework;
 
-            testframework.reset = new Func<bool>(() => Scaffold());
+            //testframework.reset = new Func<bool>(() => Reset());
             testframework.tickphysics = new Func<float, bool>((S) => TickPhysics(S));
             testframework.update = new LuaTable();
             testframework.flush = new LuaTable();
@@ -69,7 +74,7 @@ namespace DUnit.DU
             return true;
         }
 
-        public bool Scaffold()
+        public bool Reset()
         {
             Universe = new Universe(
                 new List<Planet>(){
@@ -79,18 +84,19 @@ namespace DUnit.DU
                         44300,
                         7000,
                         0.8
-                    ) 
+                    )
                 }
             );
 
             Ship = new Ship(Universe, Vector3.Zero, Vector3.Zero);
-            Unit = new Elements.Unit(Ship, 2, "HoverchairController");
+            Unit = new Elements.Unit(Ship, 2, "CockpitHovercraftUnit");
 
             Environment.core = Ship.GetTable();
             Environment.unit = Unit.GetTable();
             Environment.system = new System().GetTable();
 
-            Scaffolded = true;
+            LoadScript(OutputModule);
+
             return true;
         }
 
