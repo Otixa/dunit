@@ -20,9 +20,9 @@ namespace DUnit.DU
         private Elements.Unit Unit;
         private OutputModule OutputModule;
 
-        public DUEnvironment(OutputModule module)
+        public DUEnvironment()
         {
-            this.OutputModule = module;
+            
 
             Engine = new Lua();
             
@@ -33,6 +33,11 @@ namespace DUnit.DU
             FlushSlots = new List<string>();
 
             Reset();
+        }
+        public DUEnvironment(OutputModule module)
+            :base()
+        {
+            this.OutputModule = module;
         }
 
         public bool LoadScript(OutputModule module)
@@ -95,7 +100,7 @@ namespace DUnit.DU
             Environment.unit = Unit.GetTable();
             Environment.system = new System().GetTable();
 
-            LoadScript(OutputModule);
+            if (OutputModule != null) LoadScript(OutputModule);
 
             return true;
         }

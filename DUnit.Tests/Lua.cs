@@ -14,7 +14,7 @@ namespace DUnit.Tests
         public void Setup()
         {
             env = new DU.DUEnvironment();
-            env.Scaffold();
+            env.Reset();
         }
 
         [Test]
