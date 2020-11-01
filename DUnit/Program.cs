@@ -24,9 +24,9 @@ namespace DUnit
             {
                 command.Description = "Run a set of unit tests on a DU script";
 
-                var scriptPath = command.Option("-s|--script", "DUBuild output script, or any pastable lua code", CommandOptionType.SingleValue);
+                var scriptPath = command.Option("-s|--script", "DUBuild output script, or any pastable lua code - supports wildcards", CommandOptionType.SingleValue);
                 var testsPath = command.Option("-t|--testpath", "Path to the folder containing test units", CommandOptionType.SingleValue);
-                var logPath = command.Option("-l|--log", "Path to the junit output log", CommandOptionType.SingleValue);
+                var logPath = command.Option("-l|--log", "Path to the junit log output irectory", CommandOptionType.SingleValue);
 
                 command.OnExecute(() =>
                 {
@@ -48,7 +48,12 @@ namespace DUnit
                     var testsPathInfo = new System.IO.DirectoryInfo(testsPath.Value());
                     System.IO.FileInfo logPathInfo = logPath.HasValue() ? new System.IO.FileInfo(logPath.Value()) : null;
 
-                    var testEngine = new TestEngine(scriptPathInfo, testsPathInfo, logPathInfo);
+                    foreach(var scriptFilePath in scriptPathInfo.Directory.EnumerateFiles(scriptPathInfo.Name, System.IO.SearchOption.TopDirectoryOnly))
+                    {
+                        var logFileName = $"{scriptFilePath.Name}.xml";
+                        var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.Directory.FullName, logFileName));
+                        var testEngine = new TestEngine(scriptPathInfo, testsPathInfo, logFile);
+                    }
 
                     return 0;
                 });
