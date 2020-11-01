@@ -44,7 +44,7 @@ namespace DUnit
                     {
                         results[test.Name] = false;
                         junitLogger.AddFailure(test.Name, e.Message, DateTime.UtcNow - start);
-                        logger.Error("Test {0} failed", test.Name);
+                        logger.Error("Test {0} failed with error {1}", test.Name, e.Message);
                     }
                 }
             }

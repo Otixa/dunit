@@ -70,7 +70,7 @@ namespace DUnit.Tests
         }
 
         [Test]
-        public void SgipRotates()
+        public void ShipRotates()
         {
             blankUniverseShip.SetRotation(Vector3.UnitX);
             blankUniverseShip.Tick(1);

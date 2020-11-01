@@ -36,6 +36,7 @@ namespace DUnit.DU
             Environment.testframework = testframework;
 
             testframework.reset = new Func<bool>(() => Scaffold());
+            testframework.tickphysics = new Func<float, bool>((S) => TickPhysics(S));
             testframework.update = new LuaTable();
             testframework.flush = new LuaTable();
 
@@ -88,6 +89,12 @@ namespace DUnit.DU
             Environment.system = new System().GetTable();
 
             Scaffolded = true;
+            return true;
+        }
+
+        public bool TickPhysics(float seconds)
+        {
+            Ship.Tick(seconds);
             return true;
         }
 

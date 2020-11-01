@@ -7,8 +7,6 @@ namespace DUnit
     {
         static void Main(string[] args)
         {
-            //Need path to >
-            //Compiled output
             var logger = NLog.LogManager.GetCurrentClassLogger();
             logger.Info("Starting DUnit");
 
