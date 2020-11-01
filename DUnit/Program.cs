@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.CommandLineUtils;
 using System;
+using System.Collections.Generic;
 
 namespace DUnit
 {
@@ -48,9 +49,15 @@ namespace DUnit
                     var testsPathInfo = new System.IO.DirectoryInfo(testsPath.Value());
                     System.IO.DirectoryInfo logPathInfo = logPath.HasValue() ? new System.IO.DirectoryInfo(logPath.Value()) : null;
 
-                    foreach(var scriptFilePath in scriptPathInfo.Directory.EnumerateFiles(scriptPathInfo.Name, System.IO.SearchOption.TopDirectoryOnly))
+                    var matchedSourceFiles = new List<System.IO.FileInfo>();
+                    matchedSourceFiles.AddRange(scriptPathInfo.Directory.EnumerateFiles(scriptPathInfo.Name));
+
+                    logger.Info("Matched {0} source files", matchedSourceFiles.Count);
+
+                    foreach(var scriptFilePath in matchedSourceFiles)
                     {
-                        if (scriptFilePath.Name.Contains(".min.")) return;
+                        logger.Info("Processing {0}", scriptFilePath.FullName);
+                        if (scriptFilePath.Name.Contains(".min.")) return 0;
                         var logFileName = $"{scriptFilePath.Name}.xml";
                         var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.FullName, logFileName));
                         var testEngine = new TestEngine(scriptFilePath, testsPathInfo, logFile);
