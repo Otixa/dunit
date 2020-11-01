@@ -58,7 +58,7 @@ namespace DUnit.DU
             //Calculate air resistance
             var airDensity = Universe.GetAirDensityAtPosition(Position);
             var airResistance = ((airDensity * CrossSectionalArea) / 2) * Velocity.LengthSquared();
-            AirResistance = Vector3.Normalize(Velocity) * (float)airResistance;
+            AirResistance = Vector3.Normalize(Velocity) * (float)(airResistance / Mass);
             if (float.IsNaN(AirResistance.X)) AirResistance = Vector3.Zero;
 
             var actualAcceleration = GetMaxPossibleAcceleration(Acceleration).Min(Acceleration);

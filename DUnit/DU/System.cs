@@ -15,7 +15,7 @@ namespace DUnit.DU
         {
             dynamic system = new LuaTable();
 
-            system.getTime = new Func<float>(() => (float)(new TimeSpan(DateTime.UtcNow.Ticks).TotalMilliseconds / 1000));
+            system.getTime = new Func<double>(() => (DateTime.UtcNow - new DateTime(2017, 01, 01)).TotalMilliseconds / 1000);
             system.getActionUpdateDeltaTime = new Func<float>(() => 0.05f);
             system.lockView = new Func<bool, bool>((L) => lockView = L);
             system.isViewLocked = new Func<bool>(() => lockView);

@@ -61,7 +61,7 @@ namespace DUnit.Tests
         }
 
         [Test]
-        public void Gravity()
+        public void GravityExists()
         {
             Assert.AreEqual(Vector3.Zero, blankUniverse.CalculateGravityAtPosition(Vector3.Zero));
             Assert.AreEqual(moon.SurfaceGravity, populatedUniverse.CalculateGravityAtPosition(moonSurface).Length());
@@ -69,7 +69,7 @@ namespace DUnit.Tests
         }
 
         [Test]
-        public void Atmosphere()
+        public void AtmosphereExists()
         {
             Assert.AreEqual(0, blankUniverse.GetAirDensityAtPosition(Vector3.Zero));
             Assert.AreEqual(1, populatedUniverse.GetAirDensityAtPosition(moonSurface));
@@ -78,7 +78,7 @@ namespace DUnit.Tests
         }
 
         [Test]
-        public void Collision()
+        public void CollisionsHappen()
         {
             Assert.IsFalse(blankUniverse.IsCollidingWithObject(Vector3.Zero));
             Assert.IsFalse(populatedUniverse.IsCollidingWithObject(moonSpace));

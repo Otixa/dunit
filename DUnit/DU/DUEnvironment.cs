@@ -3,13 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using System.Linq;
 
 namespace DUnit.DU
 {
     public class DUEnvironment
     {
         private readonly Lua Engine;
-        private readonly dynamic Environment;
+        private bool Scaffolded;
+        public dynamic Environment { get; private set; }
+
+        private List<string> UpdateSlots;
+        private List<string> FlushSlots;
 
         private Universe Universe;
         private Ship Ship;
@@ -19,11 +24,49 @@ namespace DUnit.DU
         {
             Engine = new Lua();
             Environment = Engine.CreateEnvironment();
+            Scaffolded = false;
 
-            
+            UpdateSlots = new List<string>();
+            FlushSlots = new List<string>();
         }
 
-        private void Scaffold()
+        public bool LoadScript(OutputModule module)
+        {
+            dynamic testframework = new LuaTable();
+            Environment.testframework = testframework;
+
+            testframework.reset = new Func<bool>(() => Scaffold());
+            testframework.update = new LuaTable();
+            testframework.flush = new LuaTable();
+
+            ExecuteLua($"testframework.doupdate = function() for k,v in pairs(testframework.update) do v() end end");
+            ExecuteLua($"testframework.doflush = function() for k,v in pairs(testframework.flush) do v() end end");
+
+            //Do start shit
+            foreach (var startModule in module.Handlers.Where(x => x.Filter.Signature.StartsWith("start")))
+            {
+                ExecuteLua(startModule.Code);
+            }
+
+            int slotID = 1;
+            foreach (var startModule in module.Handlers.Where(x => x.Filter.Signature.StartsWith("update")))
+            {
+                ExecuteLua($"testframework.update.slot{slotID} = function() {startModule.Code} end");
+                slotID++;
+            }
+
+
+            slotID = 1;
+            foreach (var startModule in module.Handlers.Where(x => x.Filter.Signature.StartsWith("flush")))
+            {
+                ExecuteLua($"testframework.flush.slot{slotID} = function() {startModule.Code} end");
+                slotID++;
+            }
+
+            return true;
+        }
+
+        public bool Scaffold()
         {
             Universe = new Universe(
                 new List<Planet>(){
@@ -40,10 +83,17 @@ namespace DUnit.DU
             Ship = new Ship(Universe, Vector3.Zero, Vector3.Zero);
             Unit = new Elements.Unit(Ship, 2, "HoverchairController");
 
-            Environment.Core = Ship.GetTable();
-            Environment.Unit = Unit.GetTable();
-            Environment.System = new System().GetTable();
+            Environment.core = Ship.GetTable();
+            Environment.unit = Unit.GetTable();
+            Environment.system = new System().GetTable();
 
+            Scaffolded = true;
+            return true;
+        }
+
+        public LuaResult ExecuteLua(string code)
+        {
+            return Environment.dochunk(code, Guid.NewGuid().ToString());
         }
     }
 }

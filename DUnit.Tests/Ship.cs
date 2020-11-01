@@ -47,7 +47,7 @@ namespace DUnit.Tests
         }
 
         [Test]
-        public void Motionless()
+        public void ShipIsMotionlessWhenLeftAlone()
         {
             blankUniverseShip.Tick(1);
             Assert.AreEqual(Vector3.Zero, blankUniverseShip.Position);
@@ -58,7 +58,7 @@ namespace DUnit.Tests
         }
         
         [Test]
-        public void Motion()
+        public void ShipMovesWhenThrustIsApplied()
         {
             blankUniverseShip.SetThrust(Vector3.UnitX);
             blankUniverseShip.Tick(1);
@@ -70,7 +70,7 @@ namespace DUnit.Tests
         }
 
         [Test]
-        public void Rotation()
+        public void SgipRotates()
         {
             blankUniverseShip.SetRotation(Vector3.UnitX);
             blankUniverseShip.Tick(1);
@@ -82,7 +82,7 @@ namespace DUnit.Tests
         }
 
         [Test]
-        public void Gravity()
+        public void GravityAffectsShip()
         {
             var preAltitude = (populatedUniverseShip_atmo.Position - moon.Position).Length();
             populatedUniverseShip_atmo.Tick(1);
@@ -97,7 +97,7 @@ namespace DUnit.Tests
         }
         
         [Test]
-        public void AirResistance()
+        public void AirResistanceAffectsShip()
         {
             populatedUniverseShip_atmo.SetThrust(Vector3.UnitX * 10);
             populatedUniverseShip_atmo.Tick(10);

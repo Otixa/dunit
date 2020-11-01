@@ -1,15 +1,6 @@
-#test:
-#  stage: build
-#  image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
-#  variables:
-#   GIT_SUBMODULE_STRATEGY: recursive
-#  script:
-#   - dotnet restore "$CI_PROJECT_DIRDUnit/DUnit.csproj"
-#   - dotnet build "$CI_PROJECT_DIRDUnit/DUnit.csproj" -c Release -o $CI_PROJECT_DIR/app/build
-#   - dotnet publish "$CI_PROJECT_DIRDUnit/DUnit.csproj" -c Release -o $CI_PROJECT_DIR/app/publish
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/app/publish/*
+stages:
+  - test
+#  - build
 
 test:
   stage: test
@@ -22,3 +13,13 @@ test:
   artifacts:
     reports:
       junit: $CI_PROJECT_DIR/app/results.xml
+
+#build:
+#  image: docker:latest
+#  stage: build
+#  variables:
+#    GIT_SUBMODULE_STRATEGY: recursive
+#  script:
+#    - echo "$CI_COMMIT_SHA" > DUBuild/versionhash
+#    - docker build --pull -t "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
+#    - docker push "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"

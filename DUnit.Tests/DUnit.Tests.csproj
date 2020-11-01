@@ -27,4 +27,16 @@
     <ProjectReference Include="..\DUnit\DUnit.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestProject\Test.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestProject\Tests\Fail.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestProject\Tests\Success.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
