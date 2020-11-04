@@ -88,49 +88,69 @@ namespace DUnit
     {
 		private class Entry
         {
-			public string Name { get; set; }
+			public string ScriptName { get; set; }
+			public string TestName { get; set; }
 			public string Message { get; set; }
 			public bool Success { get; set; }
 			public TimeSpan Duration { get; set; }
         }
-		private List<Entry> Entries;
+		private Dictionary<string, Testsuite> Entries;
 		public JUnitLog()
         {
-			Entries = new List<Entry>();
-        }
-		public void AddSuccess(string name, TimeSpan duration)
+			Entries = new Dictionary<string, Testsuite>();
+		}
+		public void AddSuccess(string script, string name, TimeSpan duration)
         {
-			Entries.Add(new Entry() { Name = name, Success = true, Duration = duration});
-        }
-		public void AddFailure(string name, string message, TimeSpan duration)
+			if (!Entries.ContainsKey(script)) Entries[script] = new Testsuite()
+			{
+				Name = script,
+				Errors = "0",
+				Failures = "0",
+				Tests = "0",
+				Testcase = new List<Testcase>()
+			};
+
+			Entries[script].Testcase.Add(
+				new Testcase()
+				{
+					Classname = "DUnit",
+					Name =name,
+					Time = $"{duration.TotalSeconds}"
+				}
+			);
+
+			Entries[script].Tests = $"{int.Parse(Entries[script].Tests) + 1}";
+		}
+		public void AddFailure(string script, string name, string message, TimeSpan duration)
         {
-			Entries.Add(new Entry() { Name = name, Success = false, Message = message, Duration = duration});
+			if (!Entries.ContainsKey(script)) Entries[script] = new Testsuite()
+			{
+				Name = script,
+				Errors = "0",
+				Failures = "0",
+				Tests = "0",
+				Testcase = new List<Testcase>()
+			};
+
+			Entries[script].Testcase.Add(
+				new Testcase()
+				{
+					Classname = "DUnit",
+					Name = name,
+					Time = $"{duration.TotalSeconds}",
+					Failure = new Failure() { Message = message, Text = "Test Failed" },
+				}
+			);
+
+			Entries[script].Tests = $"{int.Parse(Entries[script].Tests) + 1}";
+			Entries[script].Failures = $"{int.Parse(Entries[script].Failures) + 1}";
+			Entries[script].Errors = $"{int.Parse(Entries[script].Errors) + 1}";
 		}
 
 		public string Serialize()
         {
 			var ts = new Testsuites();
-			foreach (var entry in Entries)
-            {
-				ts.Testsuite.Add(
-					new Testsuite()
-					{
-						Name = entry.Name,
-						Errors = entry.Success ? "0" : "1",
-						Failures = entry.Success ? "0" : "1",
-						Tests = "1",
-						Testcase = new List<Testcase>()
-                        {
-							new Testcase(){
-								Classname="DUnit", 
-								Name = entry.Name,
-								Failure = entry.Success ? null : new Failure(){Message=entry.Message, Text="Test Failed" }, 
-								Time = $"{entry.Duration.TotalSeconds}"}
-                        }
-
-					}
-				);
-            }
+			ts.Testsuite = Entries.Values.ToList();
 
 			var slz = new XmlSerializer(typeof(Testsuites));
 			using (var ms = new System.IO.MemoryStream())

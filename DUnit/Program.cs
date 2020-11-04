@@ -13,6 +13,8 @@ namespace DUnit
 
             var rootDir = AppDomain.CurrentDomain.BaseDirectory;
             var versionHash = System.IO.File.ReadAllText(System.IO.Path.Combine(rootDir, "versionhash"));
+            var luaDirectory = new System.IO.DirectoryInfo(System.IO.Path.Combine(rootDir, "LuaLibraries"));
+
 
             logger.Info($"Version {versionHash}");
 
@@ -60,7 +62,7 @@ namespace DUnit
                         if (scriptFilePath.Name.Contains(".min.")) return 0;
                         var logFileName = $"{scriptFilePath.Name}.xml";
                         var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.FullName, logFileName));
-                        var testEngine = new TestEngine(scriptFilePath, testsPathInfo, logFile);
+                        var testEngine = new TestEngine(luaDirectory, scriptFilePath, testsPathInfo, logFile);
                     }
 
                     return 0;

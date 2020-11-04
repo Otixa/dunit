@@ -8,7 +8,7 @@ namespace DUnit
     public class TestEngine
     {
         private NLog.ILogger logger;
-        public TestEngine(System.IO.FileInfo scriptPath, System.IO.DirectoryInfo testDirectory, System.IO.FileInfo logOutputPath)
+        public TestEngine(System.IO.DirectoryInfo luaDirectory, System.IO.FileInfo scriptPath, System.IO.DirectoryInfo testDirectory, System.IO.FileInfo logOutputPath)
         {
             logger = NLog.LogManager.GetCurrentClassLogger();
             logger.Info("Starting test engine");
@@ -21,7 +21,7 @@ namespace DUnit
             var scriptModule = Newtonsoft.Json.JsonConvert.DeserializeObject<DU.OutputModule>(System.IO.File.ReadAllText(scriptPath.FullName));
 
             logger.Info("Initializing Universe");
-            var environment = new DU.DUEnvironment(scriptModule);
+            var environment = new DU.DUEnvironment(luaDirectory, scriptModule);
 
             var results = new Dictionary<string, bool>();
             var junitLogger = new JUnitLog();
@@ -38,13 +38,13 @@ namespace DUnit
                     {
                         var result = environment.ExecuteLua(sr.ReadToEnd());
                         results[test.Name] = true;
-                        junitLogger.AddSuccess(test.Name, DateTime.UtcNow - start);
+                        junitLogger.AddSuccess(scriptPath.Name, test.Name, DateTime.UtcNow - start);
                         logger.Info("Test {0} was successful", test.Name);
                     }
                     catch (Exception e)
                     {
                         results[test.Name] = false;
-                        junitLogger.AddFailure(test.Name, e.Message, DateTime.UtcNow - start);
+                        junitLogger.AddFailure(scriptPath.Name, test.Name, e.Message, DateTime.UtcNow - start);
                         logger.Error("Test {0} failed with error {1}", test.Name, e.Message);
                     }
                 }

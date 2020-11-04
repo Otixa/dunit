@@ -13,7 +13,7 @@ namespace DUnit.Tests
         [SetUp]
         public void Setup()
         {
-            env = new DU.DUEnvironment();
+            env = new DU.DUEnvironment(new System.IO.DirectoryInfo(Environment.CurrentDirectory));
             env.Reset();
         }
 
@@ -23,13 +23,13 @@ namespace DUnit.Tests
             var result = env.ExecuteLua(@"
                 return system.getTime()
             ");
-            var pre = (double)result.Values[0];
+            var pre = (double)result.Number;
             Assert.IsTrue(pre > 0);
 
             result = env.ExecuteLua(@"
                 return system.getTime()
             ");
-            var post = (double)result.Values[0];
+            var post = (double)result.Number;
             Assert.IsTrue(post > pre);
         }
         
@@ -41,8 +41,8 @@ namespace DUnit.Tests
                 system.freeze(true)
                 return a, system.isFrozen()
             ");
-            Assert.IsFalse((bool)result.Values[0]);
-            Assert.IsTrue((bool)result.Values[1]);
+            Assert.IsFalse((bool)result.Table[0]);
+            Assert.IsTrue((bool)result.Table[1]);
         }
 
 

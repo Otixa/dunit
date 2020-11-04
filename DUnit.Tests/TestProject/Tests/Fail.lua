@@ -1,0 +1,1 @@
+﻿if testobject.rtwo() ~= 3 then error("rtwo is not three") end
