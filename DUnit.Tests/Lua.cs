@@ -41,8 +41,8 @@ namespace DUnit.Tests
                 system.freeze(true)
                 return a, system.isFrozen()
             ");
-            Assert.IsFalse((bool)result.Table[0]);
-            Assert.IsTrue((bool)result.Table[1]);
+            Assert.IsFalse(result.Tuple[0].Boolean);
+            Assert.IsTrue(result.Tuple[1].Boolean);
         }
 
 
