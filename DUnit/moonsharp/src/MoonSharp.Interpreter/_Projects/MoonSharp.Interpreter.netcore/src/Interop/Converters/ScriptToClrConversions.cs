@@ -144,6 +144,11 @@ namespace MoonSharp.Interpreter.Interop.Converters
 						return NumericConversions.DoubleToType(desiredType, value.Number);
 					if (stringSubType != StringConversions.StringSubtype.None)
 						str = value.Number.ToString();
+					if (desiredType == typeof(Boolean))
+                    {
+						if (value.Number == 1) return true;
+						if (value.Number == 0) return false;
+                    }
 					break;
 				case DataType.String:
 					if (stringSubType != StringConversions.StringSubtype.None)

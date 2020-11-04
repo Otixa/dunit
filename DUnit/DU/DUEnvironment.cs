@@ -24,7 +24,6 @@ namespace DUnit.DU
 
         public DUEnvironment(DirectoryInfo requirePath)
         {
-
             this.requirePath = requirePath;
             Reset();
         }
@@ -63,7 +62,7 @@ namespace DUnit.DU
                 
                 _G.type = function(o)
                     local t = _G.orig_type(o)
-                    if t == ""table"" then
+                    if t == ""table"" or t == ""userdata"" then
                         local mt = getmetatable(o) or {}
                         if mt._name then return mt._name end
                     end
@@ -71,6 +70,10 @@ namespace DUnit.DU
                 end
                     
                 _G.types = { type=_G.type }
+
+
+                --WARNING, the below line is not compliant with DU - should be removed once its no longer needed
+                _G.typeof = _G.type
                 
             ");
 
@@ -83,9 +86,9 @@ namespace DUnit.DU
                     ExecuteLua(startModule.Code);
                 } catch (ScriptRuntimeException e)
                 {
-                    var errorLineRegex_SingleLine = new System.Text.RegularExpressions.Regex(@"chunk_[\d]+:\(([\d]+),([\d]+)-([\d]+)");
-                    var errorLineRegex_MultiLine = new System.Text.RegularExpressions.Regex(@"chunk_[\d]+:\(([\d]+),([\d]+)-([\d]+),([\d]+)");
-                    var errorLineRegex_Classic = new System.Text.RegularExpressions.Regex(@"chunk_[\d]+:\(([\d]+),([\d]+)\)");
+                    var errorLineRegex_SingleLine = new System.Text.RegularExpressions.Regex(@"chunk_([\d]+):\(([\d]+),([\d]+)-([\d]+)");
+                    var errorLineRegex_MultiLine = new System.Text.RegularExpressions.Regex(@"chunk([\d]+)+:\(([\d]+),([\d]+)-([\d]+),([\d]+)");
+                    var errorLineRegex_Classic = new System.Text.RegularExpressions.Regex(@"chunk_([\d]+)+:\(([\d]+),([\d]+)\)");
                     var classNameRegex = new System.Text.RegularExpressions.Regex(@"[ \t]*--@class[ \t]+(\S+)");
 
                     var slResult = errorLineRegex_SingleLine.Match(e.DecoratedMessage);
@@ -108,27 +111,29 @@ namespace DUnit.DU
                     }
                     else if (slResult.Success)
                     {
-                        sourceName = mlResult.Groups[1].Value;
-                        startLine = mlResult.Groups[2].Value;
-                        startChar = mlResult.Groups[3].Value;
-                        endChar = mlResult.Groups[4].Value;
+                        sourceName = slResult.Groups[1].Value;
+                        startLine = slResult.Groups[2].Value;
+                        startChar = slResult.Groups[3].Value;
+                        endChar = slResult.Groups[4].Value;
                     }
                     else if (cResult.Success)
                     {
-                        sourceName = mlResult.Groups[1].Value;
-                        startLine = mlResult.Groups[2].Value;
-                        startChar = mlResult.Groups[3].Value;
+                        sourceName = cResult.Groups[1].Value;
+                        startLine = cResult.Groups[2].Value;
+                        startChar = cResult.Groups[3].Value;
                     }
 
                     var classNameDetails = classNameRegex.Match(startModule.Code);
 
                     MoonSharp.Interpreter.Debugging.SourceCode sourceFile = null;
                     var sourceFileLine = string.Empty;
-                    if (sourceName.Contains("chunk_"))
+                    if (sourceName != String.Empty)
                     {
-                        var sourceFileID = int.Parse(sourceName.Split('_')[1]);
+                        var sourceFileID = int.Parse(sourceName);
                         sourceFile = Lua.GetSourceCode(sourceFileID);
                         sourceFileLine = sourceFile.Lines[int.Parse(startLine)];
+                        var sourceFileClass = classNameRegex.Match(sourceFile.Code);
+                        if (sourceFileClass.Success) classNameDetails = sourceFileClass;
                     }
                     
 
@@ -137,7 +142,7 @@ namespace DUnit.DU
                         sourceName = classNameDetails.Groups[1].Value;
                     }
 
-                    var errorMessage = $"{e.Message} in slot{startModule.Key} ({sourceName}) Line/Char {startLine}:{startChar} -> {endLine}:{endChar} Line Contents : {sourceFileLine}";
+                    var errorMessage = $"{e.Message} processing slot{startModule.Key} in {sourceName} Line:{startLine} Col:{startChar} to Line:{endLine} Char:{endChar} Contents: {sourceFileLine}";
 
                     throw new Exception(errorMessage);
                 }

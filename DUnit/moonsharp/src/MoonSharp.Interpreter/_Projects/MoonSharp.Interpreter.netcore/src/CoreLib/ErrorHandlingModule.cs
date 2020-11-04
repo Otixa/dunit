@@ -29,11 +29,18 @@ namespace MoonSharp.Interpreter.CoreLib
 			for (int i = 1; i < args.Count; i++)
 				a[i - 1] = args[i];
 
-			if (args[0].Type == DataType.ClrFunction)
+			var tempRef = args[0];
+
+			if (args[0].Type == DataType.Table && args[0].Table.MetaTable != null && args[0].Table.MetaTable["__call"] != null)
+            {
+				tempRef = DynValue.NewClosure(args[0].Table.MetaTable["__call"] as Closure);
+			}
+
+			if (tempRef.Type == DataType.ClrFunction)
 			{
 				try
 				{
-					DynValue ret = args[0].Callback.Invoke(executionContext, a);
+					DynValue ret = tempRef.Callback.Invoke(executionContext, a);
 					if (ret.Type == DataType.TailCallRequest)
 					{
 						if (ret.TailCallData.Continuation != null || ret.TailCallData.ErrorHandler != null)
@@ -63,7 +70,7 @@ namespace MoonSharp.Interpreter.CoreLib
 					return DynValue.NewTupleNested(DynValue.False, DynValue.NewString(ex.DecoratedMessage));
 				}
 			}
-			else if (args[0].Type != DataType.Function)
+			else if (tempRef.Type != DataType.Function)
 			{
 				return DynValue.NewTupleNested(DynValue.False, DynValue.NewString("attempt to " + funcName + " a non-function"));
 			}
