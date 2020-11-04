@@ -30,20 +30,56 @@ namespace DUnit
             {
                 logger.Debug("Resetting universe");
                 logger.Info("Running tests in {0}", test.FullName);
-                environment.Reset();
+                var testEnvironment = environment.BuildEnvironment();
                 var start = DateTime.UtcNow;
                 using (var sr = new System.IO.StreamReader(test.OpenRead()))
                 {
+                    MoonSharp.Interpreter.Table testUnitTable = null;
                     try
                     {
-                        var result = environment.ExecuteLua(sr.ReadToEnd());
-                        results[test.Name] = true;
-                        junitLogger.AddSuccess(scriptPath.Name, test.Name, DateTime.UtcNow - start);
-                        logger.Info("Test {0} was successful", test.Name);
+                        testUnitTable = environment.LoadTest(testEnvironment, sr.ReadToEnd());
+
+                        MoonSharp.Interpreter.Closure OTS = testUnitTable["OneTimeSetup"] as MoonSharp.Interpreter.Closure;
+                        MoonSharp.Interpreter.Closure OTC = testUnitTable["OneTimeCleanup"] as MoonSharp.Interpreter.Closure;
+                        MoonSharp.Interpreter.Closure TS = testUnitTable["Setup"] as MoonSharp.Interpreter.Closure;
+                        MoonSharp.Interpreter.Closure TC = testUnitTable["Cleanup"] as MoonSharp.Interpreter.Closure;
+                        testUnitTable.Remove("OneTimeSetup");
+                        testUnitTable.Remove("OneTimeCleanup");
+                        testUnitTable.Remove("Setup");
+                        testUnitTable.Remove("Cleanup");
+
+                        //Run One Time Setup
+                        OTS?.Call();
+                        //Run Setup
+                        //Run Test
+                        //Run Cleanup
+                        foreach (var tablePair in testUnitTable.Pairs)
+                        {
+                            var testName = tablePair.Key.String ?? "Unknown";
+                            try
+                            {
+                                TS?.Call();
+                                tablePair.Value.Function.Call();
+                                TC?.Call();
+
+                                results[new Guid().ToString()] = true;
+                                junitLogger.AddSuccess(scriptPath.Name, testName, DateTime.UtcNow - start);
+                                logger.Info("Test {0} was successful", testName);
+                            }
+                            catch (Exception e)
+                            {
+                                results[new Guid().ToString()] = false;
+                                junitLogger.AddFailure(scriptPath.Name, testName, e.Message, DateTime.UtcNow - start);
+                                logger.Error("Test {0} failed with error {1}", testName, e.Message);
+                            }
+                        }
+                        //Run One Time Cleanup
+
+                        OTC?.Call();
                     }
                     catch (Exception e)
                     {
-                        results[test.Name] = false;
+                        results[new Guid().ToString()] = false;
                         junitLogger.AddFailure(scriptPath.Name, test.Name, e.Message, DateTime.UtcNow - start);
                         logger.Error("Test {0} failed with error {1}", test.Name, e.Message);
                     }

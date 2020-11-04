@@ -11,7 +11,6 @@ namespace DUnit.DU
 {
     public class DUEnvironment
     {
-        private Script Lua;
         private DirectoryInfo requirePath;
 
         private List<string> UpdateSlots;
@@ -25,7 +24,6 @@ namespace DUnit.DU
         public DUEnvironment(DirectoryInfo requirePath)
         {
             this.requirePath = requirePath;
-            Reset();
         }
         public DUEnvironment(DirectoryInfo requirePath, OutputModule module)
             :this(requirePath)
@@ -33,31 +31,31 @@ namespace DUnit.DU
             this.OutputModule = module;
         }
 
-        public bool LoadScript(OutputModule module)
+        public bool LoadScriptIntoEnvironment(Script Lua, OutputModule module)
         {
             var testframework = new Table(Lua);
-            Lua.Globals["testframework"] = testframework;
+            Lua.Globals["testFramework"] = testframework;
 
             //testframework.reset = new Func<bool>(() => Reset());
-            testframework["tickphysics"] = new Func<float, bool>((S) => TickPhysics(S));
+            testframework["tickPhysics"] = new Func<float, bool>((S) => TickPhysics(S));
             testframework["update"] = new Table(Lua);
             testframework["flush"] = new Table(Lua);
 
-            testframework["doupdate"] = Lua.LoadFunction(@"function() for k,v in pairs(testframework.update) do v() end end");
-            testframework["doflush"] = Lua.LoadFunction(@"function() for k,v in pairs(testframework.flush) do v() end end");
+            testframework["doUpdate"] = Lua.LoadFunction(@"function() for k,v in pairs(testFramework.update) do v() end end");
+            testframework["doFlush"] = Lua.LoadFunction(@"function() for k,v in pairs(testFramework.flush) do v() end end");
 
             //ExecuteLua(@"json = require (""dkjson"")");
-            ExecuteLua(@"require (""Helpers"")");
-            ExecuteLua(@"require (""AxisCommand"")");
-            ExecuteLua(@"require (""Navigator"")");
-            ExecuteLua(@"require (""pl/init"")");
-            ExecuteLua(@"require (""cpml/sgui"")");
+            Lua.DoString(@"require (""Helpers"")");
+            Lua.DoString(@"require (""AxisCommand"")");
+            Lua.DoString(@"require (""Navigator"")");
+            Lua.DoString(@"require (""pl/init"")");
+            Lua.DoString(@"require (""cpml/sgui"")");
             //ExecuteLua("testframework.doupdate = function() for k,v in pairs(testframework.update) do v() end end");
             //ExecuteLua("testframework.doflush = function() for k,v in pairs(testframework.flush) do v() end end");
 
             //Some wierd DU implementation stuff
 
-            ExecuteLua(@"
+            Lua.DoString(@"
                 _G.orig_type = _G.type
                 
                 _G.type = function(o)
@@ -83,7 +81,7 @@ namespace DUnit.DU
             {
                 try
                 {
-                    ExecuteLua(startModule.Code);
+                    Lua.DoString(startModule.Code);
                 } catch (ScriptRuntimeException e)
                 {
                     var errorLineRegex_SingleLine = new System.Text.RegularExpressions.Regex(@"chunk_([\d]+):\(([\d]+),([\d]+)-([\d]+)");
@@ -153,7 +151,7 @@ namespace DUnit.DU
             int slotID = 1;
             foreach (var startModule in module.Handlers.Where(x => x.Filter.Signature.StartsWith("update")))
             {
-                ExecuteLua($"testframework.update.slot{slotID} = function() {startModule.Code} end");
+                Lua.DoString($"testFramework.update.slot{slotID} = function() {startModule.Code} end");
                 slotID++;
             }
 
@@ -161,7 +159,7 @@ namespace DUnit.DU
             slotID = 1;
             foreach (var startModule in module.Handlers.Where(x => x.Filter.Signature.StartsWith("flush")))
             {
-                ExecuteLua($"testframework.flush.slot{slotID} = function() {startModule.Code} end");
+                Lua.DoString($"testFramework.flush.slot{slotID} = function() {startModule.Code} end");
                 slotID++;
             }
            
@@ -169,9 +167,9 @@ namespace DUnit.DU
             return true;
         }
 
-        public bool Reset()
+        public Script BuildEnvironment()
         {
-            Lua = new Script();
+            var Lua = new Script();
 
             ((ScriptLoaderBase)Lua.Options.ScriptLoader).ModulePaths = new string[] { $"{Path.Join(requirePath.FullName, "?.lua")}", $"{Path.Join(requirePath.FullName, "?", "?.lua")}" };
 
@@ -206,9 +204,9 @@ namespace DUnit.DU
                 Lua.Globals[Guid.NewGuid().ToString()] = element.GetTable(Lua);
             }
 
-            if (OutputModule != null) LoadScript(OutputModule);
+            if (OutputModule != null) LoadScriptIntoEnvironment(Lua, OutputModule);
 
-            return true;
+            return Lua;
         }
 
         public bool TickPhysics(float seconds)
@@ -217,11 +215,11 @@ namespace DUnit.DU
             return true;
         }
 
-        public DynValue ExecuteLua(string code)
+        public Table LoadTest(Script environment, string code)
         {
-            var chunk = Lua.LoadString(code);
-            return Lua.Call(chunk);
-            //return Environment.dochunk(code, Guid.NewGuid().ToString());
+            var chunkResult = environment.DoString(code);
+            if (chunkResult.Type != DataType.Table) throw new Exception("Test module did not return a table");
+            return chunkResult.Table;
         }
     }
 }
