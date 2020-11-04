@@ -709,7 +709,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 				{
 					if (w.StartsWith("-"))
 						w = w.Substring(1);
-					if (FieldLength != int.MinValue)
+					if (FieldLength != int.MinValue && FieldLength != 0)
 						if (PositiveSign)  // xan - change here
 							w = w.PadLeft(FieldLength - 1, Padding);
 						else

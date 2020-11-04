@@ -285,7 +285,8 @@ namespace MoonSharp.Interpreter.CoreLib
 		{
 			DynValue arg = args.AsType(0, "randomseed", DataType.Number, false);
 			var script = executionContext.GetScript();
-			SetRandom(script, new Random((int)arg.Number));
+			var seed = arg.Number % int.MaxValue;
+			SetRandom(script, new Random((int)seed));
 			return DynValue.Nil;
 		}
 

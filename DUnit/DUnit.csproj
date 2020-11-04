@@ -173,7 +173,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="moonsharp\src\MoonSharp.Interpreter\MoonSharp.Interpreter.net35-client.csproj" />
+    <ProjectReference Include="moonsharp\src\MoonSharp.Interpreter\_Projects\MoonSharp.Interpreter.netcore\MoonSharp.Interpreter.netcore.csproj" />
   </ItemGroup>
 
 </Project>
