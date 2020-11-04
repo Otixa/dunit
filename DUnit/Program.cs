@@ -59,7 +59,7 @@ namespace DUnit
                     foreach(var scriptFilePath in matchedSourceFiles)
                     {
                         logger.Info("Processing {0}", scriptFilePath.FullName);
-                        if (scriptFilePath.Name.Contains(".min.")) return 0;
+                        if (scriptFilePath.Name.Contains(".min.")) continue;
                         var logFileName = $"{scriptFilePath.Name}.xml";
                         var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.FullName, logFileName));
                         var testEngine = new TestEngine(luaDirectory, scriptFilePath, testsPathInfo, logFile);
