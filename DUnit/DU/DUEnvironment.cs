@@ -50,7 +50,7 @@ namespace DUnit.DU
             Lua.DoString(@"require (""Navigator"")");
             Lua.DoString(@"require (""pl/init"")");
             Lua.DoString(@"require (""cpml/sgui"")");
-            Lua.DoString(@"require (""ST/fluant"")");
+            Lua.DoString(@"require (""ST/FLuant"")");
             //ExecuteLua("testframework.doupdate = function() for k,v in pairs(testframework.update) do v() end end");
             //ExecuteLua("testframework.doflush = function() for k,v in pairs(testframework.flush) do v() end end");
 
