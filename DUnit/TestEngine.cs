@@ -53,7 +53,7 @@ namespace DUnit
                         //Run Setup
                         //Run Test
                         //Run Cleanup
-                        foreach (var tablePair in testUnitTable.Pairs)
+                        foreach (var tablePair in testUnitTable.Pairs.Where(x=>x.Value.Type == MoonSharp.Interpreter.DataType.Function))
                         {
                             var testName = tablePair.Key.String ?? "Unknown";
                             try
@@ -63,13 +63,13 @@ namespace DUnit
                                 TC?.Call();
 
                                 results[new Guid().ToString()] = true;
-                                junitLogger.AddSuccess(scriptPath.Name, testName, DateTime.UtcNow - start);
+                                junitLogger.AddSuccess(scriptPath.Name, test.Name, testName, DateTime.UtcNow - start);
                                 logger.Info("Test {0} was successful", testName);
                             }
                             catch (Exception e)
                             {
                                 results[new Guid().ToString()] = false;
-                                junitLogger.AddFailure(scriptPath.Name, testName, e.Message, DateTime.UtcNow - start);
+                                junitLogger.AddFailure(scriptPath.Name, test.Name, testName, e.Message, DateTime.UtcNow - start);
                                 logger.Error("Test {0} failed with error {1}", testName, e.Message);
                             }
                         }
@@ -80,7 +80,7 @@ namespace DUnit
                     catch (Exception e)
                     {
                         results[new Guid().ToString()] = false;
-                        junitLogger.AddFailure(scriptPath.Name, test.Name, e.Message, DateTime.UtcNow - start);
+                        junitLogger.AddFailure(scriptPath.Name, test.Name, "Framework", e.Message, DateTime.UtcNow - start);
                         logger.Error("Test {0} failed with error {1}", test.Name, e.Message);
                     }
                 }

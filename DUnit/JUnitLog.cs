@@ -99,52 +99,52 @@ namespace DUnit
         {
 			Entries = new Dictionary<string, Testsuite>();
 		}
-		public void AddSuccess(string script, string name, TimeSpan duration)
+		public void AddSuccess(string scriptName, string testFileName, string testName, TimeSpan duration)
         {
-			if (!Entries.ContainsKey(script)) Entries[script] = new Testsuite()
+			if (!Entries.ContainsKey(scriptName)) Entries[scriptName] = new Testsuite()
 			{
-				Name = script,
+				Name = scriptName,
 				Errors = "0",
 				Failures = "0",
 				Tests = "0",
 				Testcase = new List<Testcase>()
 			};
 
-			Entries[script].Testcase.Add(
+			Entries[scriptName].Testcase.Add(
 				new Testcase()
 				{
-					Classname = "DUnit",
-					Name =name,
+					Classname = testFileName,
+					Name = testName,
 					Time = $"{duration.TotalSeconds}"
 				}
 			);
 
-			Entries[script].Tests = $"{int.Parse(Entries[script].Tests) + 1}";
+			Entries[scriptName].Tests = $"{int.Parse(Entries[scriptName].Tests) + 1}";
 		}
-		public void AddFailure(string script, string name, string message, TimeSpan duration)
+		public void AddFailure(string scriptName, string testFileName, string testName, string message, TimeSpan duration)
         {
-			if (!Entries.ContainsKey(script)) Entries[script] = new Testsuite()
+			if (!Entries.ContainsKey(scriptName)) Entries[scriptName] = new Testsuite()
 			{
-				Name = script,
+				Name = scriptName,
 				Errors = "0",
 				Failures = "0",
 				Tests = "0",
 				Testcase = new List<Testcase>()
 			};
 
-			Entries[script].Testcase.Add(
+			Entries[scriptName].Testcase.Add(
 				new Testcase()
 				{
-					Classname = "DUnit",
-					Name = name,
+					Classname = testFileName,
+					Name = testName,
 					Time = $"{duration.TotalSeconds}",
 					Failure = new Failure() { Message = message, Text = "Test Failed" },
 				}
 			);
 
-			Entries[script].Tests = $"{int.Parse(Entries[script].Tests) + 1}";
-			Entries[script].Failures = $"{int.Parse(Entries[script].Failures) + 1}";
-			Entries[script].Errors = $"{int.Parse(Entries[script].Errors) + 1}";
+			Entries[scriptName].Tests = $"{int.Parse(Entries[scriptName].Tests) + 1}";
+			Entries[scriptName].Failures = $"{int.Parse(Entries[scriptName].Failures) + 1}";
+			Entries[scriptName].Errors = $"{int.Parse(Entries[scriptName].Errors) + 1}";
 		}
 
 		public string Serialize()

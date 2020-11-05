@@ -148,6 +148,9 @@
     <None Update="LuaLibraries\pl\xml.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="LuaLibraries\ST\FLuant.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="nlog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -166,10 +169,6 @@
     <None Update="versionhash">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="LuaLibraries\" />
   </ItemGroup>
 
   <ItemGroup>

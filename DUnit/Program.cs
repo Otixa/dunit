@@ -56,15 +56,26 @@ namespace DUnit
 
                     logger.Info("Matched {0} source files", matchedSourceFiles.Count);
 
+                    bool failed = false;
+
                     foreach(var scriptFilePath in matchedSourceFiles)
                     {
-                        logger.Info("Processing {0}", scriptFilePath.FullName);
-                        if (scriptFilePath.Name.Contains(".min.")) continue;
-                        var logFileName = $"{scriptFilePath.Name}.xml";
-                        var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.FullName, logFileName));
-                        var testEngine = new TestEngine(luaDirectory, scriptFilePath, testsPathInfo, logFile);
+                        try
+                        {
+                            if (scriptFilePath.Name.Contains(".min.")) continue;
+                            logger.Info("Processing {0}", scriptFilePath.FullName);
+                            var logFileName = $"{scriptFilePath.Name}.xml";
+                            var logFile = logPathInfo == null ? new System.IO.FileInfo(logFileName) : new System.IO.FileInfo(System.IO.Path.Combine(logPathInfo.FullName, logFileName));
+                            var testEngine = new TestEngine(luaDirectory, scriptFilePath, testsPathInfo, logFile);
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error("Error processing {0}, {1}", scriptFilePath.Name, e.Message);
+                            failed = true;
+                        }
+                       
                     }
-
+                    if (failed) throw new Exception("One or more of the unit tests failed");
                     return 0;
                 });
 
