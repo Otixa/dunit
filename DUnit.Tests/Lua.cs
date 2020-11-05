@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using MoonSharp.Interpreter;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,24 +10,25 @@ namespace DUnit.Tests
     {
 
         DU.DUEnvironment env;
+        Script luaEnvironment;
 
         [SetUp]
         public void Setup()
         {
             env = new DU.DUEnvironment(new System.IO.DirectoryInfo(Environment.CurrentDirectory));
-            env.Reset();
+            luaEnvironment = env.BuildEnvironment();
         }
 
         [Test]
         public void System_GetTime()
         {
-            var result = env.ExecuteLua(@"
+            var result = luaEnvironment.DoString(@"
                 return system.getTime()
             ");
             var pre = (double)result.Number;
             Assert.IsTrue(pre > 0);
 
-            result = env.ExecuteLua(@"
+            result = luaEnvironment.DoString(@"
                 return system.getTime()
             ");
             var post = (double)result.Number;
@@ -36,7 +38,7 @@ namespace DUnit.Tests
         [Test]
         public void System_Freeze()
         {
-            var result = env.ExecuteLua(@"
+            var result = luaEnvironment.DoString(@"
                 local a = system.isFrozen()                
                 system.freeze(true)
                 return a, system.isFrozen()
