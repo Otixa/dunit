@@ -151,8 +151,10 @@ namespace DUnit.DU
             core["getConstructMass"] = new Func<float>(() => this.Mass);
             core["getConstructIMass"] = new Func<float>(() => this.Mass * (float)(1 / Math.Sqrt(1 - Velocity.LengthSquared() / Math.Pow(Universe.C, 2))));
             core["getConstructWorldPos"] = new Func<float[]>(() => Position.ToLua());
+            core["setConstructWorldPos"] = new Func<float[], bool>((P) => { Position = new Vector3(P[0], P[1], P[2]); return true; });
             core["getConstructCrossSection"] = new Func<float>(() => CrossSectionalArea);
             core["getWorldVelocity"] = new Func<float[]>(() => Velocity.ToLua());
+            core["setWorldVelocity"] = new Func<float[], bool>((V) => { Velocity = new Vector3(V[0], V[1], V[2]); return true; });
             core["getWorldAcceleration"] = new Func<float[]>(() => Acceleration.ToLua());
 
             core["getConstructWorldOrientationUp"] = new Func<float[]>(() => (Rotation * Vector3.UnitY).ToLua());

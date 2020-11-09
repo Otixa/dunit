@@ -44,7 +44,7 @@ namespace DUnit.DU
             testframework["doUpdate"] = Lua.LoadFunction(@"function() for k,v in pairs(testFramework.update) do v() end end");
             testframework["doFlush"] = Lua.LoadFunction(@"function() for k,v in pairs(testFramework.flush) do v() end end");
 
-            //ExecuteLua(@"json = require (""dkjson"")");
+            Lua.DoString(@"json = require (""dkjson"")");
             Lua.DoString(@"require (""Helpers"")");
             Lua.DoString(@"require (""AxisCommand"")");
             Lua.DoString(@"require (""Navigator"")");
@@ -56,25 +56,21 @@ namespace DUnit.DU
 
             //Some wierd DU implementation stuff
 
-            Lua.DoString(@"
-                _G.orig_type = _G.type
-                
-                _G.type = function(o)
+            Lua.Globals["orig_type"] = Lua.Globals["type"];
+            Lua.Globals["type"] = Lua.LoadFunction(@"function(o)
                     local t = _G.orig_type(o)
                     if t == ""table"" or t == ""userdata"" then
                         local mt = getmetatable(o) or {}
                         if mt._name then return mt._name end
                     end
                     return t
-                end
-                    
-                _G.types = { type=_G.type }
+                end");
 
-
-                --WARNING, the below line is not compliant with DU - should be removed once its no longer needed
-                _G.typeof = _G.type
-                
-            ");
+            var typesTable = new Table(Lua);
+            typesTable["type"] = Lua.Globals["type"];
+            //This is non standard for DU
+            Lua.Globals["typeof"] = Lua.Globals["type"];
+            Lua.Globals["types"] = typesTable;
 
             //Do start shit
 
@@ -199,6 +195,7 @@ namespace DUnit.DU
             Lua.Globals["unit"] = Unit.GetTable(Lua);
             Lua.Globals["system"] = new DUSystem().GetTable(Lua);
             Lua.Globals["library"] = new Library().GetTable(Lua);
+            Lua.Globals["universe"] = Universe.GetTable(Lua);
 
             foreach(var element in Ship.Elements)
             {

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using System.Linq;
+using MoonSharp.Interpreter;
 
 namespace DUnit.DU
 {
-    public class Universe
+    public class Universe : Elements.ILuaObject
     { 
         public static double G => 6.67 * Math.Pow(10, -11);
         public static double C => 8333;
@@ -56,6 +57,19 @@ namespace DUnit.DU
         public double GetAltitude(Vector3 position)
         {
             return planets.Min(x => (x.Position - position).Length());
+        }
+
+        public Table GetTable(Script lua)
+        {
+            var table = new Table(lua);
+
+            table["getPositionWithAltitude"] = new Func<float, float[]>((A) =>
+            {
+                var planet = planets.First();
+                return (planet.Position + (Vector3.UnitX * (float)(planet.Radius+A))).ToLua();
+            });
+
+            return table;
         }
     }
 }
