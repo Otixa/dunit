@@ -21,5 +21,5 @@ build:
     GIT_SUBMODULE_STRATEGY: recursive
   script:
     - echo "$CI_COMMIT_SHA" > DUnit/versionhash
-    - docker build --pull -t "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
-    - docker push "registry.internal.st/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+    - docker build --pull -t "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
+    - docker push "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
