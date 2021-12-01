@@ -16,18 +16,14 @@ Build Artifacts:
     - dotnet restore "$CI_PROJECT_DIR/DUnit/DUnit.csproj"
     - dotnet build "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./build
     - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./publish
-    - cp -r ./publish ../publish
-    - rm -rf ./*
-    - cp -r ../publish/* ./
-    - ls -la
   artifacts:
     name: "DUnit-Release"
-    expose_as: 'artifact 1'
+    expose_as: 'build artifact'
     paths:
-      - ./
+      - publish/
     exclude:
-      - ./**/*.pdb
-      - ./**/DUnit.*.json
+      - publish/**/*.pdb
+      - publish/**/DUnit.*.json
 
 Build Docker:
   stage: build
