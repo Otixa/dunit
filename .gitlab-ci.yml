@@ -19,14 +19,15 @@ Build Artifacts:
     - cp -r ./publish ../publish
     - rm -rf ./*
     - cp -r ../publish ./
+    - ls -la
   artifacts:
     name: "DUnit-Release"
     expose_as: 'artifact 1'
     paths:
-      - ./DUnit/
+      - /
     exclude:
-      - ./DUnit/**/*.pdb
-      - ./DUnit/**/DUnit.*.json
+      - /**/*.pdb
+      - /**/DUnit.*.json
 
 Build Docker:
   stage: build
