@@ -17,7 +17,7 @@ Build Artifacts:
     - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o /app/publish
   artifacts:
     paths:
-      - /app/build/**/*
+      - /app/
 
 Build Docker:
   stage: build
