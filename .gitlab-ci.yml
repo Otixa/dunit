@@ -20,7 +20,7 @@ Build Artifacts:
     name: "DUnit-Release"
     expose_as: 'artifact 1'
     paths:
-      - ./DUnit/**/*
+      - ./DUnit/
     exclude:
       - ./DUnit/**/*.pdb
       - ./DUnit/**/DUnit.*.json
