@@ -15,11 +15,26 @@ test:
       junit: $CI_PROJECT_DIR/app/results.xml
 
 build:
-  image: docker:latest
   stage: build
+  image: docker:latest
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
   script:
     - echo "$CI_COMMIT_SHA" > DUnit/versionhash
     - docker build --pull -t "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
     - docker push "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+  
+artifacts:
+  stage: artifacts
+  image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  variables:
+      GIT_SUBMODULE_STRATEGY: recursive
+  script:
+    - dotnet restore "$CI_PROJECT_DIR/DUnit/DUnit.csproj"
+    - dotnet build "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o /app/build
+    - dotnet publish "DUnit.csproj" -c Release -o /app/publish
+  artifacts:
+    paths:
+      - /app/publish/**.*

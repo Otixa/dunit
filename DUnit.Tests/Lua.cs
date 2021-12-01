@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DUnit.Tests
@@ -15,7 +16,7 @@ namespace DUnit.Tests
         [SetUp]
         public void Setup()
         {
-            env = new DU.DUEnvironment(new System.IO.DirectoryInfo(Environment.CurrentDirectory));
+            env = new DU.DUEnvironment(new DirectoryInfo(Environment.CurrentDirectory));
             luaEnvironment = env.BuildEnvironment();
         }
 
@@ -47,7 +48,16 @@ namespace DUnit.Tests
             Assert.IsTrue(result.Tuple[1].Boolean);
         }
 
-
-
+        [Test]
+        public void RunLuaTests()
+        {
+            var rootDir = AppDomain.CurrentDomain.BaseDirectory;
+            var luaDirectory = new DirectoryInfo(Path.Combine(rootDir, "LuaLibraries"));
+            var tests = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "TestProject"));
+            var eng = new TestEngine(luaDirectory,
+                new FileInfo(Path.Combine(tests.FullName, "Standard.json")),
+                new DirectoryInfo(Path.Combine(tests.FullName, "Tests")),
+                new FileInfo("log.xml"));
+        }
     }
 }

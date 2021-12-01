@@ -1,0 +1,965 @@
+{
+  "slots": {
+    "0": {
+      "name": "slot1",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "1": {
+      "name": "slot2",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "2": {
+      "name": "slot3",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "3": {
+      "name": "slot4",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "4": {
+      "name": "slot5",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "5": {
+      "name": "slot6",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "6": {
+      "name": "slot7",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "7": {
+      "name": "slot8",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "8": {
+      "name": "slot9",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "9": {
+      "name": "slot10",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "10": {
+      "name": "slot11",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "11": {
+      "name": "slot12",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "12": {
+      "name": "slot13",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "13": {
+      "name": "slot14",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "14": {
+      "name": "slot15",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "15": {
+      "name": "slot16",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "16": {
+      "name": "slot17",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "17": {
+      "name": "slot18",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "18": {
+      "name": "slot19",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "19": {
+      "name": "slot20",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "20": {
+      "name": "slot21",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "-3": {
+      "name": "library",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "-2": {
+      "name": "system",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    },
+    "-1": {
+      "name": "unit",
+      "type": {
+        "events": [],
+        "methods": []
+      }
+    }
+  },
+  "handlers": [
+    {
+      "code": "--@class Fuels\r\n\r\nFuels = {\r\n    --Mass in kg/L\r\n    Kergon = {Name=\"Kergon\", Mass=6},\r\n    Xeron = {Name=\"Xeron\", Mass=0.8},\r\n    Nitron = {Name=\"Nitron\", Mass=4}\r\n}",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "0"
+    },
+    {
+      "code": "--@class FuelTanks\r\n--@require Fuels\r\n\r\nFuelTanks = {\r\n        Space = {\r\n            SpaceFuelSmall = {Name=\"Space Fuel Tank S\", Class = \"S\", Mass = 182.67, Capacity = 400, FuelType=Fuels.Kergon},\r\n            SpaceFuelMedium = {Name=\"Space Fuel Tank M\", Class = \"M\", Mass = 988.67, Capacity = 1600, FuelType=Fuels.Kergon},\r\n            SpaceFuelLarge = {Name=\"Space Fuel Tank L\", Class = \"L\", Mass = 5480, Capacity = 12800, FuelType=Fuels.Kergon},\r\n        },\r\n\r\n        Atmosphere = {\r\n            AtmosphericFuelExtraSmall = {Name=\"Atmospheric Fuel Tank XS\", Class = \"XS\", Mass = 35.03, Capacity = 100, FuelType=Fuels.Nitron},\r\n            AtmosphericFuelSmall = {Name=\"Atmospheric Fuel Tank S\", Class = \"S\", Mass = 182.67, Capacity = 400, FuelType=Fuels.Nitron},\r\n            AtmosphericFuelMedium = {Name=\"Atmospheric Fuel Tank M\", Class = \"M\", Mass = 988.67, Capacity = 1600, FuelType=Fuels.Nitron},\r\n            AtmosphericFuelLarge = {Name=\"Atmospheric Fuel Tank L\", Class = \"L\", Mass = 5480, Capacity = 12800, FuelType=Fuels.Nitron},\r\n        },\r\n\r\n        Rocket = {\r\n            RocketFuelExtraSmall = {Name=\"Rocket Fuel Tank XS\", Class = \"XS\", Mass = 173.42, Capacity = 400, FuelType=Fuels.Xeron},\r\n            RocketFuelSmall = {Name=\"Rocket Fuel Tank S\", Class = \"S\", Mass = 886.72, Capacity = 800, FuelType=Fuels.Xeron},\r\n            RocketFuelMedium = {Name=\"Rocket Fuel Tank M\", Class = \"M\", Mass = 4720, Capacity = 6400, FuelType=Fuels.Xeron},\r\n            RocketFuelLarge = {Name=\"Rocket Fuel Tank L\", Class = \"L\", Mass = 25740, Capacity = 50000, FuelType=Fuels.Xeron},\r\n        }\r\n}\r\n",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "1"
+    },
+    {
+      "code": "--@class Cores\r\n\r\nCores = {\r\n    DynamicXS = {Mass=70.89, Size=2, Type=\"Dynamic\", Class=\"XS\"},\r\n    DynamicS = {Mass=375.97, Size=4, Type=\"Dynamic\", Class=\"S\"},\r\n    DynamicM = {Mass=1980, Size=8, Type=\"Dynamic\", Class=\"M\"},\r\n    DynamicL = {Mass=12140, Size=16, Type=\"Dynamic\", Class=\"L\"},\r\n\r\n    SpaceXS = {Mass=38.99, Size=2, Type=\"Space\", Class=\"XS\"},\r\n    SpaceS = {Mass=459.57, Size=4, Type=\"Space\", Class=\"S\"},\r\n    SpaceM = {Mass=3040, Size=8, Type=\"Space\", Class=\"M\"},\r\n    SpaceL = {Mass=7680, Size=16, Type=\"Space\", Class=\"L\"},\r\n\r\n    StaticXS = {Mass=70.89, Size=2, Type=\"Static\", Class=\"XS\"},\r\n    StaticS = {Mass=360.18, Size=4, Type=\"Static\", Class=\"S\"},\r\n    StaticM = {Mass=1930, Size=8, Type=\"Static\", Class=\"M\"},\r\n    StaticL = {Mass=10066.3, Size=16, Type=\"Static\", Class=\"L\"},\r\n}",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "2"
+    },
+    {
+      "code": "--@class SlotDetector\r\n--@require FuelTanks\r\n--@require Cores\r\n\r\nSlotContainer = (function()\r\n    local self = {}\r\n    function self.new()\r\n        return {\r\n            FoundIDs={}, \r\n            Engines={Atmo={}, Rocket={}, Space={}, VerticalBooster={}}, \r\n            FuelTanks={Atmo={}, Rocket={}, Space={}}, \r\n            Core=nil,\r\n            Unit=nil,\r\n            Screens={}, \r\n            Telemeters={}, \r\n            Radars={}, \r\n            AntiGrav={}, \r\n            Databanks={}, \r\n            Doors={},\r\n            Emitters={},\r\n            Receivers={}\r\n        }\r\n    end\r\n    return self\r\nend)()\r\n\r\nSlotUtilities = (function()\r\n    local self = {}\r\n\r\n    function self.GetFuelCapacity(fuelTanks)\r\n        local capacity = 0\r\n        for i,tank in ipairs(fuelTanks) do\r\n            capacity = capacity+tank.ContainerType.Capacity\r\n        end\r\n        return capacity\r\n    end\r\n    function self.GetAvailableFuel(fuelTanks)\r\n        local fuel = 0\r\n        for i,tank in ipairs(fuelTanks) do\r\n            local tankMass = tank.getItemsMass()\r\n            fuel = fuel + (tankMass/tank.ContainerType.FuelType.Mass)\r\n        end\r\n        return fuel\r\n    end\r\n\r\n    function self.GetBaseMaxThrust(engines)\r\n        local thrust = 0\r\n        for i,engine in ipairs(engines) do\r\n            thrust = thrust+engine.getMaxThrustBase()\r\n        end\r\n        return thrust\r\n    end\r\n    function self.GetCurrentMaxThrust(engines)\r\n        local totalThrust = 0\r\n        local thrust = 0\r\n        for i,engine in ipairs(engines) do\r\n            --Currently bugged? returns 0\r\n            --thrust = thrust+engine.getCurrentMaxThrust()\r\n            thrust = thrust + engine.getMaxThrustEfficiency()\r\n            totalThrust = totalThrust + engine.getMaxThrustBase()\r\n        end\r\n        thrust = (totalThrust/#engines) * (thrust/#engines)\r\n        return thrust\r\n    end\r\n    function self.GetCurrentThrust(engines)\r\n        local thrust = 0\r\n        for i,engine in ipairs(engines) do\r\n            thrust = thrust+engine.getThrust()\r\n        end\r\n        return thrust\r\n    end\r\n\r\n    function self.GetAverageTelemeterDistance(telemeters)\r\n        local distance = 0\r\n        local telemeterCount = 0\r\n        for i,telemter in ipairs(telemeters) do\r\n            local tDistance = telemter.getDistance()\r\n            if tDistance > -1 then\r\n                distance = distance+tDistance\r\n                telemeterCount = telemeterCount+1\r\n            end\r\n        end\r\n        return distance/telemeterCount\r\n    end\r\n\r\n    return self\r\nend)()\r\n\r\nSlotDetector = (function()\r\n    local self = {}\r\n\r\n    function self.VirtualSlot(unitID)\r\n        --Override this method if needed\r\n        --Acts as a proxy\r\n        return unitID\r\n    end\r\n\r\n    local function round(num, numDecimalPlaces)\r\n        local mult = 10^(numDecimalPlaces or 0)\r\n        return math.floor(num * mult + 0.5) / mult\r\n    end\r\n\r\n    local function identifyUnit(var, slots)\r\n        if type(var) ~= \"table\" then return slots end\r\n        if var[\"getElementClass\"] then\r\n            local id = var[\"getId\"]()\r\n            \r\n            if id == nil then \r\n                return slots\r\n            end\r\n\r\n\r\n            if slots.FoundIDs[id] ~= nil then return slots end\r\n            slots.FoundIDs[id] = true\r\n\r\n            local class = var[\"getElementClass\"]()\r\n\r\n            if class == \"SpaceFuelContainer\" then\r\n                local mass = round(var.getSelfMass(),2)\r\n\r\n                for k,fuelTank in pairs(FuelTanks.Space) do\r\n                    if mass==fuelTank.Mass then var.ContainerType = fuelTank break end\r\n                end\r\n\r\n                table.insert(slots.FuelTanks.Space, var)\r\n                return slots\r\n            end\r\n\r\n            if class == \"AtmoFuelContainer\" then\r\n                local mass = round(var.getSelfMass(),2)\r\n\r\n                for k,fuelTank in pairs(FuelTanks.Atmosphere) do\r\n                    if mass==fuelTank.Mass then var.ContainerType = fuelTank break end\r\n                end\r\n\r\n                table.insert(slots.FuelTanks.Atmo, var)\r\n                return slots\r\n            end\r\n\r\n            if class == \"RocketFuelContainer\" then\r\n                local mass = round(var.getSelfMass(),2)\r\n\r\n                for k,fuelTank in pairs(FuelTanks.Rocket) do\r\n                    if mass==fuelTank.Mass then var.ContainerType = fuelTank break end\r\n                end\r\n\r\n                table.insert(slots.FuelTanks.Rocket, var)\r\n                return slots\r\n            end\r\n\r\n            if class == \"ScreenUnit\" then\r\n                table.insert(slots.Screens, var)\r\n                return slots\r\n            end\r\n\r\n            if class == \"DoorUnit\" then\r\n                table.insert(slots.Doors, var)\r\n                return slots\r\n            end\r\n\r\n            if class == \"DataBankUnit\" then\r\n                table.insert(slots.Databanks, var) \r\n                return slots\r\n            end\r\n\r\n            if class == \"TelemeterUnit\" then\r\n                table.insert(slots.Telemeters, var)\r\n                return slots\r\n            end\r\n\r\n            --Core unit\r\n            if class == \"CoreUnitDynamic\" or class == \"CoreUnitStatic\" or class == \"CoreUnitSpace\" then\r\n                slots.Core = var\r\n\r\n                local coreMass = var.getElementMassById(var.getId())\r\n                local coreType = \"Dynamic\"\r\n                if class == \"CoreUnitStatic\" then coreType = \"Static\" end\r\n                if class == \"CoreUnitSpace\" then coreType = \"Space\" end\r\n\r\n                for k,coreEntry in pairs(Cores) do\r\n                    if coreMass==coreEntry.Mass and coreType==coreEntry.Type then var.CoreType = coreEntry break end\r\n                end\r\n\r\n                return slots\r\n            end\r\n\r\n            if string.find(class, \"SpaceEngine\") then \r\n                table.insert(slots.Engines.Space, var)\r\n                return slots\r\n            end\r\n\r\n            if string.find(class, \"AtmosphericEngine\") then \r\n                table.insert(slots.Engines.Atmo, var)\r\n                return slots\r\n            end\r\n\r\n            if string.find(class, \"RocketEngine\") then \r\n                table.insert(slots.Engines.Rocket, var)\r\n                return slots\r\n            end\r\n\r\n            if string.find(class, \"VerticalBooster\") then \r\n                table.insert(slots.Engines.VerticalBooster, var)\r\n                return slots\r\n            end\r\n\r\n            if class == \"CockpitFighterUnit\" or class == \"CockpitHovercraftUnit\" or class == \"CockpitCommandmentUnit\" or class == \"RemoteControlUnit\" or class == \"Generic\" then\r\n                slots.Unit = var\r\n                return slots\r\n            end\r\n\r\n            if class == \"EmitterUnit\" then\r\n                table.insert(slots.Emitters, var)\r\n                return slots\r\n            end\r\n            if class == \"ReceiverUnit\" then\r\n                table.insert(slots.Receivers, var)\r\n                return slots\r\n            end\r\n\r\n        end\r\n        \r\n        return slots\r\n    end\r\n\r\n    function self.DetectSlotsInNamespace(container, slotContainer)\r\n        local slots = slotContainer or SlotContainer.new() \r\n\r\n        for slotName,var in pairs(container) do\r\n            slots = identifyUnit(var, slots)\r\n        end\r\n\r\n        return slots\r\n    end\r\n\r\n    function self.DetectSlotsFromList(list, slotContainer)\r\n        local slots = slotContainer or SlotContainer.new()\r\n\r\n        for k,v in pairs(list) do\r\n            local slot = self.VirtualSlot(v)\r\n            slots = identifyUnit(slot, slots)\r\n        end\r\n\r\n        return slots\r\n    end\r\n    \r\n    return self\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "3"
+    },
+    {
+      "code": "--@class HorizonCore\r\n--@require SlotDetector\r\n\r\nfunction HorizonDelegate(eventType)\r\n    local typeof = types.type\r\n    local this = {}\r\n    this.Delegates = {}\r\n    local lastTime = system.getTime()\r\n\r\n    function this.Add(f)\r\n        if typeof(f) ~= \"HorizonModule\" and type(f) ~= \"function\" then\r\n            error(\"[HorizonDelegate] Unable to add callback - not a HorizonModule or function\")\r\n            return\r\n        end\r\n        for i = 1, #this.Delegates do\r\n            if this.Delegates[i] == f then\r\n                return false\r\n            end\r\n        end\r\n        table.insert(this.Delegates, f)\r\n        return true\r\n    end\r\n\r\n    function this.Remove(f)\r\n        if typeof(f) ~= \"HorizonModule\" and type(f) ~= \"function\" then\r\n            error(\"[HorizonDelegate] Unable to remove callback - not a HorizonModule or function\")\r\n            return\r\n        end\r\n        for i = 1, #this.Delegates do\r\n            if this.Delegates[i] == f then\r\n                table.remove(this.Delegates, i)\r\n                return true\r\n            end\r\n        end\r\n        return false\r\n    end\r\n\r\n    function this.Call(...)\r\n        local anonymous = {}\r\n        local deltaTime = system.getTime() - lastTime\r\n        for currentPriority = 0, 5 do\r\n            for i = 1, #this.Delegates do\r\n                if\r\n                    type(this.Delegates[i]) == \"function\" or\r\n                        this.Delegates[i].Enabled and this.Delegates[i].Priority == currentPriority\r\n                 then\r\n                    local block = false\r\n                    for k, v in pairs(anonymous) do\r\n                        if v == this.Delegates[i] then\r\n                            block = true\r\n                        end\r\n                    end\r\n                    if not block then\r\n                        local success, err = pcall(this.Delegates[i], eventType, deltaTime, ...)\r\n                        if type(this.Delegates[i]) == \"function\" then\r\n                            table.insert(anonymous, this.Delegates[i])\r\n                        end\r\n                        if not success then\r\n                            local errorMessage = (this.Delegates[i].Name or \"Unknown\")..\"@\"..eventType..\": \"..err\r\n                            Horizon.Event.Error.Call(errorMessage)\r\n                        end\r\n                    end\r\n                end\r\n            end\r\n        end\r\n        lastTime = system.getTime()\r\n    end\r\n\r\n    function this.Count()\r\n        return #this.Delegates\r\n    end\r\n\r\n    setmetatable(\r\n        this,\r\n        {\r\n            __call = function(ref, ...)\r\n                this.Call(...)\r\n            end,\r\n            __add = function(left, right)\r\n                if left == this then\r\n                    this.Add(right)\r\n                    return this\r\n                end\r\n                if right == this then\r\n                    this.Add(left)\r\n                    return this\r\n                end\r\n                return this\r\n            end,\r\n            __sub = function(left, right)\r\n                if left == this then\r\n                    this.Remove(right)\r\n                    return this\r\n                end\r\n                if right == this then\r\n                    this.Remove(left)\r\n                    return this\r\n                end\r\n                return this\r\n            end,\r\n            __tostring = function()\r\n                return \"EventDelegate(\" .. eventType .. \", #\" .. #this.Delegates .. \")\"\r\n            end\r\n        }\r\n    )\r\n\r\n    return this\r\nend\r\n\r\nfunction EventEmitter()\r\n    local this = {}\r\n    this.Subscribed = {}\r\n\r\n    this.Subscribe = function(filter, callback)\r\n        if type(callback) ~= \"function\" then error(\"Attempting to add a non-function callback to EventEmitter\") end\r\n        if not this.Subscribed[filter] then\r\n            this.Subscribed[filter] = {}\r\n        end\r\n        table.insert(this.Subscribed[filter], callback)\r\n    end\r\n    this.Add = this.Subscribe\r\n\r\n    this.Unsubscribe = function(callback)\r\n        for _,evt in pairs(this.Subscribed) do\r\n            for key,cb in ipairs(evt) do\r\n                if cb == callback then\r\n                    table.remove(evt, key)\r\n                end\r\n            end\r\n        end\r\n    end\r\n    this.Remove = this.Unsubscribe\r\n\r\n    this.Call = function(event, ...)\r\n        event = string.lower(event)\r\n        for filter,evt in pairs(this.Subscribed) do\r\n            filter = string.lower(filter)\r\n            local match = string.match(event, \"^\"..filter..\"$\")\r\n            if match then\r\n                for _,cb in ipairs(evt) do cb(event, ...) end\r\n            end\r\n        end\r\n    end\r\n\r\n    setmetatable(this, { __call = function(ref, ...) this.Call(...) end })\r\n\r\n    return this\r\nend\r\n\r\n--@require SlotDetector\r\nlocal slots = SlotDetector.DetectSlotsInNamespace(_G)\r\nHorizon = (function (slotContainer)\r\n    local this = {}\r\n\r\n    if not slotContainer.Core then error(\"The core has not been linked\") end\r\n    if not slotContainer.Unit then error(\"The code is running on an unknown program unit, slot detected needs updating\") end\r\n    this.Core = slotContainer.Core\r\n    this.Controller = slotContainer.Unit\r\n    this.Slots = slots\r\n    this.Modules = {}\r\n    this.HUD = nil\r\n    this.Memory = {\r\n        Static = {},\r\n        Dynamic = {\r\n            Ship = {\r\n                Thrust = vec3(0,0,0),\r\n                Rotation = vec3(0,0,0),\r\n                --All except rocket engines\r\n                Tags = \"atmospheric_engine,space_engine,airfoil,brake,torque,vertical\",\r\n                Priority1Tags = \"brake,airfoil,torque\",\r\n                Priority2Tags = \"atmospheric_engine,space_engine,vertical\",\r\n                Priority3Tags = \"\"\r\n            },\r\n            Settings = {}\r\n        },\r\n        Slots = slotContainer\r\n    }\r\n    this.Event = {\r\n        Start = HorizonDelegate(\"start\"),\r\n        PreFlush = HorizonDelegate(\"preflush\"),\r\n        Flush = HorizonDelegate(\"flush\"),\r\n        PostFlush = HorizonDelegate(\"postflush\"),\r\n        PreUpdate = HorizonDelegate(\"preupdate\"),\r\n        Update = HorizonDelegate(\"update\"),\r\n        PostUpdate = HorizonDelegate(\"postupdate\"),\r\n        KeyDown = HorizonDelegate(\"keydown\"),\r\n        KeyUp = HorizonDelegate(\"keyup\"),\r\n        KeyLoop = HorizonDelegate(\"keyloop\"),\r\n        MouseMove = HorizonDelegate(\"mousemove\"),\r\n        Stop = HorizonDelegate(\"stop\"),\r\n        Error = HorizonDelegate(\"error\"),\r\n        MouseWheel = HorizonDelegate(\"mousewheel\"),\r\n        Click = HorizonDelegate(\"click\")\r\n    }\r\n    this.Version = \"%CI_COMMIT_TAG% %CI_COMMIT_BRANCH% %CI_COMMIT_SHORT_SHA% 4ff1f94db73fc3dcbd4826c4d0e6d59a1ee2bf5f\"\r\n\r\n\r\n    this.Emit = EventEmitter()\r\n\r\n    setmetatable(this.Slots, {__index={}, __newindex=function() end})\r\n    setmetatable(this.Memory.Static, {__index={}, __newindex=function() end})\r\n\r\n    function this.RegisterSharedDatabank(databank)\r\n        this.Memory.Shared = databank\r\n    end\r\n\r\n    function this.RegisterModule(module)\r\n        if types.type(module) ~= \"HorizonModule\" then return end\r\n        this.Modules[module.Name] = module\r\n        --table.insert(this.Modules, module)\r\n        module.Register()\r\n    end\r\n\r\n    function this.UnregisterModule(module)\r\n        if types.type(module) ~= \"HorizonModule\" then return end\r\n        if this.Modules[module.Name] == nil then return end\r\n        this.Modules[module.Name] = nil\r\n        module.Unregister()\r\n    end\r\n\r\n    function this.GetModule(name)\r\n        return this.Modules[name]\r\n    end\r\n\r\n    setmetatable(this, {\r\n        __add = function (module) this.RegisterModule(module) end,\r\n        __sub = function (module) this.UnregisterModule(module) end,\r\n        __newindex = function(table, key, value) end\r\n    })\r\n    return this\r\nend)(slots)",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "4"
+    },
+    {
+      "code": "--@class HorizonModule\r\n--@require HorizonCore\r\n\r\nHorizonModule = function (name, description, defaultEventName, defaultEnable, priority)\r\n    local this = {}\r\n    setmetatable(this, { __call = function(ref, ...) ref.Update(...) end, _name = \"HorizonModule\" })\r\n\r\n    this.Name = name or \"\"\r\n    this.Tags = \"\"\r\n    this.Dependencies = {}\r\n    this.Enabled = false\r\n    \r\n    if priority == nil then\r\n        this.Priority = 1\r\n    else\r\n        this.Priority = priority\r\n    end\r\n\r\n    this.Config = {}\r\n\r\n    function this.Update(eventType) end\r\n\r\n    function this.Enable() this.Enabled = true end\r\n    function this.Disable() this.Enabled = false end\r\n    function this.ToggleEnabled() if this.Enabled then this.Disable() else this.Enable() end end\r\n\r\n    function this.Register()\r\n        if defaultEnable ~= nil then this.Enabled = defaultEnable end\r\n        if defaultEventName then\r\n            Horizon.Event[defaultEventName].Add(this)\r\n        end\r\n    end\r\n\r\n    function this.Unregister()\r\n        if defaultEventName then\r\n            if defaultEnable then this.Enabled = false end\r\n            Horizon.Event[defaultEventName].Remove(this)\r\n        end\r\n    end\r\n    \r\n    Horizon.RegisterModule(this)\r\n    return this\r\nend",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "5"
+    },
+    {
+      "code": "--@class UI\r\n\r\nUIAnchor = (function()\r\n    local vec2 = require(\"cpml/vec2\")\r\n    local this = {}\r\n    setmetatable(this, {_name = \"UIAnchor\"})\r\n    this.TopLeft = function (pos, width, height)\r\n        return pos\r\n    end\r\n\r\n    this.TopCenter = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.x = retn.x - (width * 0.5)\r\n        return retn\r\n    end\r\n\r\n    this.TopRight = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.x = retn.x - width\r\n        return retn\r\n    end\r\n\r\n    this.MiddleLeft = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.y = retn.y - (height * 0.5)\r\n        return retn\r\n    end\r\n\r\n    this.Middle = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.x = retn.x - (width * 0.5)\r\n        retn.y = retn.y - (height * 0.5)\r\n        return retn\r\n    end\r\n\r\n    this.MiddleRight = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.x = retn.x - width\r\n        retn.y = retn.y - (height * 0.5)\r\n        return retn\r\n    end\r\n\r\n    this.BottomLeft = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.y = retn.y - height\r\n        return retn\r\n    end\r\n\r\n    this.BottomCenter = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.x = retn.x - (width * 0.5)\r\n        retn.y = retn.y - height\r\n        return retn\r\n    end\r\n\r\n    this.BottomRight = function (pos, width, height)\r\n        local retn = vec2(pos.x, pos.y)\r\n        retn.x = retn.x - width\r\n        retn.y = retn.y - height\r\n        return retn\r\n    end\r\n    return this\r\nend)()\r\n\r\nUIObject = function(x, y, width, height, content)\r\n    local this = {}\r\n    local vec2 = require(\"cpml/vec2\")\r\n    local typeof = require(\"pl/types\").type\r\n    setmetatable(this, {_name = \"UIObject\"})\r\n    this.Enabled = true\r\n    this.Name = nil\r\n    this.AlwaysDirty = false\r\n\r\n    this.Position = vec2(x or 0, y or 0)\r\n    this.Offset = vec2(0, 0)\r\n\r\n    this.Width = width or 0\r\n    this.Height = height or 0\r\n    this.Zindex = 0\r\n    this.Padding = 0\r\n    this.Class = \"\"\r\n    this.Style = \"\"\r\n\r\n    this.Parent = nil\r\n    this.Children = {}\r\n    this.Content = content or \"\"\r\n    this.IsDirty = true\r\n    this.IsHovered = false\r\n    this.IsPressed = false\r\n    this.Anchor = UIAnchor.TopLeft\r\n    this.IsClickable = true\r\n\r\n    this.UI = nil\r\n    this.Horizon = Horizon\r\n\r\n    this.GUID =\r\n        (function()\r\n        local template = \"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx\"\r\n        return string.gsub(\r\n            template,\r\n            \"[xy]\",\r\n            function(c)\r\n                local v = (c == \"x\") and math.random(0, 0xf) or math.random(8, 0xb)\r\n                return string.format(\"%x\", v)\r\n            end\r\n        )\r\n    end)()\r\n\r\n    this._wrapStart = \"\"\r\n    this._wrapEnd = \"\"\r\n\r\n    local buffer = \"\"\r\n\r\n    function this.Contains(pos)\r\n        local selfPos = this.GetAbsolutePos()\r\n        selfPos.x = selfPos.x + this.Padding\r\n        selfPos.y = selfPos.y + this.Padding\r\n\r\n        if pos.x >= selfPos.x and pos.x <= selfPos.x + this.Width and pos.y >= selfPos.y and\r\n            pos.y <= selfPos.y + this.Height\r\n        then\r\n            return true\r\n        end\r\n        return false\r\n    end\r\n\r\n    function this.GetAbsolutePos()\r\n        local pos = this.Position + this.Offset\r\n        if this.Parent then\r\n            pos = pos + this.Parent.GetAbsolutePos()\r\n            local pad = this.UI.TransformSize(this.Parent.Padding)\r\n            pos = pos + pad\r\n        end\r\n        return this.Anchor(pos, this.Width, this.Height)\r\n    end\r\n\r\n    function this._update()\r\n        if not this.Enabled then return end\r\n\r\n        if this.Contains(this.UI.MousePos) then\r\n            if not this.IsHovered then\r\n                this.IsHovered = true\r\n                this.IsDirty = true\r\n                this.OnEnter(this)\r\n            end\r\n            this.IsDirty = true\r\n        else\r\n            if this.IsHovered then\r\n                this.IsHovered = false\r\n                this.IsDirty = true\r\n                this.OnLeave(this)\r\n            end\r\n        end\r\n        this.OnUpdate(this)\r\n\r\n        for _, v in ipairs(this.Children) do\r\n            if v.UI == nil then v.UI = this.UI or this.Parent.UI end\r\n            v._update()\r\n        end\r\n    end\r\n\r\n    function this.AddChild(child)\r\n        if typeof(child) ~= \"UIObject\" then\r\n            error(\"Trying to add a non-UIObject\")\r\n            return\r\n        end\r\n        for k, v in ipairs(this.Children) do\r\n            if v.GUID == child.GUID then\r\n                error(v.GUID .. \" is already a child of \" .. this.GUID)\r\n                return\r\n            end\r\n        end\r\n        child.Parent = this\r\n        child.UI = this.UI\r\n        table.insert(this.Children, child)\r\n    end\r\n\r\n    function this.RemoveChild(child)\r\n        if typeof(child) ~= \"UIObject\" then\r\n            error(\"Trying to remove a non-UIObject\")\r\n            return\r\n        end\r\n        for k, v in ipairs(this.Children) do\r\n            if v.GUID == child.GUID then\r\n                v.UI = nil\r\n                v.Parent = nil\r\n                table.remove(this.Children, k)\r\n                v.Offset = {\r\n                    X = v.Offset.x,\r\n                    Y = v.Offset.y\r\n                }\r\n                return\r\n            end\r\n        end\r\n        error(v.GUID .. \" is not a child of\" .. this.GUID)\r\n    end\r\n\r\n    function this.OnUpdate(scope)\r\n    end\r\n    function this.OnEnter(scope)\r\n    end\r\n    function this.OnLeave(scope)\r\n    end\r\n    function this.OnPress(scope)\r\n    end\r\n    function this.OnRelease(scope)\r\n    end\r\n    function this.OnClick(scope)\r\n    end\r\n    function this.OnScroll(scope, delta)\r\n    end\r\n    function this.Render(scope)\r\n        if not this.Enabled then return \"\" end\r\n        local anyDirty = scope.IsDirty\r\n        for i=1, #scope.Children do\r\n            local child = scope.Children[i]\r\n            if child.AlwaysDirty or child.IsDirty then\r\n                anyDirty = true\r\n                break\r\n            end\r\n        end\r\n        if scope.AlwaysDirty or anyDirty then\r\n            buffer = {}\r\n            buffer[1] = template.substitute(scope._wrapStart .. scope.Content .. scope._wrapEnd, scope)\r\n            for i=1, #scope.Children do\r\n                local child = scope.Children[i]\r\n                buffer[i+1] = child.Render(child)\r\n            end\r\n            buffer = table.concat(buffer)\r\n            scope.IsDirty = false\r\n        end\r\n        return buffer\r\n    end\r\n\r\n    return this\r\nend\r\n\r\nUIPanel = function(x, y, width, height, content)\r\n    local this = UIObject(x, y, width, height, content)\r\n    this._wrapStart =\r\n        [[<panel style=\"position:absolute;left:$(GetAbsolutePos().x)vw;top:$(GetAbsolutePos().y)vh;width:$(Width)vw;height:$(Height)vh;z-index:$(Zindex);$(Style)\" class=\"$(Class)\">]]\r\n    this._wrapEnd = [[</panel>]]\r\n    return this\r\nend\r\n\r\nUIExpandable = function(x, y, content)\r\n    local this = UIPanel(x, y, width, height, content)\r\n    this.Width = 0\r\n    this.Height = 0\r\n\r\n    local baseUpdate = this._update\r\n\r\n    function this._update()\r\n        local maxHeight = 0\r\n        local maxWidth = 0\r\n        for k, v in ipairs(this.Children) do\r\n            local w = v.Position.x + v.Width\r\n            local h = v.Position.y + v.Height\r\n            if w > maxWidth then\r\n                maxWidth = w\r\n                this.IsDirty = true\r\n            end\r\n            if h > maxHeight then\r\n                maxHeight = h\r\n                this.IsDirty = true\r\n            end\r\n        end\r\n        if this.IsDirty then\r\n            local pad = this.UI.TransformSize(this.Padding) * 2\r\n            this.Width = maxWidth + pad.x\r\n            this.Height = maxHeight + pad.y\r\n        end\r\n        baseUpdate()\r\n    end\r\n\r\n    return this\r\nend\r\n\r\nUIFillHorizontal = function(x, y, width, height, content)\r\n    local this = UIPanel(x, y, width, height, content)\r\n\r\n    local baseUpdate = this._update\r\n    function this._update()\r\n        if this.Parent then\r\n            local desired = this.Parent.Width - (this.Parent.Padding * 2)\r\n            if this.Width ~= desired then\r\n                this.Width = this.Parent.Width - (this.Parent.Padding * 2)\r\n                this.IsDirty = true\r\n            end\r\n        end\r\n        baseUpdate()\r\n    end\r\n\r\n    return this\r\nend\r\n\r\nUIButton = function(x, y, width, height, content)\r\n    local this = UIPanel(x, y, width, height, content)\r\n    this.Class = \"button\"\r\n    this.OnEnter = function (ref) ref.Class = ref.Class .. \" hover\" ref.IsDirty = true end\r\n    this.OnLeave = function (ref) ref.Class = ref.Class:gsub(\" hover\", \"\") ref.IsDirty = true end\r\n    return this\r\nend\r\n\r\nUICore = function(adapter, CSS)\r\n    local template = require(\"pl/template\")\r\n    local this = {}\r\n    setmetatable(this, {__call = function(ref, ...) ref.Update(...) end, _name = \"UICore\" })\r\n    local vec2 = require(\"cpml/vec2\")\r\n    local typeof = require(\"pl/types\").type\r\n    this.Tags = \"hud,core\"\r\n    this.Config = adapter.Config\r\n    this.Widgets = {}\r\n    this.CSS = CSS\r\n    this.Adapter = adapter\r\n\r\n    local header = \"\"\r\n    if this.CSS then\r\n        header = \"<style>\" .. this.CSS .. \"</style>\"\r\n    end\r\n\r\n    this.MousePos = vec2(this.Config.ScreenSize.x * 0.5, this.Config.ScreenSize.y * 0.5)\r\n\r\n    system.showScreen(1)\r\n\r\n    function this.TransformSize(size)\r\n        return vec2(size, size + ((size / this.Config.ScreenSize.y) * 1000))\r\n    end\r\n\r\n    function this.Update(eventType, deltaTime)\r\n        this.MousePos = this.Adapter.GetMouse()\r\n\r\n        local buffer = header .. [[<div id=\"horizon\">]]\r\n        for i=1,#this.Widgets do\r\n            local widget = this.Widgets[i]\r\n            widget._update()\r\n            buffer = buffer .. widget.Render(widget)\r\n        end\r\n        this.Adapter.Set(buffer .. \"</div>\")\r\n    end\r\n\r\n    local function getContained(objArray, targetArr, pos)\r\n        if not targetArr then\r\n            targetArr = {}\r\n        end\r\n        for _, v in ipairs(objArray) do\r\n            if v.Contains(pos or this.MousePos) and v.IsClickable then\r\n                table.insert(targetArr, v)\r\n            end\r\n            if #v.Children > 0 then\r\n                getContained(v.Children, targetArr)\r\n            end\r\n        end\r\n        return targetArr\r\n    end\r\n\r\n    function this.Click(pos)\r\n        local contained = getContained(this.Widgets, nil, pos)\r\n        local top = nil\r\n        for _, v in ipairs(contained) do\r\n            if not top or top.Zindex < v.Zindex then\r\n                top = v\r\n            end\r\n        end\r\n        if top then\r\n            top.OnClick(top)\r\n        end\r\n        return top\r\n    end\r\n\r\n    function this.AddWidget(widget)\r\n        if typeof(widget) ~= \"UIObject\" then\r\n            return\r\n        end\r\n        for k, v in ipairs(this.Widgets) do\r\n            if v.GUID == widget.GUID then\r\n                return\r\n            end\r\n        end\r\n        widget.UI = this\r\n        table.insert(this.Widgets, widget)\r\n        return widget\r\n    end\r\n\r\n    function this.RemoveWidget(widget)\r\n        if typeof(widget) ~= \"UIObject\" then\r\n            return\r\n        end\r\n        for k, v in ipairs(this.Widgets) do\r\n            if v.GUID == widget.GUID then\r\n                v.UI = nil\r\n                table.remove(this.Widgets, k)\r\n                return k\r\n            end\r\n        end\r\n    end\r\n\r\n    -- fixes for template builtin\r\n    debug = {traceback = traceback}\r\n    plutils.load = function(code, name, mode, env)\r\n        local err, fn = pcall(load(code, nil, \"t\", env))\r\n        return function()\r\n            return fn\r\n        end, err\r\n    end\r\n\r\n    return this\r\nend\r\n\r\nDisplayAdapter = function(slot)\r\n    local this = {}\r\n    setmetatable(this, { _name = \"DisplayAdapter\" })\r\n    this.Slot = slot\r\n    local vec2 = require(\"cpml/vec2\")\r\n    this.Config = {\r\n        EnableMouse = true,\r\n        MouseSensitivity = 1.2,\r\n        ScreenSize = vec2(2560, 1440)\r\n    }\r\n    this.Enable = function() end\r\n    this.Disable = function() end\r\n    this.Set = function(content) end\r\n    this.GetMouse = function() end\r\n    return this\r\nend\r\n\r\nSystemDisplay = (function(system)\r\n    local this = DisplayAdapter(system)\r\n    local vec2 = require(\"cpml/vec2\")\r\n    this.Config = {\r\n        EnableMouse = true,\r\n        MouseSensitivity = 1.5,\r\n        ScreenSize = vec2(system.getScreenWidth(), system.getScreenHeight())\r\n    }\r\n    this.Config.MousePos = vec2(this.Config.ScreenSize.x * 0.5, this.Config.ScreenSize.y * 0.5)\r\n    this.Name = \"System\"\r\n    this.Enable = function() system.showScreen(1) end\r\n    this.Disable = function() system.showScreen(0) end\r\n    this.Set = function(content) system.setScreen(content) end\r\n    local mousePos = vec2(50,50)\r\n    local function xform(pos)\r\n        return vec2((pos.x / this.Config.ScreenSize.x) * 100, (pos.y / this.Config.ScreenSize.y) * 100)\r\n    end\r\n\r\n    local function processMouse(x, y)\r\n        mousePos = mousePos + (vec2(x, y) * this.Config.MouseSensitivity)\r\n        if mousePos.x < 0 then\r\n            mousePos.x = 0\r\n        end\r\n        if mousePos.x > this.Config.ScreenSize.x then\r\n            mousePos.x = this.Config.ScreenSize.x\r\n        end\r\n        if mousePos.y < 0 then\r\n            mousePos.y = 0\r\n        end\r\n        if mousePos.y > this.Config.ScreenSize.y then\r\n            mousePos.y = this.Config.ScreenSize.y\r\n        end\r\n        return xform(mousePos)\r\n    end\r\n    this.GetMouse = function()\r\n        return processMouse(system.getMouseDeltaX(), system.getMouseDeltaY())\r\n    end\r\n    return this\r\nend)(system)\r\n\r\nScreenDisplay = function(screen)\r\n    local this = DisplayAdapter(screen)\r\n    local vec2 = require(\"cpml/vec2\")\r\n    this.Config = {\r\n        EnableMouse = true,\r\n        MouseSensitivity = 1,\r\n        ScreenSize = vec2(1920, 1080)\r\n    }\r\n    local mousePos = vec2(50,50)\r\n    this.Name = \"Screen\"\r\n    this.Enable = function() screen.enable() end\r\n    this.Disable = function() screen.disable() end\r\n    this.Set = function(content) screen.setHTML(content) end\r\n    this.Click = function(x, y) end\r\n    this.GetMouse = function()\r\n        mousePos.x = screen.getMouseX() * 100\r\n        mousePos.y = screen.getMouseY() * 100\r\n        return mousePos\r\n    end\r\n    return this\r\nend",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "6"
+    },
+    {
+      "code": "--@class ReadingsModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n\r\nReadingsModule = (function()\r\n    local this = HorizonModule(\"Ship Readings\", \"Gathers ship and environment data and makes it available to other modules\", \"PreFlush\", true)\r\n    this.Tags = \"system,readings\"\r\n    this.Config.Version = \"0177ce163a67f5868cdfc68b4ba54225b165e93f\"\r\n\r\n    local constants = require(\"cpml/constants\")\r\n    local memory = getmetatable(Horizon.Memory.Static).__index\r\n    local core = Horizon.Core\r\n    local controller = Horizon.Controller\r\n\r\n    function this.Update()\r\n        local World = {}\r\n        local Ship = {}\r\n        local Local = {}\r\n\r\n        -- World Linear\r\n        World.Position = vec3(core.getConstructWorldPos())\r\n        World.Velocity = vec3(core.getWorldVelocity())\r\n        World.Acceleration = vec3(core.getWorldAcceleration())\r\n        World.Up = vec3(core.getConstructWorldOrientationUp())\r\n        World.Right = vec3(core.getConstructWorldOrientationRight())\r\n        World.Forward = vec3(core.getConstructWorldOrientationForward())\r\n        World.Gravity = vec3(core.getWorldGravity())\r\n        World.G = core.g()\r\n        World.Vertical = vec3(core.getWorldVertical())\r\n        World.AirFriction = vec3(core.getWorldAirFrictionAcceleration())\r\n        World.AtmosphericDensity = controller.getAtmosphereDensity()\r\n\r\n        World.VerticalVelocity = World.Velocity:dot(-World.Vertical)\r\n\r\n        -- World Angular\r\n        World.AngularVelocity = vec3(core.getWorldAngularVelocity())\r\n        World.AngularAcceleration = vec3(core.getWorldAngularAcceleration())\r\n        World.AngularAirFriction = vec3(core.getWorldAirFrictionAngularAcceleration())\r\n\r\n        -- Ship\r\n        Ship.Altitude = core.getAltitude()\r\n        Ship.Id = core.getConstructId()\r\n        Ship.Mass = core.getConstructMass()\r\n        Ship.CrossSection = core.getConstructCrossSection()\r\n\r\n        \r\n        local tkForward = core.getMaxKinematicsParametersAlongAxis(\"all\", {vec3(0, 1, 0):unpack()})\r\n        local tkUp = core.getMaxKinematicsParametersAlongAxis(\"all\", {vec3(0, 0, 1):unpack()})\r\n        local tkRight = core.getMaxKinematicsParametersAlongAxis(\"all\", {vec3(1, 0, 0):unpack()})\r\n        \r\n        local tkOffset = 0\r\n        if World.AtmosphericDensity < 0.1 then\r\n            tkOffset = 2\r\n        end\r\n        \r\n        local virtualGravityEngine =\r\n            vec3(\r\n            library.systemResolution3(\r\n                {World.Right:unpack()},\r\n                {World.Forward:unpack()},\r\n                {World.Up:unpack()},\r\n                {(World.Gravity * Ship.Mass):unpack()}\r\n            )\r\n        )\r\n\r\n        Ship.MaxKinematics = {\r\n            Forward = math.abs(tkForward[1 + tkOffset] + virtualGravityEngine.y),\r\n            Backward = math.abs(tkForward[2 + tkOffset] - virtualGravityEngine.y),\r\n            Up = math.abs(tkUp[1 + tkOffset] + virtualGravityEngine.z),\r\n            Down = math.abs(tkUp[2 + tkOffset] - virtualGravityEngine.z),\r\n            Right = math.abs(tkRight[1 + tkOffset] + virtualGravityEngine.x),\r\n            Left = math.abs(tkRight[2 + tkOffset] - virtualGravityEngine.x)\r\n        }\r\n\r\n        local localGrav = vec3(library.systemResolution3({World.Right:unpack()}, {World.Forward:unpack()}, {World.Up:unpack()}, {World.Vertical:unpack()}))\r\n        local localVert = vec3(library.systemResolution3({(World.Vertical:cross(World.Forward)):unpack()}, {World.Forward:unpack()}, {World.Vertical:unpack()}, {vec3(0,0,1):unpack()}))\r\n        Ship.Yaw = (math.atan(-localVert.x, localVert.y) * constants.rad2deg) % 360\r\n        Ship.Pitch = 180 - (math.atan(localGrav.y, localGrav.z) * constants.rad2deg)\r\n        Ship.Roll = 180 - (math.atan(localGrav.x, localGrav.z) * constants.rad2deg)\r\n\r\n        -- Local\r\n        Local.Velocity = vec3(core.getVelocity())\r\n        Local.Acceleration = vec3(core.getAcceleration())\r\n\r\n        rawset(memory, \"World\", World)\r\n        rawset(memory, \"Ship\", Ship)\r\n        rawset(memory, \"Local\", Local)\r\n    end\r\n\r\n    this.Update()\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "7"
+    },
+    {
+      "code": "--@class ThrustControlModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n\r\nThrustControlModule = (function() \r\n    local this = HorizonModule(\"Thrust Control\", \"Converts horizon thrust directives to actual thruster actions\", \"PostFlush\", true, 5)\r\n    this.Tags = \"system,thrust\"\r\n    this.Config.Version = \"4ff1f94db73fc3dcbd4826c4d0e6d59a1ee2bf5f\"\r\n    \r\n    local core = Horizon.Core\r\n    local memory = Horizon.Memory.Dynamic.Ship\r\n    local controller = Horizon.Controller\r\n\r\n    function this.Update(eventType, deltaTime)\r\n        local thrust = memory.Thrust\r\n        local rotation = memory.Rotation\r\n\r\n        controller.setEngineCommand(memory.Tags, {thrust:unpack()}, {rotation:unpack()}, false, false, memory.Priority1Tags, memory.Priority2Tags, memory.Priority3Tags)\r\n\r\n        -- Cleanup\r\n        memory.Thrust = vec3(0,0,0)\r\n        memory.Rotation = vec3(0,0,0)\r\n    end\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "8"
+    },
+    {
+      "code": "--@class UIController\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require UI\r\n\r\nUIController = (function()\r\n    local this = HorizonModule(\"UI Controller\", \"UI Display Driver\", \"PreUpdate\", true, 5)\r\n    this.Config.Version = \"f71c05912d431c118349155c500cb4423f2108c8\"\r\n    this.Displays = {}\r\n    Horizon.HUD = Horizon.HUD or this\r\n\r\n    Horizon.Controller.setTimer(\"UI\", 0.0025)\r\n\r\n    this.Update = function(deltaTime)\r\n        for _,v in ipairs(this.Displays) do\r\n            v.Update()\r\n        end\r\n    end\r\n\r\n    this.Add = function(ui)\r\n        table.insert(this.Displays, ui)\r\n    end\r\n\r\n    this.Get = function (name)\r\n        for _,v in ipairs(this.Displays) do\r\n            if v.Name == name then return v end\r\n        end\r\n    end\r\n\r\n    local handleClick = function (event, dt, ref)\r\n        for _,v in ipairs(this.Displays) do\r\n            if v.Adapter.Slot == ref then\r\n                v.Click()\r\n            end\r\n        end\r\n    end\r\n\r\n    Horizon.Event.Click.Add(handleClick)\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "9"
+    },
+    {
+      "code": "-- { event, isToggle }\r\nConfig = {\r\n    antigravity = nil, --Default bind Alt-G\r\n\r\n    forward = { {\"Move.Direction.Forward\"} },\r\n    backward = { {\"Move.Direction.Backward\"} },\r\n    yawleft = { {\"Move.Direction.Left\"} },\r\n    yawright = { {\"Move.Direction.Right\"} },\r\n    up = { {\"Move.Direction.Up\"} },\r\n    down = { {\"Move.Direction.Down\"} },\r\n    left = { {\"Move.Rotation.RollLeft\"} },\r\n    right = { {\"Move.Rotation.RollRight\"}  },\r\n    brake = { {\"Brake\"} },\r\n\r\n    booster = { {\"Booster\"} }, --Default bind B\r\n    gear = { {\"LandingGear\", true} },\r\n    groundaltitudeup = nil, -- Alt-Space\r\n    groupaltitudedown = nil, -- Alt-C\r\n    lalt = { { \"MouseSteering\" } },\r\n    light = nil,\r\n    lshift = { {\"HUD.Cursor.Toggle\"}, {\"MouseSteering.ToggleAndLock\"} },\r\n    option1 = { {\"CruiseControl\", true} },\r\n    option2 = { {\"InertialDamping\", true} },\r\n    option3 = { {\"GravityCounter\", true} },\r\n    option4 = { {\"GravityFollow\", true} },\r\n    option5 = nil,\r\n    option6 = nil,\r\n    option7 = nil,\r\n    option8 = nil,\r\n    option9 = nil,\r\n    speeddown = { {\"Throttle.Up\", true} },\r\n    speedup = { {\"Throttle.Down\", true} },\r\n    stopengines = { {\"HUD.Click\", true} },\r\n    strafeleft = nil,\r\n    straferight = nil,\r\n    warp = nil,\r\n    mousewheelup = { {\"Throttle.Up\"} },\r\n    mousewheeldown = { {\"Throttle.Down\"} },\r\n    external1 = nil,\r\n}\r\n\r\n--@class KeybindsModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n\r\nKeybindsModule = (function() \r\n    local this = HorizonModule(\"Keybinds Module\", \"Takes keyboard input and forwards it to the configured modules\", \"PreFlush\", true, 1)\r\n    this.Tags = \"system,control\"\r\n\r\n    Horizon.Event.KeyUp.Add(this)\r\n    Horizon.Event.KeyDown.Add(this)\r\n\r\n    this.Config.Version = \"4ff1f94db73fc3dcbd4826c4d0e6d59a1ee2bf5f\"\r\n    this.Keybinds = {}\r\n\r\n    function this.LoadConfig(config)\r\n        this.Keybinds = config\r\n    end\r\n\r\n    local function callBind(name, isKeyDown)\r\n        local event = this.Keybinds[name]\r\n\r\n        if event ~= nil then\r\n            if type(event) == \"table\" then\r\n                --For each keybind defined\r\n                for _,command in ipairs(event) do\r\n                    local eventName = command[1]\r\n                    local keyDownOnly = command[2]\r\n                    if (not keyDownOnly) or (isKeyDown and keyDownOnly) then\r\n                        Horizon.Emit(eventName, isKeyDown)\r\n                    end\r\n                end\r\n            elseif type(event) == \"function\" then\r\n                event(isKeyDown)\r\n            end\r\n        end\r\n    end\r\n\r\n    function this.Update(eventType, deltaTime, arg)\r\n        \r\n        if eventType == \"keydown\" or eventType == \"keyup\" then\r\n            local isKeyDown = eventType == \"keydown\"\r\n            callBind(arg, isKeyDown)\r\n        end\r\n\r\n        if eventType == \"mousewheel\" then\r\n            if arg > 0 then\r\n                callBind(\"mousewheelup\", true)\r\n            else\r\n                callBind(\"mousewheeldown\", true)\r\n            end\r\n        end\r\n\r\n    end\r\n\r\n    return this\r\nend)()\r\nKeybindsModule.LoadConfig(Config)",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "10"
+    },
+    {
+      "code": "--@class UICSS\r\n--@require UIController\r\n--@require UI\r\n\r\nCSS =\r\n    [[\r\n    #horizon {\r\n      position: fixed;\r\n      top: 0;\r\n      left: 0;\r\n      right: 0;\r\n      bottom: 0;\r\n      font-family: 'Play';\r\n      font-weight: 1;\r\n      font-size: 1vh;\r\n    }\r\n    :root {\r\n      /* 0faea9 */\r\n      --primary: #ae0f12;\r\n      --secondary: #fff;\r\n      --accent: #0faea9;\r\n      --bg: #55555577;\r\n      --bg2: #44444444;\r\n      --border: 0.05em solid var(--secondary);\r\n      --border-primary: 0.05em solid var(--primary);\r\n      --glow: 0 0 0.25vw 0.05vw var(--primary);\r\n      --text-glow: 0 0 0.25vw var(--primary);\r\n      --spacing: 0.25em;\r\n    }\r\n    * {\r\n        overflow: hidden;\r\n        text-overflow: ellipsis;\r\n        white-space: nowrap;\r\n    }\r\n    svg {\r\n        position: relative !important;\r\n    }\r\n    uicursor {\r\n        display: block;\r\n        position: absolute;\r\n        width: 2vh;\r\n        height: 2vh;\r\n        z-index: 999;\r\n    }\r\n    readout {\r\n        display: inline;\r\n        text-shadow: 0 0 0.5vh #000000ff;\r\n        text-align: center;\r\n        color:#fff;\r\n        letter-spacing:0.25px;\r\n        -webkit-text-stroke-width: 2px;\r\n        -webkit-text-stroke-color: #000000bb;\r\n        font-weight: 100;\r\n    }\r\n    panel {\r\n      display: flex;\r\n      flex-direction: column;\r\n      position: absolute;\r\n      letter-spacing: 0.05vw;\r\n      text-transform: uppercase;\r\n    }\r\n    panel.row {\r\n      flex-direction: row;\r\n    }\r\n    panel:not(.row) > *:not(:last-child) {\r\n      margin-bottom: var(--spacing);\r\n    }\r\n    panel.row > *:not(:last-child) {\r\n      margin-right: var(--spacing);\r\n    }\r\n    panel.filled {\r\n        box-sizing: border-box;\r\n        background: var(--bg);\r\n        border: 1px solid #ae0f1233;\r\n        box-sizing: border-box;\r\n    }\r\n    panel.filled::after {\r\n        position: absolute;\r\n        border: 1px solid #ffffff77;\r\n        border-width: 1px 0 0 1px;\r\n        border-radius: 0;\r\n        content: \"\";\r\n        width: 0.5vmax;\r\n        height: 0.5vmax;\r\n        top: 0px;\r\n        left: 0px;\r\n    }\r\n    panel.filled::before{\r\n        position: absolute; \r\n        border: 1px solid #ffffff77;\r\n        border-width: 0 1px 1px 0;\r\n        border-radius: 0;\r\n        content: \"\";\r\n        width: 0.5vmax;\r\n        height: 0.5vmax;\r\n        bottom: 0px;\r\n        right: 0px;\r\n    }\r\n    .left {\r\n      text-align: left;\r\n    }\r\n    .rel {\r\n      position: relative;\r\n    }\r\n    uiprogress {\r\n        height: 0.5vw;\r\n        border-left: var(--border);\r\n        border-right: var(--border);\r\n        background-color: var(--bg);\r\n    }\r\n    uivprogress {\r\n        position: relative;\r\n        border-top: var(--border);\r\n        border-bottom: var(--border);\r\n        background-color: var(--bg);\r\n        width: 0.75em;\r\n        z-index: 10;\r\n    }\r\n    uivprogress > inner {\r\n        position: absolute;\r\n        display: block;\r\n        background-color: var(--primary);\r\n        width: 33%;\r\n        left: 33%;\r\n        bottom: 0.05em;\r\n        box-shadow: var(--glow);\r\n        max-height: calc(100% - 0.05em);\r\n    }\r\n    uiprogress > inner {\r\n        position: relative;\r\n        display: block;\r\n        background-color: var(--primary);\r\n        height: 33%;\r\n        top: 50%;\r\n        left: 0.05em;\r\n        transform: translateY(-33%);\r\n        box-shadow: var(--glow);\r\n        max-width: calc(100% - 0.05em);\r\n        overflow: hidden;\r\n    }\r\n    uiprogress[data-label] {\r\n        margin-left: 1.8em;\r\n    }\r\n    panel.filled > uiprogress[data-label] {\r\n        margin-left: 2.3em;\r\n    }\r\n    panel.filled > uiprogress[data-label]::before {\r\n        left: 1.5em;\r\n    }\r\n    uiprogress[data-label]::before {\r\n        display: block;\r\n        position: absolute;\r\n        left: 0;\r\n        content: attr(data-label);\r\n        color: var(--secondary);\r\n        font-size: 0.74em;\r\n        font-weight: 500;\r\n        padding-top: 0.05em;\r\n        text-shadow: var(--text-glow);\r\n    }\r\n    uispacer {\r\n        display: block;\r\n        height: 1vh;\r\n    }\r\n    uilabel {\r\n        color: var(--secondary);\r\n        font-size: 1.25em;\r\n        letter-spacing: 0;\r\n        border-left: var(--border-primary);\r\n        padding-left: 0.33vw;\r\n        text-transform: uppercase;\r\n        text-shadow: var(--text-glow);\r\n        background: var(--bg2);\r\n        padding-top: 0.25em;\r\n        padding-right: 0.15em;\r\n    }\r\n    uiheading {\r\n        color: var(--secondary);\r\n        position: absolute;\r\n        display: block;\r\n        text-transform: uppercase;\r\n        text-align: center;\r\n        font-size: 1.25em;\r\n        padding: 0.2vmax;\r\n        background: var(--bg);\r\n    }\r\n    uiheading::before {\r\n        content: \"\";\r\n        left: 0;\r\n        bottom: 0;\r\n        display: block;\r\n        position: absolute;\r\n        background: var(--primary);\r\n        width: 15%;\r\n        height: 0.1em;\r\n        box-shadow: var(--glow);\r\n    }\r\n    uiheading::after {\r\n        content: \"\";\r\n        right: 0;\r\n        bottom: 0;\r\n        display: block;\r\n        position: absolute;\r\n        background: var(--primary);\r\n        width: calc(85% - 0.2em);\r\n        height: 0.1em;\r\n        box-shadow: var(--glow);\r\n    }\r\n    uiinstrument {\r\n        background: var(--bg);\r\n        border-left: var(--border);\r\n        border-right: var(--border);\r\n    }\r\n]]\r\n\r\nHorizon.GetModule(\"UI Controller\").Add(UICore(SystemDisplay,CSS))",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "11"
+    },
+    {
+      "code": "--@class Utils3D\r\n\r\nUtils3d = (function ()\r\n    local this = {}\r\n    local mat4 = require(\"cpml/mat4\")\r\n\r\n    function this.worldToLocal(pos, up, right, forward)\r\n        return vec3(\r\n            library.systemResolution3(\r\n                {right:unpack()},\r\n                {forward:unpack()},\r\n                {up:unpack()},\r\n                {pos:unpack()}\r\n            )\r\n        )\r\n    end\r\n\r\n    function this.localToRelative(pos, up, right, forward)\r\n        -- this is horrible, can optimize?\r\n        local rightX, rightY, rightZ = right:unpack()\r\n        local forwardX, forwardY, forwardZ = forward:unpack()\r\n        local upX, upY, upZ = up:unpack()\r\n        local rfuX, rfuY, rfuZ = pos:unpack()\r\n        local relX = rfuX * rightX + rfuY * forwardX + rfuZ * upX\r\n        local relY = rfuX * rightY + rfuY * forwardY + rfuZ * upY\r\n        local relZ = rfuX * rightZ + rfuY * forwardZ + rfuZ * upZ\r\n        return vec3(relX, relY, relZ)\r\n    end\r\n\r\n    function this.worldToScreen(selfPos, targetPos, forward, up, fov, aspect)\r\n        -- see https://github.com/rgrams/rendercam/blob/master/rendercam/rendercam.lua for ideas\r\n\r\n        local P = mat4():perspective(fov, aspect or 1920/1080, 0.1, 100000)\r\n        local V = mat4():look_at(selfPos, selfPos + forward, up)\r\n\r\n        local pos = V * P * { targetPos.x, targetPos.y, targetPos.z, 1 }\r\n\r\n        pos[1] = pos[1] / pos[4] * 0.5 + 0.5\r\n        pos[2] = pos[2] / pos[4] * 0.5 + 0.5\r\n\r\n        pos[1] = pos[1] * 100\r\n        pos[2] = pos[2] * 100\r\n\r\n        return vec3(pos[1], pos[2], pos[3])\r\n    end\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "12"
+    },
+    {
+      "code": "--@class LoggingModule\r\n\r\nLoggingModule = (function() \r\n    local this = HorizonModule(\"Logging Module\", \"Debug error handling\", \"Error\", true, 5)\r\n    this.Tags = \"system,logging\"\r\n    this.Config.Version = \"7e5fb0fd1f226c71013723fd64e25628c3e84202\"\r\n    \r\n    local isBreaking = false\r\n\r\n    function this.Update(eventType, deltaTime, error)\r\n        system.print(error)\r\n    end\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "13"
+    },
+    {
+      "code": "--@class ManeuverFlightMode\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require ThrustControlModule\r\n--@require KeybindsModule\r\n--@require ReadingsModule\r\n\r\nManeuverFlightMode = (function() \r\n    local this = HorizonModule(\"Maneuver Flight Mode\", \"Flight mode that allows 6DOF movement\", \"Flush\", true)\r\n    this.Tags = \"control,thrust,steering,input\"\r\n\r\n    this.Config.Version = \"33d5336ecb7233501801ab1190017178ba08b167\"\r\n    this.Config.Throttle = 1\r\n    this.Config.ThrottleStep = 0.1\r\n    this.Config.TurnSpeed = 2\r\n    this.Direction = vec3(0,0,0)\r\n    this.Rotation = vec3(0,0,0)\r\n\r\n    local ship = Horizon.Memory.Dynamic.Ship\r\n\r\n    --This is used to inform other modules of the users current movement intent\r\n    if not ship.MoveDirection then ship.MoveDirection = vec3(0,0,0) end\r\n\r\n    local movement = { \r\n        direction = {\r\n            forward = vec3(0 , 1 , 0),\r\n            backward = vec3(0, -1, 0),\r\n            left = vec3(-1, 0, 0),\r\n            right = vec3(1, 0, 0),\r\n            up = vec3(0, 0, 1),\r\n            down = vec3(0, 0, -1)\r\n        },\r\n        rotation = {\r\n            rollleft = vec3(0, -1, 0),\r\n            rollright = vec3(0, 1, 0),\r\n            yawleft = vec3(-1, 0, 0),\r\n            yawright = vec3(1, 0, 0),\r\n            pitchup = vec3(0, 0, 1),\r\n            pitchdown = vec3(0, 0, -1)\r\n        }\r\n    }\r\n\r\n    local function handleInput(event, keyDown)\r\n        event = string.lower(event)\r\n        local property = string.match(event, '%.([^%.]*)%.')\r\n        local direction = string.match(event, '%.([^%.]*)$')\r\n        if movement[property] and movement[property][direction] then\r\n            local sign = 1\r\n            if not keyDown then sign = -1 end\r\n            if property == \"direction\" then\r\n                this.Direction = this.Direction + (movement[property][direction] * sign)\r\n            else\r\n                this.Rotation = this.Rotation + (movement[property][direction] * sign)\r\n            end\r\n        else\r\n            this.Direction = vec3(0,0,0)\r\n            this.Rotation = vec3(0,0,0)\r\n        end\r\n    end\r\n\r\n    local function handleThrottle(event, keyDown)\r\n        event = string.lower(event)\r\n        local direction = string.match(event, '%.([^%.]*)$')\r\n        if direction == \"up\" then\r\n            this.Config.Throttle = math.min(1,this.Config.Throttle+this.Config.ThrottleStep)\r\n        else\r\n            this.Config.Throttle = math.max(0,this.Config.Throttle-this.Config.ThrottleStep)\r\n        end\r\n    end\r\n\r\n    Horizon.Emit.Subscribe(\"Move.*\", handleInput)\r\n    Horizon.Emit.Subscribe(\"Throttle.*\", handleThrottle)\r\n\r\n    function this.Update(eventType)\r\n        local world = Horizon.Memory.Static.World\r\n        local stats = Horizon.Memory.Static.Ship\r\n\r\n        local thrustToApply = vec3(0,0,0)\r\n\r\n        if (this.Direction.z > 0) then\r\n            thrustToApply = thrustToApply + (world.Up * stats.MaxKinematics.Up)\r\n        elseif this.Direction.z < 0 then\r\n            thrustToApply = thrustToApply + (-world.Up * stats.MaxKinematics.Down)\r\n        end\r\n\r\n        if this.Direction.y > 0 then\r\n            thrustToApply = thrustToApply + (world.Forward * stats.MaxKinematics.Forward)\r\n        elseif this.Direction.y < 0 then\r\n            thrustToApply = thrustToApply + (-world.Forward * stats.MaxKinematics.Backward)\r\n        end\r\n\r\n        if this.Direction.x > 0 then\r\n            thrustToApply = thrustToApply + (world.Right * stats.MaxKinematics.Right)\r\n        elseif this.Direction.x < 0 then\r\n            thrustToApply = thrustToApply + (-world.Right * stats.MaxKinematics.Left)\r\n        end\r\n\r\n        ship.Thrust = ship.Thrust + ((thrustToApply * this.Config.Throttle) / stats.Mass)\r\n        ship.Rotation = ship.Rotation + ((world.Forward * this.Rotation.y) * this.Config.TurnSpeed)\r\n\r\n        ship.MoveDirection = this.Direction\r\n    end\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "14"
+    },
+    {
+      "code": "--@class RotationDampeningModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require ThrustControlModule\r\n--@require ReadingsModule\r\n\r\nRotationDampeningModule = (function() \r\n    local this = HorizonModule(\"Rotation Dampening\", \"Slows rotation over time, preventing unintended spin\", \"PostFlush\", true)\r\n    this.Tags = \"stability,rotation\"\r\n    this.Config.Version = \"4ff1f94db73fc3dcbd4826c4d0e6d59a1ee2bf5f\"\r\n    \r\n    function this.Update(eventType, deltaTime)\r\n        local staticWorld = Horizon.Memory.Static.World\r\n        local dynamicShip = Horizon.Memory.Dynamic.Ship\r\n\r\n        dynamicShip.Rotation = dynamicShip.Rotation - ((staticWorld.AngularVelocity * 2) - (staticWorld.AngularAirFriction * 2))\r\n    end\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "15"
+    },
+    {
+      "code": "--@class BrakingModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require ThrustControlModule\r\n--@require KeybindsModule\r\n--@require ReadingsModule\r\n\r\nBrakingModule = (function() \r\n    local this = HorizonModule(\"Velocity Braking\", \"When enabled, negates all ship velocity\", \"PostFlush\", false, 5)\r\n    this.Tags = \"thrust,braking\"\r\n    this.Config.Version = \"4ff1f94db73fc3dcbd4826c4d0e6d59a1ee2bf5f\"\r\n    \r\n    function this.Update(eventType, deltaTime)\r\n        local world = Horizon.Memory.Static.World\r\n        local ship = Horizon.Memory.Static.Ship\r\n        local dship = Horizon.Memory.Dynamic.Ship\r\n        \r\n        dship.Thrust = -world.Velocity * ship.Mass * deltaTime\r\n    end\r\n\r\n    Horizon.Emit.Subscribe(\"Brake\", function() this.ToggleEnabled() end)\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "16"
+    },
+    {
+      "code": "--@class CruiseControlModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require ThrustControlModule\r\n--@require KeybindsModule\r\n\r\nCruiseControlModule = (function() \r\n    local this = HorizonModule(\"Cruise Control\", \"When enabled forward thrust is constantly applied\", \"PostFlush\", false)\r\n    this.Tags = \"thrust,breaking\"\r\n    this.Config.Version = \"b01b7f146b4bdb76c51942fe78fd356085aa3331\"\r\n    \r\n    function this.Update(eventType, deltaTime)\r\n        local world = Horizon.Memory.Static.World\r\n        local ship = Horizon.Memory.Static.Ship\r\n        local dship = Horizon.Memory.Dynamic.Ship\r\n        \r\n        dship.Thrust = dship.Thrust + (world.Forward * (ship.MaxKinematics.Forward / ship.Mass))\r\n        dship.MoveDirection = vec3(0,1,0)\r\n    end\r\n    \r\n    Horizon.Emit.Subscribe(\"CruiseControl\", function() this.ToggleEnabled() end)\r\n    Horizon.Emit.Subscribe(\"Move.Direction.*\", function() this.Disable() end)\r\n    Horizon.Emit.Subscribe(\"Brake\", function() this.Disable() end)\r\n    \r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "17"
+    },
+    {
+      "code": "--@class GravityCounterModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require ThrustControlModule\r\n--@require KeybindsModule\r\n--@require ReadingsModule\r\n\r\nGravityCounterModule = (function() \r\n    local this = HorizonModule(\"Gravity Counter\", \"Negates the effect of gravity, allowing hovering and linear velocity approaches to planets\", \"Flush\", true)\r\n    this.Tags = \"thrust,stability\"\r\n    this.Config.Version = \"4ff1f94db73fc3dcbd4826c4d0e6d59a1ee2bf5f\"\r\n    \r\n    function this.Update(eventType, deltaTime)\r\n        local world = Horizon.Memory.Static.World\r\n        local ship = Horizon.Memory.Dynamic.Ship\r\n\r\n        ship.Thrust = ship.Thrust - world.Gravity\r\n    end\r\n\r\n    Horizon.Emit.Subscribe(\"GravityCounter\", function() this.ToggleEnabled() end)\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "18"
+    },
+    {
+      "code": "--@class InertialDampeningModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require ThrustControlModule\r\n--@require KeybindsModule\r\n--@require ReadingsModule\r\n--@require Utils3D\r\n\r\nInertialDampeningModule = (function() \r\n    local this = HorizonModule(\"Inertial Dampening\", \"Slows velocity in any direction that the user is not applying thrust to 0, ie soft braking\", \"PostFlush\", true)\r\n    this.Tags = \"stability,thrust\"\r\n    this.Config.Version = \"22c3bb22497912ef2697c1c64e27a5cd4cf5f89e\"\r\n\r\n    function this.Update(eventType, deltaTime)\r\n        local staticWorld = Horizon.Memory.Static.World\r\n        local dynamicShip = Horizon.Memory.Dynamic.Ship\r\n        local localShip = Horizon.Memory.Static.Local\r\n\r\n        local currentShipMomentum = localShip.Velocity\r\n\r\n        local delta = vec3(0,0,0)\r\n\r\n        local moveDirection = dynamicShip.MoveDirection or vec3(0,0,0)\r\n\r\n        if moveDirection.x == 0 then delta.x = currentShipMomentum.x end\r\n        if moveDirection.y == 0 then delta.y = currentShipMomentum.y end\r\n        if moveDirection.z == 0 then delta.z = currentShipMomentum.z end\r\n\r\n        delta = Utils3d.localToRelative(delta, staticWorld.Up, staticWorld.Right, staticWorld.Forward)\r\n\r\n        dynamicShip.Thrust = dynamicShip.Thrust - delta\r\n    end\r\n\r\n    Horizon.Emit.Subscribe(\"InertialDamping\", function() this.ToggleEnabled() end)\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "19"
+    },
+    {
+      "code": "--@class MouseSteeringModule\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n\r\nMouseSteeringModule = (function() \r\n    local this = HorizonModule(\"Mouse Steering\", \"Locks the mouse and redirects input to ship rotation\", \"Flush\", true)\r\n    this.Tags = \"steering,control\"\r\n\r\n    this.Config.Version = \"82b3602508d2db38f7f6b0061a200970e2243485\"\r\n    \r\n    -- Config\r\n    this.Config = {\r\n        FlipX = false,\r\n        FlipY = false,\r\n        Sensitivity = 1,\r\n        Deadzone = 0.1,\r\n        Clamp = 50\r\n    }\r\n\r\n    local function InThreshold(n)\r\n        return (n > this.Config.Deadzone and n > 0) or (n < -this.Config.Deadzone and n < 0)\r\n    end\r\n\r\n    local function Clamp(n)\r\n        return math.min(this.Config.Clamp, math.max(n, -this.Config.Clamp))\r\n    end\r\n\r\n    function this.Update(eventType, deltaTime)\r\n        local world = Horizon.Memory.Static.World\r\n        local ship = Horizon.Memory.Dynamic.Ship\r\n\r\n        local delta = vec3(system.getMouseDeltaX(), system.getMouseDeltaY(), 0) * (this.Config.Sensitivity * 0.1)\r\n        -- Transform local->world\r\n        local x = world.Forward:cross(world.Up) * Clamp(delta.y)\r\n        local z = world.Forward:cross(world.Right) * -Clamp(delta.x)\r\n\r\n        if not InThreshold(delta.y) then x = vec3(0,0,0) end\r\n        if not InThreshold(delta.x) then z = vec3(0,0,0) end\r\n\r\n        if this.Config.FlipX then z = z * -1 end\r\n        if this.Config.FlipY then x = x * -1 end\r\n\r\n        ship.Rotation = ship.Rotation - x - z\r\n    end\r\n\r\n    function this.Enable()\r\n        this.Enabled = true\r\n        system.lockView(1)\r\n    end\r\n    function this.Disable()\r\n        this.Enabled = false\r\n        system.lockView(0)\r\n    end\r\n\r\n    Horizon.Emit.Subscribe(\"MouseSteering\", function() this.ToggleEnabled() end)\r\n    Horizon.Emit.Subscribe(\"MouseSteering.ToggleAndLock\", function() this.ToggleEnabled() system.lockView(1) end)\r\n\r\n    system.lockView(1)\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "20"
+    },
+    {
+      "code": "--@class GravityFollow\r\n\r\nGravityFollow = (function() \r\n    local this = HorizonModule(\"Gravity Follow\", \"Forces ship to follow gravity down, effectively locking ship pitch to the horizon\", \"Flush\", false)\r\n    this.Tags = \"thrust,stability\"\r\n    this.Config = {\r\n        AdjustSpeed = 5\r\n    }\r\n    this.Config.Version = \"7e5fb0fd1f226c71013723fd64e25628c3e84202\"\r\n    \r\n    function this.Update(eventType, deltaTime)\r\n        local world = Horizon.Memory.Static.World\r\n        local ship = Horizon.Memory.Dynamic.Ship\r\n        local relAccel = Horizon.Memory.Static.Local.Acceleration\r\n        local relVel = Horizon.Memory.Static.Local.Velocity\r\n        local dot = relVel:normalize():dot(relAccel:normalize())\r\n        local offset = 0\r\n        if dot <= 0 then offset = 1 end\r\n\r\n        local maxKinematics = Horizon.Core.getMaxKinematicsParametersAlongAxis(\"all\", {relAccel:normalize():unpack()})\r\n        if world.AtmosphericDensity > 0 then\r\n            maxKinematics = math.abs(maxKinematics[1 + offset])\r\n        else\r\n            maxKinematics = math.abs(maxKinematics[3 + offset])\r\n        end\r\n        local current = relAccel:len() * Horizon.Memory.Static.Ship.Mass\r\n        local scale = this.Config.AdjustSpeed * math.min(math.max(current / maxKinematics, 0.1), 1) * 10\r\n\r\n        ship.Rotation = ship.Rotation + (world.Up:cross(-world.Vertical) * scale)\r\n    end\r\n    \r\n    Horizon.Emit.Subscribe(\"GravityFollow\", function() this.ToggleEnabled() end)\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "21"
+    },
+    {
+      "code": "--@class HUDArtificialHorizon\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require UIController\r\n--@require ReadingsModule\r\n--@require UICSS\r\n\r\nHUDArtificialHorizon = (function()\r\n    local this = HorizonModule(\"HUD Artificial Horizon\", \"Artificial Horizon\", \"PreUpdate\", true, 0)\r\n    local vec2 = require(\"cpml/vec2\")\r\n    this.Tags = \"system,hud,data\"\r\n    this.Config = {\r\n        RollSize = 22,\r\n        PitchSize = 30\r\n    }\r\n    this.Config.Version = \"595897de9d032b650db853adac2d7bfaf77f35cf\"\r\n    \r\n    Horizon.Controller.hide()\r\n    local hud = Horizon.GetModule(\"UI Controller\").Displays[1]\r\n\r\n    local rollSVG = [[<svg viewBox=\"0 0 598 598\" style=\"transform: rotate($(-Memory.Ship.Roll)deg)\"><defs><clipPath id=\"a\" transform=\"translate(-1 -1)\"><path d=\"M0 300h600v300H0z\" class=\"a\"/></clipPath><clipPath id=\"b\" transform=\"translate(-1 -1)\"><path d=\"M0 0h600v300H0z\" class=\"a\"/></clipPath><style>.a{fill:none}.c{fill:#fff}.g{fill:#ae0f12}</style></defs><g clip-path=\"url(#a)\"><path d=\"M300 30l2.29-8.12L300 0v30zM298 30l-2.28-8.12L298 0v30zM30 298l-8.12-2.28L0 298h30zM30 300l-8.12 2.29L0 300h30zM298 568l-2.28 8.12L298 598v-30zM300 568l2.29 8.12L300 598v-30zM568 300l8.12 2.29L598 300h-30zM568 298l8.12-2.28L598 298h-30zM91.11 91.11l13.55 11.74 2.72 4.53-4.53-2.72-11.74-13.55zM91.11 506.89l11.74-13.55 4.53-2.71-2.72 4.52-13.55 11.74zM506.89 506.89l-13.55-11.74-2.71-4.52 4.52 2.71 11.74 13.55zM506.89 91.11l-11.74 13.55-4.52 2.72 2.71-4.53 13.55-11.74zM188.19 31.49l3.08 10.15 1.92-.8-5-9.35zM31.49 409.81l10.15-3.08-.8-1.92-9.35 5zM409.81 566.51l-3.08-10.14-1.92.79 5 9.35zM566.51 188.19l-10.14 3.08.79 1.92 9.35-5zM31.49 188.19l9.35 5 .8-1.92-10.15-3.08zM188.19 566.51l5-9.35-1.92-.79-3.08 10.14zM566.51 409.81l-9.35-5-.79 1.92 10.14 3.08zM409.81 31.49l-5 9.35 1.92.8 3.08-10.15zM242.83114619 21.80721805l1.96157056-.39018065.75109774 3.77602333-1.96157056.39018065zM22.29773466 355.67013528l-.39018064-1.96157056 3.77602333-.75109774.39018064 1.96157056zM356.16766776 576.19117602l-1.96157056.39018064-.75109774-3.77602332 1.96157056-.39018065zM576.70150049 242.3316628l.39018064 1.96157057-3.77602333.75109774-.39018064-1.96157057zM141.06616025 64.5945224l1.66293922-1.11114047 2.1389454 3.201158-1.66293922 1.11114047zM65.08622624 457.4426866l-1.11114046-1.66293922 3.201158-2.1389454 1.11114047 1.66293923zM457.93266807 533.4104826l-1.66293923 1.11114047-2.1389454-3.201158 1.66293923-1.11114048zM533.92050114 140.57062309l1.11114047 1.66293922-3.201158 2.1389454-1.11114047-1.66293922zM63.42062458 143.0587569l1.11114047-1.66293922 3.201158 2.1389454-1.11114046 1.66293922zM143.56247801 535.08548144l-1.66293922-1.11114046 2.1389454-3.20115801 1.66293922 1.11114047zM535.58176033 454.94141596l-1.11114047 1.66293922-3.201158-2.1389454 1.11114046-1.66293922zM455.44513707 62.9243457l1.66293923 1.11114047-2.1389454 3.201158-1.66293923-1.11114046zM21.7197539 245.27862541l.39018065-1.96157056 3.77602333.75109774-.39018064 1.96157056zM245.77784687 576.78453541l-1.96157056-.39018064.75109774-3.77602333 1.96157056.39018064zM577.28531396 352.7278638l-.39018064 1.96157057-3.77602333-.75109774.39018064-1.96157056zM352.8374 22.9384l1.96.4-.77 3.773-1.96-.4z\" class=\"c\"/><circle cx=\"299.5\" cy=\"299\" r=\"282.73\" fill=\"none\" stroke=\"#fff\" stroke-miterlimit=\"10\" stroke-opacity=\".3\"/><circle cx=\"299.5\" cy=\"299\" r=\"278.93\" fill=\"none\" stroke=\"#fff\" stroke-miterlimit=\"10\" stroke-width=\".5\"/></g><g clip-path=\"url(#b)\"><path d=\"M300 30l2.29-8.12L300 0v30zM298 30l-2.28-8.12L298 0v30zM30 298l-8.12-2.28L0 298h30zM30 300l-8.12 2.29L0 300h30zM298 568l-2.28 8.12L298 598v-30zM300 568l2.29 8.12L300 598v-30zM568 300l8.12 2.29L598 300h-30zM568 298l8.12-2.28L598 298h-30zM91.11 91.11l13.55 11.74 2.72 4.53-4.53-2.72-11.74-13.55zM91.11 506.89l11.74-13.55 4.53-2.71-2.72 4.52-13.55 11.74zM506.89 506.89l-13.55-11.74-2.71-4.52 4.52 2.71 11.74 13.55zM506.89 91.11l-11.74 13.55-4.52 2.72 2.71-4.53 13.55-11.74zM188.19 31.49l3.08 10.15 1.92-.8-5-9.35zM31.49 409.81l10.15-3.08-.8-1.92-9.35 5zM409.81 566.51l-3.08-10.14-1.92.79 5 9.35zM566.51 188.19l-10.14 3.08.79 1.92 9.35-5zM31.49 188.19l9.35 5 .8-1.92-10.15-3.08zM188.19 566.51l5-9.35-1.92-.79-3.08 10.14zM566.51 409.81l-9.35-5-.79 1.92 10.14 3.08zM409.81 31.49l-5 9.35 1.92.8 3.08-10.15zM242.83114619 21.80721805l1.96157056-.39018065.75109774 3.77602333-1.96157056.39018065zM22.29773466 355.67013528l-.39018064-1.96157056 3.77602333-.75109774.39018064 1.96157056zM356.16766776 576.19117602l-1.96157056.39018064-.75109774-3.77602332 1.96157056-.39018065zM576.70150049 242.3316628l.39018064 1.96157057-3.77602333.75109774-.39018064-1.96157057zM141.06616025 64.5945224l1.66293922-1.11114047 2.1389454 3.201158-1.66293922 1.11114047zM65.08622624 457.4426866l-1.11114046-1.66293922 3.201158-2.1389454 1.11114047 1.66293923zM457.93266807 533.4104826l-1.66293923 1.11114047-2.1389454-3.201158 1.66293923-1.11114048zM533.92050114 140.57062309l1.11114047 1.66293922-3.201158 2.1389454-1.11114047-1.66293922zM63.42062458 143.0587569l1.11114047-1.66293922 3.201158 2.1389454-1.11114046 1.66293922zM143.56247801 535.08548144l-1.66293922-1.11114046 2.1389454-3.20115801 1.66293922 1.11114047zM535.58176033 454.94141596l-1.11114047 1.66293922-3.201158-2.1389454 1.11114046-1.66293922zM455.44513707 62.9243457l1.66293923 1.11114047-2.1389454 3.201158-1.66293923-1.11114046zM21.7197539 245.27862541l.39018065-1.96157056 3.77602333.75109774-.39018064 1.96157056zM245.77784687 576.78453541l-1.96157056-.39018064.75109774-3.77602333 1.96157056.39018064zM577.28531396 352.7278638l-.39018064 1.96157057-3.77602333-.75109774.39018064-1.96157056zM352.8374 22.9384l1.96.4-.77 3.773-1.96-.4z\" class=\"g\"/><circle cx=\"299.5\" cy=\"299\" r=\"282.73\" fill=\"none\" stroke=\"#ae0f12\" stroke-miterlimit=\"10\" stroke-opacity=\".3\"/><circle cx=\"299.5\" cy=\"299\" r=\"278.93\" fill=\"none\" stroke=\"#ae0f12\" stroke-miterlimit=\"10\" stroke-width=\".5\"/></g></svg>]]\r\n    local pitchSVG = [[<svg viewBox=\"0 1.5 20.18 721.5\"><path fill=\"#fff\" d=\"M10.09 720l-10 1h20l-10-1zM10.09 724l10-1h-20l10 1zM9.734 721.996l.354-.354.354.354-.354.353zM10.09 540l-10 1h20l-10-1zM10.09 544l10-1h-20l10 1zM9.735 541.997l.354-.354.353.354-.353.353zM10.09 360l-10 1h20l-10-1zM10.09 364l10-1h-20l10 1zM9.736 361.997l.354-.353.353.353-.353.354zM10.09 180l-10 1h20l-10-1zM10.09 184l10-1h-20l10 1zM9.737 181.998l.353-.353.354.353-.354.354zM10.09 0l-10 1h20l-10-1zM10.09 4l10-1h-20l10 1zM9.738 1.999l.353-.354.354.354-.354.353z\"/><path fill=\"none\" stroke=\"#fff\" stroke-miterlimit=\"10\" stroke-width=\".25\" d=\"M.09 634.5l2.5-2.5h15l2.5 2.5M.09 629.5l2.5 2.5h15l2.5-2.5M.09 454.5l2.5-2.5h15l2.5 2.5M.09 449.5l2.5 2.5h15l2.5-2.5M.09 274.5l2.5-2.5h15l2.5 2.5M.09 269.5l2.5 2.5h15l2.5-2.5M.09 94.5l2.5-2.5h15l2.5 2.5M.09 89.5l2.5 2.5h15l2.5-2.5M.09 319.5l2.5-2.5h15l2.5 2.5M.09 224.5l2.5 2.5h15l2.5-2.5M.09 404.5l2.5 2.5h15l2.5-2.5M.09 584.5l2.5 2.5h15l2.5-2.5M.09 44.5l2.5 2.5h15l2.5-2.5M.09 499.5l2.5-2.5h15l2.5 2.5M.09 679.5l2.5-2.5h15l2.5 2.5M.09 139.5l2.5-2.5h15l2.5 2.5M6.09 24.5h8M6.09 69.5h8M6.09 114.5h8M6.09 159.5h8M6.09 204.5h8M6.09 249.5h8M6.09 294.5h8M6.09 339.5h8M6.09 384.5h8M6.09 429.5h8M6.09 474.5h8M6.09 519.5h8M6.09 564.5h8M6.09 609.5h8M6.09 654.5h8M6.09 699.5h8\"/><path fill=\"none\" stroke=\"#fff\" stroke-dasharray=\".23 11.02\" stroke-miterlimit=\"10\" d=\"M10.09 1.87v720\"/></svg>]]\r\n    local horizonSVG = [[<svg style=\"transform: translateY(-50%) translateY($(Height*0.5)vh) rotate($(-Memory.Ship.Roll)deg) scale(1.5)\" viewBox=\"0 0 600 24.25\"><path fill=\"none\" stroke=\"#fff\" stroke-miterlimit=\"10\" stroke-width=\".25\" d=\"M600 12.13H340l-20-12h-40l-20 12-260 .5\"/><path fill=\"none\" stroke=\"#fff\" stroke-miterlimit=\"10\" stroke-width=\".25\" d=\"M0 12.13h260l20 12h40l20-12h260\"/><path fill=\"#fff\" d=\"M280 3.2l-15.13 8.93L280 20.54l-14.47-8.41L280 3.2zM320 3.2l15.13 8.93L320 20.54l14.47-8.41L320 3.2z\"/><path fill=\"#fff\" stroke=\"#fff\" stroke-miterlimit=\"10\" stroke-opacity=\".4\" stroke-width=\".25\" d=\"M265.53 12.13h68.94\"/></svg>]]\r\n\r\n    local function createHUD(size)\r\n        local xform = hud.TransformSize(size)\r\n        local panel = UIPanel(50, 50, xform.x, xform.y)\r\n        panel.Anchor = UIAnchor.Middle\r\n        panel.AlwaysDirty = true\r\n        panel.Memory = Horizon.Memory.Static\r\n        panel.Zindex = -100\r\n        return panel, xform\r\n    end\r\n\r\n    local roll, rollXform = createHUD(this.Config.RollSize)\r\n\r\n    roll.Style = \"-webkit-mask-image:-webkit-linear-gradient(bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 60%)\"\r\n    roll.Content = rollSVG\r\n\r\n    local rollText = UIPanel(rollXform.x * 0.5, rollXform.y, 4,4)\r\n    rollText.Anchor = UIAnchor.TopCenter\r\n    rollText.Memory = Horizon.Memory.Static\r\n    rollText.Transform = function(roll)\r\n        if roll > 180 then roll = roll - 360 end\r\n        local roll = math.floor(roll * 10 + 0.5) / 10\r\n        return math.abs(roll)\r\n    end\r\n    rollText.Content = [[<readout>$(Transform(Memory.Ship.Roll))</readout>\r\n    <div style=\"position:absolute;width:4vw;height:4vh;top:1vh;\">\r\n        <svg viewBox=\"0 0 2.57 23\" style=\"display: block;height:2vh;margin: 0 auto;\"><path fill=\"#fff\" d=\"M1.28 0l1.29 17.88L1.28 23 0 17.88 1.28 0z\"/></svg>\r\n    </div>]]\r\n    rollText.AlwaysDirty = true\r\n    rollText.Zindex = -666\r\n    roll.AddChild(rollText)\r\n\r\n    local horizon = createHUD(this.Config.RollSize)\r\n    horizon.Style = [[-webkit-mask-image:-webkit-radial-gradient(rgba(0,0,0,1) 50%, rgba(0,0,0,0) 65%)]]\r\n    horizon.Content = horizonSVG\r\n\r\n    local pitch, pitchXform = createHUD(this.Config.PitchSize)\r\n    pitch.Transform = function(pitch)\r\n        pitch = (pitch % 360) / 360\r\n        return -25 + (math.abs(pitch) * 50)\r\n    end\r\n    pitch.Style = [[-webkit-mask-image: -webkit-radial-gradient(rgba(0,0,0,1) 25%, rgba(0,0,0,0) 40%)]]\r\n    pitch.Content = [[\r\n        <panel style=\"position:fixed;width:$(Width)vw;height:$(Height)vh;transform: scale(2.5) rotate($(-Memory.Ship.Roll)deg) translateY($(Transform(-Memory.Ship.Pitch))%)\">\r\n        ]].. pitchSVG ..[[\r\n        </panel>\r\n    ]]\r\n\r\n    local pitchText = UIPanel(pitchXform.x * 0.5,(pitchXform.y * 0.5) + 1, 4,3)\r\n    pitchText.Anchor = UIAnchor.TopCenter\r\n    pitchText.AlwaysDirty = true\r\n    pitchText.Memory = Horizon.Memory.Static\r\n    pitchText.Transform = function(pitch)\r\n        pitch = pitch % 180\r\n        if pitch > 90 then pitch = pitch - 180 end\r\n        local mult = 10\r\n        local pitch = math.floor(pitch * mult + 0.5) / mult\r\n        return math.abs(pitch)\r\n    end\r\n    pitchText.Content = [[<readout>$(Transform(Memory.Ship.Pitch))</readout>]]\r\n    pitchText.Zindex = -666\r\n    pitch.AddChild(pitchText)\r\n\r\n    hud.AddWidget(pitch)\r\n    hud.AddWidget(horizon)\r\n    hud.AddWidget(roll)\r\n\r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "22"
+    },
+    {
+      "code": "--@class HUDSimpleStats\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require UIController\r\n--@require ReadingsModule\r\n--@require UICSS\r\n\r\nHUDSimpleStats = (function()\r\n    local this = HorizonModule(\"HUD Simple Stats\", \"Simple flight stats\",\"PreUpdate\", true, 0)\r\n    local vec2 = require(\"cpml/vec2\")\r\n    this.Tags = \"system,hud,data\"\r\n    this.Config = {\r\n        Position = vec2(50, 99),\r\n    }\r\n    this.Config.Version = \"0177ce163a67f5868cdfc68b4ba54225b165e93f\"\r\n    \r\n    local hud = Horizon.GetModule(\"UI Controller\").Displays[1]\r\n    \r\n    local base = UIPanel(this.Config.Position.x, this.Config.Position.y, 33, 3.8)\r\n    base.Memory = Horizon.Memory\r\n    base.Anchor = UIAnchor.BottomCenter\r\n    base.Round = function(num, numDecimalPlaces)\r\n        local mult = 10^(numDecimalPlaces or 0)\r\n        return math.floor(num * mult + 0.5) / mult\r\n    end\r\n    base.Class = \"filled\"\r\n    base.Padding = 0.5\r\n    \r\n    local function splitNumber(num)\r\n        local major = math.floor(num)\r\n        local minor = tonumber(math.floor((num % 1) * 100))\r\n        return {\r\n            Major = major,\r\n            Minor = string.format(\"%02d\", minor)\r\n        }\r\n    end\r\n    \r\n    local rollXform = hud.TransformSize(1.3)\r\n    local velocity = UIPanel(0,0,5.5,rollXform.y)\r\n    velocity.AlwaysDirty = true\r\n    velocity.OnUpdate = function()\r\n        velocity.Number = splitNumber(Horizon.Memory.Static.World.Velocity:len()*3.6)\r\n    end\r\n    velocity.Content = [[<uilabel style=\"width: 100%;height:100%\">V $(Number.Major)<sup>$(Number.Minor)</sup> km/h</uilabel>]]\r\n    base.AddChild(velocity)\r\n    \r\n    local dV = UIPanel(6,0,5.5,rollXform.y)\r\n    dV.AlwaysDirty = true\r\n    dV.OnUpdate = function()\r\n        dV.Number = splitNumber(Horizon.Memory.Static.World.Acceleration:len()*3.6)\r\n    end\r\n    dV.Content = [[<uilabel style=\"width: 100%;height:100%\">ΔV $(Number.Major)<sup>$(Number.Minor)</sup> km/h</uilabel>]]\r\n    base.AddChild(dV)\r\n        \r\n    local sA = UIPanel(12,0,5.5,rollXform.y)\r\n    sA.AlwaysDirty = true\r\n    sA.OnUpdate = function()\r\n        sA.Number = splitNumber(Horizon.Memory.Static.Ship.Altitude)\r\n    end\r\n    sA.Content = [[<uilabel style=\"width: 100%;height:100%\">↨ $(Number.Major)<sup>$(Number.Minor)</sup> m</uilabel>]]\r\n    base.AddChild(sA)\r\n    \r\n    local vV = UIPanel(18,0,5.5,rollXform.y)\r\n    vV.AlwaysDirty = true\r\n    vV.OnUpdate = function()\r\n        vV.Number = splitNumber(Horizon.Memory.Static.World.VerticalVelocity*3.6)\r\n    end\r\n    vV.Content = [[<uilabel style=\"width: 100%;height:100%\"><div style=\"display: inline-block;transform:rotate(90deg);\">⇌ </div> $(Number.Major)<sup>$(Number.Minor)</sup> km/h</uilabel>]]\r\n    base.AddChild(vV)\r\n    \r\n    local aD = UIPanel(24,0,4,rollXform.y)\r\n    aD.AlwaysDirty = true\r\n    aD.OnUpdate = function()\r\n        aD.Number = utils.round(Horizon.Memory.Static.World.AtmosphericDensity*100,0.1)\r\n    end\r\n    aD.Content = [[<uilabel style=\"width: 100%;height:100%\">☁ $(Number) %</uilabel>]]\r\n    base.AddChild(aD)\r\n    \r\n    local gF = UIPanel(28.5,0,3.5,rollXform.y)\r\n    gF.AlwaysDirty = true\r\n    gF.OnUpdate = function()\r\n        gF.Number = utils.round(Horizon.Memory.Static.World.G / 9.80665,0.01)\r\n    end\r\n    gF.Content = [[<uilabel style=\"width: 100%;height:100%\">⇩ $(Number) g</uilabel>]]\r\n    base.AddChild(gF)\r\n    \r\n    \r\n    hud.AddWidget(base)\r\n    \r\n    return this\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "23"
+    },
+    {
+      "code": "--@class HUDVersion\r\n--@require HorizonCore\r\n--@require HorizonModule\r\n--@require UIController\r\n--@require UICSS\r\n\r\nHUDVersion = (function()\r\n    local this = HorizonModule(\"HUD Horizon Version\", \"Error logging for the HUD\", \"Start\", true, 5)\r\n    this.Config.Version = \"4ff1f94db73fc3dcbd4826c4d0e6d59a1ee2bf5f\"\r\n    \r\n    local hud = Horizon.GetModule(\"UI Controller\").Displays[1]\r\n    local Version = UIPanel(90, 98, 10, 2)\r\n    Version.Content = \"<uilabel>Horizon \" .. Horizon.Version .. \"</uilabel>\"\r\n    Version.Style = \"font-size: 0.85vh\"\r\n    hud.AddWidget(Version)\r\n    return true\r\nend)()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "24"
+    },
+    {
+      "code": "--@require LoggingModule\r\n--@require ThrustControlModule\r\n--@require ManeuverFlightMode\r\n--@require RotationDampeningModule\r\n--@require BrakingModule\r\n--@require CruiseControlModule\r\n--@require GravityCounterModule\r\n--@require InertialDampeningModule\r\n--@require MouseSteeringModule\r\n--@require GravityFollow\r\n--@require HUDArtificialHorizon\r\n--@require HUDSimpleStats\r\n--@require HUDVersion\r\n\r\n--@class Main\r\n--@outFilename Standard.json\r\n\r\n_G.BuildUnit = {}\r\nlocal Unit = _G.BuildUnit\r\n_G.BuildSystem = {}\r\nlocal System = _G.BuildSystem\r\n_G.BuildReceiver = {}\r\nlocal Receiver = _G.BuildReceiver\r\n_G.BuildScreen = {}\r\nlocal Screen = _G.BuildScreen\r\n\r\nfunction Unit.Start()\r\n    Horizon.Event.Start()\r\nend\r\n\r\nfunction Unit.Stop()\r\n    Horizon.Event.Stop()\r\nend\r\n\r\nfunction Unit.Tick(timer)\r\nend\r\n\r\nfunction System.ActionStart(action)\r\n    Horizon.Event.KeyDown(action)\r\nend\r\n\r\nfunction System.ActionStop(action)\r\n    Horizon.Event.KeyUp(action)\r\nend\r\n\r\nfunction System.ActionLoop(action)\r\nend\r\n\r\nfunction System.Update()\r\n    Horizon.Event.PreUpdate() Horizon.Event.Update() Horizon.Event.PostUpdate()\r\nend\r\n\r\nfunction System.Flush()\r\n    Horizon.Event.PreFlush() Horizon.Event.Flush() Horizon.Event.PostFlush()\r\nend\r\n\r\nfunction Unit.Tick(timer)\r\nend\r\n\r\nfunction Receiver.Received(channel, message, slot)\r\n    Horizon.Emit(\"Comms.Message.\"..channel, channel, message)\r\nend\r\n\r\nfunction Screen.MouseDown(x, y, slot)\r\nend\r\n\r\nfunction Screen.MouseUp(x, y, slot)\r\nend",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "25"
+    },
+    {
+      "code": "_G.BuildUnit.Start()",
+      "filter": {
+        "args": [],
+        "signature": "start",
+        "slotKey": "-1"
+      },
+      "key": "26"
+    },
+    {
+      "code": "_G.BuildUnit.Stop()",
+      "filter": {
+        "args": [],
+        "signature": "stop",
+        "slotKey": "-1"
+      },
+      "key": "27"
+    },
+    {
+      "code": "_G.BuildSystem.ActionStart(action)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "actionStart(action)",
+        "slotKey": "-2"
+      },
+      "key": "28"
+    },
+    {
+      "code": "_G.BuildSystem.ActionStop(action)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "actionStop(action)",
+        "slotKey": "-2"
+      },
+      "key": "29"
+    },
+    {
+      "code": "_G.BuildSystem.InputText(action)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "inputText(action)",
+        "slotKey": "-2"
+      },
+      "key": "30"
+    },
+    {
+      "code": "_G.BuildSystem.Update()",
+      "filter": {
+        "args": [],
+        "signature": "update",
+        "slotKey": "-2"
+      },
+      "key": "31"
+    },
+    {
+      "code": "_G.BuildSystem.Flush()",
+      "filter": {
+        "args": [],
+        "signature": "flush",
+        "slotKey": "-2"
+      },
+      "key": "32"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot1)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "0"
+      },
+      "key": "33"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot1)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "0"
+      },
+      "key": "34"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot1)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "0"
+      },
+      "key": "35"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot2)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "1"
+      },
+      "key": "36"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot2)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "1"
+      },
+      "key": "37"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot2)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "1"
+      },
+      "key": "38"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot3)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "2"
+      },
+      "key": "39"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot3)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "2"
+      },
+      "key": "40"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot3)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "2"
+      },
+      "key": "41"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot4)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "3"
+      },
+      "key": "42"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot4)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "3"
+      },
+      "key": "43"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot4)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "3"
+      },
+      "key": "44"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot5)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "4"
+      },
+      "key": "45"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot5)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "4"
+      },
+      "key": "46"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot5)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "4"
+      },
+      "key": "47"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot6)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "5"
+      },
+      "key": "48"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot6)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "5"
+      },
+      "key": "49"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot6)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "5"
+      },
+      "key": "50"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot7)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "6"
+      },
+      "key": "51"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot7)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "6"
+      },
+      "key": "52"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot7)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "6"
+      },
+      "key": "53"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot8)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "7"
+      },
+      "key": "54"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot8)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "7"
+      },
+      "key": "55"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot8)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "7"
+      },
+      "key": "56"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot9)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "8"
+      },
+      "key": "57"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot9)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "8"
+      },
+      "key": "58"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot9)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "8"
+      },
+      "key": "59"
+    },
+    {
+      "code": "_G.BuildReceiver.Received(channel, message, slot10)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "receive(channel,message)",
+        "slotKey": "9"
+      },
+      "key": "60"
+    },
+    {
+      "code": "_G.BuildScreen.MouseDown(x, y, slot10)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseDown(x,y)",
+        "slotKey": "9"
+      },
+      "key": "61"
+    },
+    {
+      "code": "_G.BuildScreen.MouseUp(x, y, slot10)",
+      "filter": {
+        "args": [
+          {
+            "variable": "*"
+          },
+          {
+            "variable": "*"
+          }
+        ],
+        "signature": "mouseUp(x,y)",
+        "slotKey": "9"
+      },
+      "key": "62"
+    }
+  ],
+  "methods": [],
+  "events": []
+}
