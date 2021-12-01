@@ -13,11 +13,8 @@ Build Artifacts:
       GIT_SUBMODULE_STRATEGY: recursive
   script:
     - dotnet restore "$CI_PROJECT_DIR/DUnit/DUnit.csproj"
-    - dotnet build "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ../build
-    - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ../publish
-    - ls -la
-    - pwd
-    - ls -la publish
+    - dotnet build "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./build
+    - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./publish
   artifacts:
     paths:
       - publish/
