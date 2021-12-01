@@ -21,7 +21,9 @@ Build Artifacts:
     - ls -la /app/publish
   artifacts:
     paths:
-      - /builds/$CI_PROJECT_PATH/
+      - /builds/$CI_PROJECT_PATH/**/Release/netcoreapp3.1/
+    exclude:
+      - /builds/**/*.pdb
 
 Build Docker:
   stage: build
