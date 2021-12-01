@@ -15,6 +15,10 @@ Build Artifacts:
     - dotnet restore "$CI_PROJECT_DIR/DUnit/DUnit.csproj"
     - dotnet build "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o /app/build
     - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o /app/publish
+    - ls -la
+    - pwd
+    - ls -la /
+    - ls -la /app/
   artifacts:
     paths:
       - /app/
