@@ -1,31 +1,7 @@
-stages:
-  - test
-  - build
-
-test:
-  stage: test
-  image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
-  variables:
-   GIT_SUBMODULE_STRATEGY: recursive
-  script:
-   - dotnet restore "$CI_PROJECT_DIR/DUnit.Tests/DUnit.Tests.csproj"
-   - dotnet test "$CI_PROJECT_DIR/DUnit.Tests/DUnit.Tests.csproj" --logger "junit;LogFilePath=$CI_PROJECT_DIR/app/results.xml"
-  artifacts:
-    reports:
-      junit: $CI_PROJECT_DIR/app/results.xml
-
-build:
-  stage: build
-  image: docker:latest
-  variables:
-    GIT_SUBMODULE_STRATEGY: recursive
-  script:
-    - echo "$CI_COMMIT_SHA" > DUnit/versionhash
-    - docker build --pull -t "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
-    - docker push "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
-  
-artifacts:
-  stage: artifacts
+ 
+Build Artifacts:
+  stage: .post
+  needs: [Run Tests]
   image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -38,3 +14,26 @@ artifacts:
   artifacts:
     paths:
       - /app/publish/**.*
+
+Build Docker:
+  stage: build
+  image: docker:latest
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  script:
+    - echo "$CI_COMMIT_SHA" > DUnit/versionhash
+    - docker build --pull -t "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" .
+    - docker push "$LOCAL_DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+
+Run Tests:
+  stage: test
+  needs: [Build Docker]
+  image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
+  variables:
+   GIT_SUBMODULE_STRATEGY: recursive
+  script:
+   - dotnet restore "$CI_PROJECT_DIR/DUnit.Tests/DUnit.Tests.csproj"
+   - dotnet test "$CI_PROJECT_DIR/DUnit.Tests/DUnit.Tests.csproj" --logger "junit;LogFilePath=$CI_PROJECT_DIR/app/results.xml"
+  artifacts:
+    reports:
+      junit: $CI_PROJECT_DIR/app/results.xml
