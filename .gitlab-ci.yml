@@ -17,9 +17,9 @@ Build Artifacts:
     - dotnet build "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./build
     - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./publish
     - ls -lR
-    - rm -rf ./DUnit
-    - mkdir DUnit
-    - cp -r ./publish ./DUnit
+    - cp -r ./publish ../publish
+    - rm -rf ./*
+    - cp -r ../publish ./
   artifacts:
     name: "DUnit-Release"
     expose_as: 'artifact 1'
