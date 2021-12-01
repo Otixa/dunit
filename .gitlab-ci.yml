@@ -1,5 +1,10 @@
+stages:
+  - build
+  - test
+  - release
+
 Build Artifacts:
-  stage: .post
+  stage: release
   needs: [Run Tests]
   image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
   rules:
@@ -12,7 +17,7 @@ Build Artifacts:
     - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o /app/publish
   artifacts:
     paths:
-      - /app/build/
+      - /app/build/**/*
 
 Build Docker:
   stage: build
