@@ -15,7 +15,11 @@ Build Artifacts:
     - echo "$CI_COMMIT_SHA" > DUnit/versionhash
     - dotnet restore "$CI_PROJECT_DIR/DUnit/DUnit.csproj"
     - dotnet build "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./build
-    - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./DUnit
+    - dotnet publish "$CI_PROJECT_DIR/DUnit/DUnit.csproj" -c Release -o ./publish
+    - ls -lR
+    - rm -rf ./DUnit
+    - mkdir DUnit
+    - cp -r ./publish ./DUnit
   artifacts:
     name: "DUnit-Release"
     expose_as: 'artifact 1'
