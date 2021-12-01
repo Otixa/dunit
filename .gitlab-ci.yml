@@ -23,7 +23,6 @@ Build Artifacts:
       - publish/
     exclude:
       - publish/**/*.pdb
-      - publish/**/DUnit.*.json
 
 Build Docker:
   stage: build
