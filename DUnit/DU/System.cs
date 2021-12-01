@@ -18,7 +18,7 @@ namespace DUnit.DU
 
             system["getTime"] = new Func<double>(() => (DateTime.UtcNow - new DateTime(2017, 01, 01)).TotalSeconds);
             system["getActionUpdateDeltaTime"] = new Func<float>(() => 0.05f);
-            system["lockView"] = new Func<bool, bool>((L) => lockView = L);
+            system["lockView"] = new Func<string, bool>((L) => lockView = L == "1");
             system["isViewLocked"] = new Func<bool>(() => lockView);
             system["freeze"] = new Func<bool, bool>((F) => freeze = F);
             system["isFrozen"] = new Func<bool>(() => freeze);
@@ -26,7 +26,7 @@ namespace DUnit.DU
             system["getPlayerName"] = new Func<int, string>((id) => "unreachable");
             system["getPlayerWorldPos"] = new Func<int, float[]>((id) => Vector3.Zero.ToLua());
 
-            system["showScreen"] = new Func<bool, bool>((show) => true);
+            system["showScreen"] = new Func<string, bool>((show) => true);
             system["setScreen"] = new Func<string, bool>((content) => true);
             system["getActionKeyName"] = new Func<string, bool>((action) => true);
             system["createWidgetPanel"] = new Func<string, bool>((label) => true);
@@ -48,6 +48,10 @@ namespace DUnit.DU
             system["getControlDeviceForwardInput"] = new Func<float>(() => 0);
             system["getControlDeviceYawInput"] = new Func<float>(() => 0);
             system["getControlDeviceLeftRightInput"] = new Func<float>(() => 0);
+
+            system["getScreenWidth"] = new Func<float>(() => 1920);
+            system["getScreenHeight"] = new Func<float>(() => 1080);
+            system["getFov"] = new Func<float>(() => 70);
 
             return system;
         }
