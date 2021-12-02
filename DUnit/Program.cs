@@ -4,9 +4,16 @@ using System.Collections.Generic;
 
 namespace DUnit
 {
+    enum ExitCode : int
+    {
+        Success = 0,
+        GeneralError = 1,
+        TestError = 2
+    }
+
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             var logger = NLog.LogManager.GetCurrentClassLogger();
             logger.Info("Starting DUnit");
@@ -23,7 +30,9 @@ namespace DUnit
             app.Description = "Dual Universe script unit tester";
             app.HelpOption("-?|-h|--help");
 
-            app.Command("test", (command) =>
+            try
+            {
+                app.Command("test", (command) =>
             {
                 command.Description = "Run a set of unit tests on a DU script";
 
@@ -75,14 +84,28 @@ namespace DUnit
                         }
                        
                     }
-                    if (failed) throw new Exception("One or more of the unit tests failed");
+                    if (failed)
+                    {
+                        throw new TestRunException("One or more of the unit tests failed");
+                    }
                     return 0;
                 });
 
 
             });
-            app.Execute(args);
-
+                app.Execute(args);
+            }
+            catch (TestRunException ex)
+            {
+                logger.Fatal(ex.Message);
+                return (int)ExitCode.TestError;
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                return (int)ExitCode.GeneralError;
+            }
+            return (int)ExitCode.Success;
         }
     }
 }
