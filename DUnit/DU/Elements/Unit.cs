@@ -40,6 +40,9 @@ namespace DUnit.DU.Elements
             unit["extendLandingGears"] = new Func<bool>(() => { landingGearDeployed = true; return true; });
 
             unit["setTimer"] = new Func<string, float, bool>((Name, Interval) => true);
+
+            unit["getMasterPlayerWorldPosition"] = new Func<float[]>(() => Vector3.Zero.ToLua());
+
             return unit;
         }
     }

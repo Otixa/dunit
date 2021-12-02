@@ -79,7 +79,7 @@ namespace DUnit
                         }
                         catch (Exception e)
                         {
-                            logger.Error("Error processing {0}, {1}", scriptFilePath.Name, e.Message);
+                            logger.Error("[{0}] {1}", scriptFilePath.Name, e.Message);
                             failed = true;
                         }
                        
