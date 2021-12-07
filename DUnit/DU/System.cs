@@ -53,6 +53,8 @@ namespace DUnit.DU
             system["getScreenHeight"] = new Func<float>(() => 1080);
             system["getFov"] = new Func<float>(() => 70);
 
+            system["showHelper"] = new Func<string, bool>((show) => true);
+
             return system;
         }
     }
