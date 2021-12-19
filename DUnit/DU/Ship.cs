@@ -162,7 +162,7 @@ namespace DUnit.DU
             core["getConstructWorldOrientationForward"] = new Func<float[]>(() => (Rotation * Vector3.UnitZ).ToLua());
 
             core["getWorldGravity"] = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
-            core["g"] = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
+            core["g"] = new Func<float>(() => Universe.CalculateGravityAtPosition(Position).Length());
             core["getWorldVertical"] = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
             core["getWorldAirFrictionAcceleration"] = new Func<float[]>(() => AirResistance.ToLua());
 
