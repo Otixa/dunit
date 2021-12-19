@@ -186,7 +186,7 @@ namespace DUnit.DU
             core["moveSticker"] = new Func<int, float, float, float, bool>((index, x, y, z) => true);
             core["rotateSticker"] = new Func<int, float, float, float, bool>((index, angle_x, angle_y, angle_z) => true);
 
-            core["getElementIdList"] = new Func<IEnumerable<int>>(() => this.Elements.Select(x => x.ID));
+            core["getElementIdList"] = new Func<int[]>(() => this.Elements.Select(x => x.ID).ToArray().ToArray());
             core["getElementTypeById"] = new Func<int, string>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.ClassName ?? null);
             core["getElementHitPointsById"] = new Func<int, int>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.HitPoints ?? 0);
             core["getElementMaxHitPointsById"] = new Func<int, int>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.MaxHitPoints ?? 0);
