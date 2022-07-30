@@ -48,7 +48,8 @@ function AxisCommand.new(commandAxis, control, core, system)
     self.control = control
     self.system = system
     self.core = core
-    self.mass = core.getConstructMass()
+    self.construct = DUConstruct
+    self.mass = self.construct.getMass()
 
     self.commandAxis = commandAxis -- The axis type (longitudinal, vertical, lateral)
     self.commandType = axisCommandType.byThrottle -- The current control type (Throttle / TargetSpeed)
@@ -136,8 +137,8 @@ function AxisCommand.onMasterModeChanged(self, masterModeId)
         -- When going from byThrottle to byTargetSpeed, we put the target speed to 0 for secondary axis (lateral / vertical)
         -- and we try to keep the same speed for the main axis (snapped on a targetSpeedStepValue grid)
         if (self.commandAxis == axisCommandId.longitudinal) then
-            local currentVelocity = vec3(self.core.getVelocity())
-            local axisCRefDirection = vec3(self.core.getConstructOrientationForward())
+            local currentVelocity = vec3(self.construct.getVelocity())
+            local axisCRefDirection = vec3(self.construct.getOrientationForward())
 
             self.lastCurrentSpeed = currentVelocity:dot(axisCRefDirection) * constants.m2kph
 
@@ -198,7 +199,7 @@ end
 
 function AxisCommand.updateCommandFromActionStart(self, commandStep)
     if commandStep ~= 0 then
-        self.actionTriggeredTime = self.system.getTime()
+        self.actionTriggeredTime = self.system.getUtcTime()
         self.updateSequenceStartValue = self:getCommandValue()
         -- We do each step one by one because the targetSpeedStepValue can changed during the steps
         for i = 1, math.abs(commandStep), 1 do
@@ -217,8 +218,8 @@ end
 function AxisCommand.updateCommandFromActionLoop(self, commandStep)
     -- handle repeat delay
     local actionRepeatDelay = self.actionRepeatDelay
-    if (self.system.getTime() - self.actionTriggeredTime) > actionRepeatDelay then
-        self.actionTriggeredTime = self.system.getTime()
+    if (self.system.getUtcTime() - self.actionTriggeredTime) > actionRepeatDelay then
+        self.actionTriggeredTime = self.system.getUtcTime()
         self:updateCommandByStep(commandStep)
     end
 end
@@ -308,11 +309,11 @@ function AxisCommand.composeAxisAccelerationFromThrottle(self, tags)
     local additionalAcceleration = vec3()
 
     if (self.commandAxis == axisCommandId.longitudinal) then
-        axisCRefDirection = vec3(self.core.getConstructOrientationForward())
-        axisWorldDirection = vec3(self.core.getConstructWorldOrientationForward())
+        axisCRefDirection = vec3(self.construct.getOrientationForward())
+        axisWorldDirection = vec3(self.construct.getWorldOrientationForward())
     elseif (self.commandAxis == axisCommandId.vertical) then
-        axisCRefDirection = vec3(self.core.getConstructOrientationUp())
-        axisWorldDirection = vec3(self.core.getConstructWorldOrientationUp())
+        axisCRefDirection = vec3(self.construct.getOrientationUp())
+        axisWorldDirection = vec3(self.construct.getWorldOrientationUp())
         -- compensates gravity?
         local worldGravity = vec3(self.core.getWorldGravity())
         local gravityDot = worldGravity:dot(axisWorldDirection)
@@ -323,8 +324,8 @@ function AxisCommand.composeAxisAccelerationFromThrottle(self, tags)
             additionalAcceleration = -vec3(self.core.getWorldGravity())
         end
     elseif (self.commandAxis == axisCommandId.lateral) then
-        axisCRefDirection = vec3(self.core.getConstructOrientationRight())
-        axisWorldDirection = vec3(self.core.getConstructWorldOrientationRight())
+        axisCRefDirection = vec3(self.construct.getOrientationRight())
+        axisWorldDirection = vec3(self.construct.getWorldOrientationRight())
     else
         return vec3()
     end
@@ -334,7 +335,7 @@ function AxisCommand.composeAxisAccelerationFromThrottle(self, tags)
         inspace = 1
     end
 
-    local maxKPAlongAxis = self.core.getMaxKinematicsParametersAlongAxis(tags, {axisCRefDirection:unpack()})
+    local maxKPAlongAxis = self.construct.getMaxThrustAlongAxis(tags, {axisCRefDirection:unpack()})
 
     local forceCorrespondingToThrottle = 0
     if (inspace == 0) then    
@@ -376,14 +377,14 @@ function AxisCommand.composeAxisAccelerationFromTargetSpeed(self, tags)
     local axisWorldDirection = vec3()
 
     if (self.commandAxis == axisCommandId.longitudinal) then
-        axisCRefDirection = vec3(self.core.getConstructOrientationForward())
-        axisWorldDirection = vec3(self.core.getConstructWorldOrientationForward())
+        axisCRefDirection = vec3(self.construct.getOrientationForward())
+        axisWorldDirection = vec3(self.construct.getWorldOrientationForward())
     elseif (self.commandAxis == axisCommandId.vertical) then
-        axisCRefDirection = vec3(self.core.getConstructOrientationUp())
-        axisWorldDirection = vec3(self.core.getConstructWorldOrientationUp())
+        axisCRefDirection = vec3(self.construct.getOrientationUp())
+        axisWorldDirection = vec3(self.construct.getWorldOrientationUp())
     elseif (self.commandAxis == axisCommandId.lateral) then
-        axisCRefDirection = vec3(self.core.getConstructOrientationRight())
-        axisWorldDirection = vec3(self.core.getConstructWorldOrientationRight())
+        axisCRefDirection = vec3(self.construct.getOrientationRight())
+        axisWorldDirection = vec3(self.construct.getWorldOrientationRight())
     else
         return vec3()
     end
@@ -391,10 +392,10 @@ function AxisCommand.composeAxisAccelerationFromTargetSpeed(self, tags)
     local gravityAcceleration = vec3(self.core.getWorldGravity())
     local gravityAccelerationCommand = gravityAcceleration:dot(axisWorldDirection)
 
-    local airResistanceAcceleration = vec3(self.core.getWorldAirFrictionAcceleration())
+    local airResistanceAcceleration = vec3(self.construct.getWorldAirFrictionAcceleration())
     local airResistanceAccelerationCommand = airResistanceAcceleration:dot(axisWorldDirection)
 
-    local currentVelocity = vec3(self.core.getVelocity())
+    local currentVelocity = vec3(self.construct.getVelocity())
     local currentAxisSpeedMS = currentVelocity:dot(axisCRefDirection)
 
     local accelerationCommand = self:getAccelerationCommandToTargetSpeed(currentAxisSpeedMS)
@@ -537,15 +538,15 @@ function AxisCommandManager.setTargetGroundAltitude(self, targetAltitude)
 end
 
 function AxisCommandManager.updateTargetGroundAltitudeFromActionStart(self, altitudeStabilizationInc)
-    self.targetGroundAltitudeTriggeredTime = self.system.getTime()
+    self.targetGroundAltitudeTriggeredTime = self.system.getUtcTime()
 	self:setTargetGroundAltitude(self.targetGroundAltitude + altitudeStabilizationInc)
 end
 
 function AxisCommandManager.updateTargetGroundAltitudeFromActionLoop(self, altitudeStabilizationInc)
     -- handle repeat delay
     local actionRepeatDelay = 0.25
-    if (self.system.getTime() - self.targetGroundAltitudeTriggeredTime) > actionRepeatDelay then
-        self.targetGroundAltitudeTriggeredTime = self.system.getTime()
+    if (self.system.getUtcTime() - self.targetGroundAltitudeTriggeredTime) > actionRepeatDelay then
+        self.targetGroundAltitudeTriggeredTime = self.system.getUtcTime()
 		self:setTargetGroundAltitude(self.targetGroundAltitude + altitudeStabilizationInc)
     end
 end

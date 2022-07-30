@@ -28,10 +28,13 @@ function getAxisAngleRad(oldDir, newDir, preferredAxis)
         angle = math.asin(utils.clamp(axisLen, 0, 1))
     else
         axis = preferredAxis
-        if oldDir:dot(newDir) < 0
-        then --half turn
-            angle = 180 * constants.deg2rad
-        end
     end
+
+    -- if angle > 90
+    if oldDir:dot(newDir) < 0
+    then
+        angle = math.pi - angle;
+    end
+
     return axis, angle
 end

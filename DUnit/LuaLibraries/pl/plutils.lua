@@ -13,7 +13,7 @@ local operators
 local _function_factories = {}
 
 
-local plutils = { _VERSION = "1.6.0" }
+local plutils = { _VERSION = "1.6.0" , load = load}
 
 --- Some standard patterns
 -- @table patterns

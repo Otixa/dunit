@@ -137,7 +137,7 @@ local render = function(self, env, parent, db)
     end
     setmetatable(self.env, {__index = env})
 
-    local res, out = xpcall(self.fn, debug.traceback)
+    local res, out = xpcall(self.fn, traceback)
     if not res then
         if self.code and db then print(self.code) end
         return nil, out, self.code

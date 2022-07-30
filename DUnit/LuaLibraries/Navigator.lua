@@ -26,22 +26,23 @@ function Navigator.new(system, core, control)
     self.system = system
     self.core = core
     self.control = control
+    self.construct = DUConstruct
     self.boosterState = 0
     self.boosterStateHasChanged = false
 
-    self.mass = core.getConstructMass()
-    self.imass = core.getConstructIMass()
+    self.mass = self.construct.getMass()
+    self.imass = self.construct.getInertialMass()
 
     self.orient = {
         -- Convenient accessors for orientation in construct local coordinates
-        up = function() return self.core.getConstructOrientationUp() end,
-        forward = function() return self.core.getConstructOrientationForward() end,
-        right = function() return self.core.getConstructOrientationRight() end,
+        up = function() return self.construct.getOrientationUp() end,
+        forward = function() return self.construct.getOrientationForward() end,
+        right = function() return self.construct.getOrientationRight() end,
 
         -- Convenient accessors for orientation in world coordinates
-        worldUp = function() return self.core.getConstructWorldOrientationUp() end,
-        worldForward = function() return self.core.getConstructWorldOrientationForward() end,
-        worldRight = function() return self.core.getConstructWorldOrientationRight() end,
+        worldUp = function() return self.construct.getWorldOrientationUp() end,
+        worldForward = function() return self.construct.getWorldOrientationForward() end,
+        worldRight = function() return self.construct.getWorldOrientationRight() end,
     }
 
     self.axisCommandManager = AxisCommandManager.new(system, control, core)
@@ -68,15 +69,15 @@ end
 
 function Navigator.update(self)
     -- Forward the control master mode (Travel Mode / Cruise Control) to the axisManager
-    self.axisCommandManager:setMasterMode(self.control.getControlMasterModeId())
+    self.axisCommandManager:setMasterMode(self.control.getControlMode())
     -- The longitudinal axis is our main axis that we control with the mouse
     self.axisCommandManager:updateCommandFromMouseWheel(axisCommandId.longitudinal, self.system.getThrottleInputFromMouseWheel())
 end
 
 function Navigator.maxForceForward(self)
-    local axisCRefDirection = vec3(self.core.getConstructOrientationForward())
+    local axisCRefDirection = vec3(self.construct.getOrientationForward())
     local longitudinalEngineTags = 'thrust analog longitudinal'
-    local maxKPAlongAxis = self.core.getMaxKinematicsParametersAlongAxis(longitudinalEngineTags, {axisCRefDirection:unpack()})
+    local maxKPAlongAxis = self.construct.getMaxThrustAlongAxis(longitudinalEngineTags, {axisCRefDirection:unpack()})
     if self.control.getAtmosphereDensity() == 0 then -- we are in space
         return maxKPAlongAxis[3]
     else
@@ -85,9 +86,9 @@ function Navigator.maxForceForward(self)
 end
 
 function Navigator.maxForceBackward(self)
-    local axisCRefDirection = vec3(self.core.getConstructOrientationForward())
+    local axisCRefDirection = vec3(self.construct.getOrientationForward())
     local longitudinalEngineTags = 'thrust analog longitudinal'
-    local maxKPAlongAxis = self.core.getMaxKinematicsParametersAlongAxis(longitudinalEngineTags, {axisCRefDirection:unpack()})
+    local maxKPAlongAxis = self.construct.getMaxThrustAlongAxis(longitudinalEngineTags, {axisCRefDirection:unpack()})
     if self.control.getAtmosphereDensity() == 0 then -- we are in space
         return maxKPAlongAxis[4]
     else

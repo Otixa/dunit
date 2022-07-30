@@ -8,11 +8,11 @@ namespace DUnit.DU.Elements
 {
     public class Unit : Element
     {
-        private Ship ship;
+        private DUConstruct ship;
 
         private bool landingGearDeployed = false;
 
-        public Unit(Ship ship, int id, string className)
+        public Unit(DUConstruct ship, int id, string className)
             :base(id, className)
         {
             this.ship = ship;
@@ -32,8 +32,8 @@ namespace DUnit.DU.Elements
                     return true;
                 });
 
-            unit["hide"] = new Func<bool>(() => true);
-            unit["show"] = new Func<string, bool>((content) => true);
+            unit["hideWidget"] = new Func<bool>(() => true);
+            unit["showWidget"] = new Func<bool>(() => true);
 
             unit["isAnyLandingGearExtended"] = new Func<bool>(() => landingGearDeployed);
             unit["retractLandingGears"] = new Func<bool>(() => { landingGearDeployed = false; return true; });

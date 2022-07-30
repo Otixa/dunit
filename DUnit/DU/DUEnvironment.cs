@@ -17,7 +17,7 @@ namespace DUnit.DU
         private List<string> FlushSlots;
 
         private Universe Universe;
-        private Ship Ship;
+        private DUConstruct Ship;
         private Elements.Unit Unit;
         private OutputModule OutputModule;
 
@@ -185,7 +185,7 @@ namespace DUnit.DU
                 }
             );
 
-            Ship = new Ship(Universe, Vector3.Zero, Vector3.Zero);
+            Ship = new DUConstruct(Universe, Vector3.Zero, Vector3.Zero);
             Unit = new Elements.Unit(Ship, 2, "CockpitHovercraftUnit");
             Ship.AddElement(new Elements.Emitter(3));
             Ship.AddElement(new Elements.Receiver(4));
@@ -193,7 +193,13 @@ namespace DUnit.DU
 
             Lua.Globals["core"] = Ship.GetTable(Lua);
             Lua.Globals["unit"] = Unit.GetTable(Lua);
-            Lua.Globals["system"] = new DUSystem().GetTable(Lua);
+            var system = new DUSystem().GetTable(Lua);
+            Lua.Globals["system"] = system;
+            Lua.Globals["DUSystem"] = system;
+
+            Lua.Globals["DUConstruct"] = Ship.GetTable(Lua);
+            Lua.Globals["construct"] = Ship.GetTable(Lua);
+
             Lua.Globals["library"] = new Library().GetTable(Lua);
             Lua.Globals["universe"] = Universe.GetTable(Lua);
 

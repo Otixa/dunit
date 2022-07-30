@@ -29,7 +29,7 @@ THE SOFTWARE.
 -- @alias vector
 
 local assert = assert
-local sqrt, cos, sin, atan2 = math.sqrt, math.cos, math.sin, math.atan2
+local sqrt, cos, sin, atan = math.sqrt, math.cos, math.sin, math.atan
 
 local vector = {}
 vector.__index = vector
@@ -203,9 +203,9 @@ end
 
 function vector:angle_to(other)
 	if other then
-		return atan2(self.y-other.y, self.x-other.x)
+		return atan(self.y-other.y, self.x-other.x)
 	end
-	return atan2(self.y, self.x)
+	return atan(self.y, self.x)
 end
 
 function vector:trim(maxLen)

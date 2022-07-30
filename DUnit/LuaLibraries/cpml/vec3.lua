@@ -32,7 +32,7 @@ THE SOFTWARE.
 -- @alias vector
 
 local assert = assert
-local sqrt, cos, sin, atan2, acos = math.sqrt, math.cos, math.sin, math.atan2, math.acos
+local sqrt, cos, sin, atan, acos = math.sqrt, math.cos, math.sin, math.atan, math.acos
 
 local vector = {}
 vector.__index = vector
@@ -279,9 +279,9 @@ end
 function vector:angle_to(other)
 	-- Only makes sense in 2D.
 	if other then
-		return atan2(self.y-other.y, self.x-other.x)
+		return atan(self.y-other.y, self.x-other.x)
 	end
-	return atan2(self.y, self.x)
+	return atan(self.y, self.x)
 end
 
 -- @return number

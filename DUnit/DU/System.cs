@@ -16,7 +16,7 @@ namespace DUnit.DU
         {
             var system = new Table(lua);
 
-            system["getTime"] = new Func<double>(() => (DateTime.UtcNow - new DateTime(2017, 01, 01)).TotalSeconds);
+            system["getArkTime"] = new Func<double>(() => (DateTime.UtcNow - new DateTime(2017, 01, 01)).TotalSeconds);
             system["getActionUpdateDeltaTime"] = new Func<float>(() => 0.05f);
             system["lockView"] = new Func<string, bool>((L) => lockView = L == "1");
             system["isViewLocked"] = new Func<bool>(() => lockView);

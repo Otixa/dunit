@@ -7,8 +7,8 @@ namespace DUnit.DU.Elements
 {
     public class Telemeter : Element
     {
-        private Ship ship;
-        public Telemeter(int id, Ship ship)
+        private DUConstruct ship;
+        public Telemeter(int id, DUConstruct ship)
             :base(id, "TelemeterUnit")
         {
             this.ship = ship;

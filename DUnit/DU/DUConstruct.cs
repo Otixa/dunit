@@ -7,7 +7,7 @@ using MoonSharp.Interpreter;
 
 namespace DUnit.DU
 {
-    public class Ship : Elements.Element
+    public class DUConstruct : Elements.Element
     {
         public Universe Universe { get; private set; }
 
@@ -32,7 +32,7 @@ namespace DUnit.DU
 
         public List<Elements.Element> Elements { get; private set; }
 
-        public Ship(Universe Universe, Vector3 position, Vector3 rotation)
+        public DUConstruct(Universe Universe, Vector3 position, Vector3 rotation)
             :base(1, "CoreUnitDynamic")
         {
             this.Universe = Universe;
@@ -146,58 +146,56 @@ namespace DUnit.DU
 
         public override Table GetTable(Script lua)
         {
-            var core = base.GetTable(lua);
+            var construct = base.GetTable(lua);
 
-            core["getConstructMass"] = new Func<float>(() => this.Mass);
-            core["getConstructIMass"] = new Func<float>(() => this.Mass * (float)(1 / Math.Sqrt(1 - Velocity.LengthSquared() / Math.Pow(Universe.C, 2))));
-            core["getConstructWorldPos"] = new Func<float[]>(() => Position.ToLua());
-            core["setConstructWorldPos"] = new Func<float[], bool>((P) => { Position = new Vector3(P[0], P[1], P[2]); return true; });
-            core["getConstructCrossSection"] = new Func<float>(() => CrossSectionalArea);
-            core["getWorldVelocity"] = new Func<float[]>(() => Velocity.ToLua());
-            core["setWorldVelocity"] = new Func<float[], bool>((V) => { Velocity = new Vector3(V[0], V[1], V[2]); return true; });
-            core["getWorldAcceleration"] = new Func<float[]>(() => Acceleration.ToLua());
+            construct["getMass"] = new Func<float>(() => Mass);
+            construct["getIMass"] = new Func<float>(() => Mass * (float)(1 / Math.Sqrt(1 - Velocity.LengthSquared() / Math.Pow(Universe.C, 2))));
+            construct["getWorldPosition"] = new Func<float[]>(() => Position.ToLua());
+            construct["setWorldPosition"] = new Func<float[], bool>((P) => { Position = new Vector3(P[0], P[1], P[2]); return true; });
+            construct["getCrossSection"] = new Func<float>(() => CrossSectionalArea);
+            construct["getWorldVelocity"] = new Func<float[]>(() => Velocity.ToLua());
+            construct["setWorldVelocity"] = new Func<float[], bool>((V) => { Velocity = new Vector3(V[0], V[1], V[2]); return true; });
+            construct["getWorldAcceleration"] = new Func<float[]>(() => Acceleration.ToLua());
 
-            core["getConstructWorldOrientationUp"] = new Func<float[]>(() => (Rotation * Vector3.UnitY).ToLua());
-            core["getConstructWorldOrientationRight"] = new Func<float[]>(() => (Rotation * Vector3.UnitX).ToLua());
-            core["getConstructWorldOrientationForward"] = new Func<float[]>(() => (Rotation * Vector3.UnitZ).ToLua());
+            construct["getWorldOrientationUp"] = new Func<float[]>(() => (Rotation * Vector3.UnitY).ToLua());
+            construct["getWorldOrientationRight"] = new Func<float[]>(() => (Rotation * Vector3.UnitX).ToLua());
+            construct["getWorldOrientationForward"] = new Func<float[]>(() => (Rotation * Vector3.UnitZ).ToLua());
 
-            core["getWorldGravity"] = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
-            core["g"] = new Func<float>(() => Universe.CalculateGravityAtPosition(Position).Length());
-            core["getWorldVertical"] = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
-            core["getWorldAirFrictionAcceleration"] = new Func<float[]>(() => AirResistance.ToLua());
+            construct["getWorldGravity"] = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
+            construct["getGravityIntensity"] = new Func<float>(() => Universe.CalculateGravityAtPosition(Position).Length());
+            construct["getWorldVertical"] = new Func<float[]>(() => Universe.CalculateGravityAtPosition(Position).ToLua());
+            construct["getWorldAirFrictionAcceleration"] = new Func<float[]>(() => AirResistance.ToLua());
 
-            core["getWorldAngularVelocity"] = new Func<float[]>(() => AngularVelocity.ToLua());
-            core["getWorldAngularAcceleration"] = new Func<float[]>(() => AngularAcceleration.ToLua());
-            core["getWorldAirFrictionAngularAcceleration"] = new Func<float[]>(() => Vector3.Zero.ToLua()); //No idea how to simulate this
+            construct["getWorldAngularVelocity"] = new Func<float[]>(() => AngularVelocity.ToLua());
+            construct["getWorldAngularAcceleration"] = new Func<float[]>(() => AngularAcceleration.ToLua());
+            construct["getWorldAirFrictionAngularAcceleration"] = new Func<float[]>(() => Vector3.Zero.ToLua()); //No idea how to simulate this
 
-            core["getAltitude"] = new Func<float>(() => (float)Universe.GetAltitude(Position));
-            core["getConstructId"] = new Func<int>(() => 1);
-            core["getConstructMass"] = new Func<float>(() => Mass);
-            core["getConstructCrossSection"] = new Func<float>(() => CrossSectionalArea);
+            construct["getAltitude"] = new Func<float>(() => (float)Universe.GetAltitude(Position));
+            construct["getId"] = new Func<int>(() => 1);
 
-            core["getVelocity"] = new Func<float[]>(() => Vector3.Zero.ToLua());//Im lazy
-            core["getAcceleration"] = new Func<float[]>(() => Vector3.Zero.ToLua());//Im lazy
+            construct["getVelocity"] = new Func<float[]>(() => Vector3.Zero.ToLua());//Im lazy
+            construct["getAcceleration"] = new Func<float[]>(() => Vector3.Zero.ToLua());//Im lazy
 
-            core["getMaxKinematicsParametersAlongAxis"] = new Func<string, float[], float[]>((T, D) => GetAxisKinematics(new Vector3(D[0], D[1], D[2])).ToLua());
+            construct["getMaxThrustAlongAxis"] = new Func<string, float[], float[]>((T, D) => GetAxisKinematics(new Vector3(D[0], D[1], D[2])).ToLua());
 
-            core["spawnNumberSticker"] = new Func<int, float, float, float, string, int>((nb, x, y, z, orientation) => -1);
-            core["spawnArrowSticker"] = new Func<float, float, float, string, bool>((x, y, z, orientation) => true);
-            core["deleteSticker"] = new Func<int, bool>((index) => true);
-            core["moveSticker"] = new Func<int, float, float, float, bool>((index, x, y, z) => true);
-            core["rotateSticker"] = new Func<int, float, float, float, bool>((index, angle_x, angle_y, angle_z) => true);
+            construct["spawnNumberSticker"] = new Func<int, float, float, float, string, int>((nb, x, y, z, orientation) => -1);
+            construct["spawnArrowSticker"] = new Func<float, float, float, string, bool>((x, y, z, orientation) => true);
+            construct["deleteSticker"] = new Func<int, bool>((index) => true);
+            construct["moveSticker"] = new Func<int, float, float, float, bool>((index, x, y, z) => true);
+            construct["rotateSticker"] = new Func<int, float, float, float, bool>((index, angle_x, angle_y, angle_z) => true);
 
-            core["getElementIdList"] = new Func<int[]>(() => this.Elements.Select(x => x.ID).ToArray().ToArray());
-            core["getElementTypeById"] = new Func<int, string>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.ClassName ?? null);
-            core["getElementHitPointsById"] = new Func<int, int>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.HitPoints ?? 0);
-            core["getElementMaxHitPointsById"] = new Func<int, int>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.MaxHitPoints ?? 0);
-            core["getElementMassById"] = new Func<int, float>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.Mass ?? 0);
-            core["getElementPositionById"] = new Func<int, float[]>((uid) => Vector3.Zero.ToLua());
-            core["getElementRotationById"] = new Func<int, float[]>((uid) => Vector3.Zero.ToLua());
-            core["getElementTagsById"] = new Func<int, string>((uid) => "");
+            construct["getElementIdList"] = new Func<int[]>(() => this.Elements.Select(x => x.ID).ToArray().ToArray());
+            construct["getElementTypeById"] = new Func<int, string>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.ClassName ?? null);
+            construct["getElementHitPointsById"] = new Func<int, int>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.HitPoints ?? 0);
+            construct["getElementMaxHitPointsById"] = new Func<int, int>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.MaxHitPoints ?? 0);
+            construct["getElementMassById"] = new Func<int, float>((uid) => this.Elements.Where(x => x.ID == uid).FirstOrDefault()?.Mass ?? 0);
+            construct["getElementPositionById"] = new Func<int, float[]>((uid) => Vector3.Zero.ToLua());
+            construct["getElementRotationById"] = new Func<int, float[]>((uid) => Vector3.Zero.ToLua());
+            construct["getElementTagsById"] = new Func<int, string>((uid) => "");
 
 
 
-            return core;
+            return construct;
         }
     }
 }

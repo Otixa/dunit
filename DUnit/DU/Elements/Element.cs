@@ -40,10 +40,10 @@ namespace DUnit.DU.Elements
         {
             var table = new Table(lua);
 
-            table["getId"] = new Func<int>(() => this.ID);
-            table["getElementClass"] = new Func<string>(() => this.ClassName);
-            table["show"] = new Func<bool>(() => true);
-            table["hide"] = new Func<bool>(() => true);
+            table["getLocalId"] = new Func<int>(() => this.ID);
+            table["getClass"] = new Func<string>(() => this.ClassName);
+            table["showWidget"] = new Func<bool>(() => true);
+            table["hideWidget"] = new Func<bool>(() => true);
 
             table["getData"] = new Func<string>(() => "{ }");
             table["getDataId"] = new Func<string>(() => "");

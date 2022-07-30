@@ -17,4 +17,10 @@ constants.FLT_EPSILON = 1.19209290e-07
 -- used for quaternion.slerp
 constants.DOT_THRESHOLD = 0.9995
 
-return constants
+--Protect constants from modification
+return setmetatable({}, {
+    __index = constants,
+    __newindex = function(table, key, value)
+        error("Can't modify a constant value.")
+    end
+})

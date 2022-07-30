@@ -303,7 +303,7 @@ function quaternion:to_euler()
 
 	 -- singularity at north pole
 	if test > 0.499*unit then
-		yaw = 2 * math.atan2(self.x,self.w)
+		yaw = 2 * math.atan(self.x,self.w)
 		pitch = math.pi/2
 		roll = 0
 		return pitch, yaw, roll
@@ -311,15 +311,15 @@ function quaternion:to_euler()
 
 	 -- singularity at south pole
 	if test < -0.499*unit then
-		yaw = -2 * math.atan2(self.x,self.w)
+		yaw = -2 * math.atan(self.x,self.w)
 		pitch = -math.pi/2
 		roll = 0
 		return pitch, yaw, roll
 	end
 
-	yaw   = math.atan2(2*self.y*self.w-2*self.x*self.z , sqx - sqy - sqz + sqw)
+	yaw   = math.atan(2*self.y*self.w-2*self.x*self.z , sqx - sqy - sqz + sqw)
 	pitch = math.asin(2*test/unit)
-	roll  = math.atan2(2*self.x*self.w-2*self.y*self.z , -sqx + sqy - sqz + sqw)
+	roll  = math.atan(2*self.x*self.w-2*self.y*self.z , -sqx + sqy - sqz + sqw)
 
 	return pitch, roll, yaw
 end
